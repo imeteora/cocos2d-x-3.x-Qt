@@ -1,3 +1,7 @@
+## latest cocos2d-x using c++11 or c++0x, so you will see below.
+QMAKE_CXXFLAGS += -std=c++11
+QMAKE_CXXFLAGS += -stdlib=libc++
+QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
 
 SOURCE_ROOT_DIR = $$PWD/../..
 COCOS2D_DIR = $$SOURCE_ROOT_DIR/cocos

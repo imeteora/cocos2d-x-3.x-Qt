@@ -9,11 +9,6 @@ QT      += core gui opengl
 TARGET = libCocos2dx
 TEMPLATE = lib
 
-QMAKE_CXXFLAGS += -std=c++11
-QMAKE_CXXFLAGS += -stdlib=libc++
-
-
-
 include(libCocos2dx.pri)
 
 SOURCES +=
