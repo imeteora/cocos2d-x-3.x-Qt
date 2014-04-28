@@ -48,6 +48,6 @@ THE SOFTWARE.
 #define MAX(x,y) (((x) < (y)) ? (y) : (x))
 #endif  // MAX
 
-#endif // CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+#endif // CC_TARGET_PLATFORM == CC_PLATFORM_QT5
 
 #endif  // __CC_STD_C_H__

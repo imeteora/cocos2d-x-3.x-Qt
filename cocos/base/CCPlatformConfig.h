@@ -142,7 +142,6 @@ Config of cocos2d-x project, per target platform.
 //////////////////////////////////////////////////////////////////////////
 // post configure
 //////////////////////////////////////////////////////////////////////////
-
 // check user set platform
 #if ! CC_TARGET_PLATFORM
     #error  "Cannot recognize the target platform; are you targeting an unsupported platform?"

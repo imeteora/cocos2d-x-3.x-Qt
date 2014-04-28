@@ -72,6 +72,6 @@ THE SOFTWARE.
 #endif
 #endif
 
-#endif // CC_TARGET_PLATFORM == CC_PLATFORM_MAC
+#endif // CC_TARGET_PLATFORM == CC_PLATFORM_QT5
 
 #endif /* __CCPLATFORMDEFINE_H__*/

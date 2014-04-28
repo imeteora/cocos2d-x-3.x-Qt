@@ -140,7 +140,7 @@ void UICCTextField::insertText(const char * text, size_t len)
                 return;
             }
             
-#if ((CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32))
+#if ((CC_TARGET_PLATFORM == CC_PLATFORM_IOS) || (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || CC_TARGET_PLATFORM == CC_PLATFORM_QT5  || (CC_TARGET_PLATFORM == CC_PLATFORM_WIN32))
             int input_count = _calcCharCount(text);
             int total = total = text_count + input_count;
             
