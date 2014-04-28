@@ -1,0 +1,10 @@
+include(libCocos2dx-header.pri)
+
+include(2d.pri)
+include(base.pri)
+#include(editor-support.pri)
+include(math.pri)
+#include(network.pri)
+#include(physics.pri)
+include(storage.pri)
+include(ui.pri)
