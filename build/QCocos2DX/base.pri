@@ -1,4 +1,4 @@
-INCLUDEPATH += \
+HEADERS += \
     ../../cocos/base/atitc.h \
     ../../cocos/base/CCAffineTransform.h \
     ../../cocos/base/CCAutoreleasePool.h \

@@ -1,6 +1,5 @@
 /****************************************************************************
-Copyright (c) 2010-2012 cocos2d-x.org
-Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2010 cocos2d-x.org
 
 http://www.cocos2d-x.org
 
@@ -23,25 +22,11 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __PLATFORM_MAC_CCGL_H__
-#define __PLATFORM_MAC_CCGL_H__
+#ifndef __CCGL_H__
+#define __CCGL_H__
 
-#include "CCPlatformConfig.h"
-#if CC_TARGET_PLATFORM == CC_PLATFORM_QT5
+#include <gl/glew.h>
 
-#import <OpenGL/gl.h>
-#import <OpenGL/glu.h>
-#import <OpenGL/glext.h>
+#define CC_GL_DEPTH24_STENCIL8		GL_DEPTH24_STENCIL8
 
-#define CC_GL_DEPTH24_STENCIL8      -1
-
-#define glDeleteVertexArrays            glDeleteVertexArraysAPPLE
-#define glGenVertexArrays               glGenVertexArraysAPPLE
-#define glBindVertexArray               glBindVertexArrayAPPLE
-#define glClearDepthf                   glClearDepth
-#define glDepthRangef                   glDepthRange
-#define glReleaseShaderCompiler(xxx)
-
-#endif //s CC_TARGET_PLATFORM == CC_PLATFORM_QT5
-
-#endif // __PLATFORM_MAC_CCGL_H__
+#endif // __CCGL_H__

@@ -15,8 +15,10 @@ DEFINES += CC_UNDER_QT
 DEFINES += COCOS2D_DEBUG=1
 
 unix:macx{
+    # system libraries.
     INCLUDEPATH += /usr/local/include \
         /usr/include/libxml2 \
+        /usr/local/include/webp \
         /usr/local/include/freetype2 \
 
     LIBS += -L/usr/local/lib/ -lpng
@@ -29,12 +31,18 @@ unix:macx{
     LIBS += -L/usr/local/lib/ -lwebpdecoder
     LIBS += -L/usr/local/lib/ -ltiff
     LIBS += -L/usr/local/lib/ -lfreetype
+
+    # prebuilt libraries
+    INCLUDEPATH += ../../external/glfw3/include/mac \
+
+    LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
 }
 
 COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR \
     $$COCOS2D_DIR/2d \
     $$COCOS2D_DIR/2d/platform \
+    $$COCOS2D_DIR/2d/platform/desktop \
     $$COCOS2D_DIR/2d/platform/qt \
     $$COCOS2D_DIR/2d/platform/renderer \
     $$COCOS2D_DIR/base \
@@ -44,5 +52,8 @@ COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR/physics \
     $$COCOS2D_DIR/physics/chipmunk \
     $$COCOS2D_DIR/../external/edtaa3func \
+    $$COCOS2D_DIR/../external/tinyxml2 \
+    $$COCOS2D_DIR/../external/unzip \
+    $$COCOS2D_DIR/../external/xxhash \
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH
