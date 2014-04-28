@@ -23,56 +23,25 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __CCPLATFORMDEFINE_H__
-#define __CCPLATFORMDEFINE_H__
+#ifndef __PLATFORM_MAC_CCGL_H__
+#define __PLATFORM_MAC_CCGL_H__
 
 #include "CCPlatformConfig.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_QT5
 
-    #include <QtCore/qglobal.h>
-    #undef CC_DLL
-    #if defined(_USRDLL)
-        #ifdef Q_OS_WIN
-                #define CC_DLL     __declspec(dllexport)
-        #else
-                #define CC_DLL     Q_DECL_EXPORT
-        #endif
-    #else 		/* use a DLL library */
-        #ifdef Q_OS_WIN
-                #define CC_DLL     __declspec(dllimport)
-        #else
-                #define CC_DLL     Q_DECL_IMPORT
-        #endif
-    #endif
+#import <OpenGL/gl.h>
+#import <OpenGL/glu.h>
+#import <OpenGL/glext.h>
 
-//#else
-//    #if defined(_USRDLL)
-//        #define CC_DLL     __declspec(dllexport)
-//    #else         /* use a DLL library */
-//        #define CC_DLL     __declspec(dllimport)
-//    #endif
-//#endif
+#define CC_GL_DEPTH24_STENCIL8      -1
 
-/// !about assert header
-#include <assert.h>
+#define glDeleteVertexArrays            glDeleteVertexArraysAPPLE
+#define glGenVertexArrays               glGenVertexArraysAPPLE
+#define glBindVertexArray               glBindVertexArrayAPPLE
+#define glClearDepthf                   glClearDepth
+#define glDepthRangef                   glDepthRange
+#define glReleaseShaderCompiler(xxx)
 
-#if CC_DISABLE_ASSERT > 0
-#define CC_ASSERT(cond)
-#else
-#define CC_ASSERT(cond) assert(cond)
-#endif
+#endif //s CC_TARGET_PLATFORM == CC_PLATFORM_QT5
 
-#define CC_UNUSED_PARAM(unusedparam) (void)unusedparam
-
-/* Define NULL pointer value */
-#ifndef NULL
-#ifdef __cplusplus
-#define NULL    0
-#else
-#define NULL    ((void *)0)
-#endif
-#endif
-
-#endif // CC_TARGET_PLATFORM == CC_PLATFORM_QT5
-
-#endif /* __CCPLATFORMDEFINE_H__*/
+#endif // __PLATFORM_MAC_CCGL_H__

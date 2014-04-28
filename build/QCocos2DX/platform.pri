@@ -1,4 +1,7 @@
 HEADERS += \
+    ../../cocos/2d/platform/qt/CCPlatformDefine.h \
+    ../../cocos/2d/platform/qt/CCStdC.h \
+    ../../cocos/2d/platform/qt/CCGL.h \
     ../../cocos/2d/platform/CCApplicationProtocol.h \
     ../../cocos/2d/platform/CCCommon.h \
     ../../cocos/2d/platform/CCDevice.h \
@@ -7,8 +10,6 @@ HEADERS += \
     ../../cocos/2d/platform/CCImage.h \
     ../../cocos/2d/platform/CCSAXParser.h \
     ../../cocos/2d/platform/CCThread.h \
-    ../../cocos/2d/platform/qt/CCPlatformDefine.h \
-    ../../cocos/2d/platform/qt/CCStdC.h \
 
 SOURCES += \
     ../../cocos/2d/platform/CCFileUtils.cpp \

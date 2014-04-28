@@ -1,8 +1,6 @@
+
 SOURCE_ROOT_DIR = $$PWD/../..
-
 COCOS2D_DIR = $$SOURCE_ROOT_DIR/cocos
-
-QT      += core gui opengl
 
 DEFINES += CC_TARGET_QT5
 DEFINES += USE_FILE32API
@@ -10,10 +8,12 @@ DEFINES += CC_KEYBOARD_SUPPORT
 
 DEFINES += __QT__
 DEFINES += CC_UNDER_QT
+DEFINES += COCOS2D_DEBUG=1
 
 unix:macx{
     INCLUDEPATH += /usr/local/include \
         /usr/include/libxml2 \
+        /usr/local/include/freetype2 \
 
     LIBS += -L/usr/local/lib/ -lpng
     LIBS += -L/usr/local/lib/ -ljpeg
@@ -24,13 +24,13 @@ unix:macx{
     LIBS += -L/usr/local/lib/ -lwebp
     LIBS += -L/usr/local/lib/ -lwebpdecoder
     LIBS += -L/usr/local/lib/ -ltiff
+    LIBS += -L/usr/local/lib/ -lfreetype
 }
 
 COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR \
     $$COCOS2D_DIR/2d \
     $$COCOS2D_DIR/2d/platform \
-    $$COCOS2D_DIR/2d/platform/mac \
     $$COCOS2D_DIR/2d/platform/qt \
     $$COCOS2D_DIR/2d/platform/renderer \
     $$COCOS2D_DIR/base \
@@ -39,5 +39,6 @@ COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR/ui \
     $$COCOS2D_DIR/physics \
     $$COCOS2D_DIR/physics/chipmunk \
+    $$COCOS2D_DIR/../external/edtaa3func \
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH
