@@ -39,6 +39,7 @@ unix:macx{
     INCLUDEPATH += ../../external/freealut/include
     INCLUDEPATH += ../../external/libvorbis/include
     INCLUDEPATH += ../../external/sqlite3/include
+    INCLUDEPATH += ../../external/websockets/include/mac
     LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
     LIBS += -L$$PWD/../../external/openal/prebuilt/mac -lopenal
     LIBS += -L$$PWD/../../external/freealut/prebuilt/mac -lalut
@@ -46,6 +47,7 @@ unix:macx{
     LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisenc
     LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisfile
     LIBS += -L$$PWD/../../external/sqlite3/libraries/mac -lsqlite3
+    LIBS += -L$$PWD/../../external/websockets/prebuilt/mac -lwebsockets
 }
 
 COCOS2D_INCLUDEPATH = \
