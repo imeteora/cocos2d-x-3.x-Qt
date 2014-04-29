@@ -45,7 +45,7 @@ public:
     }
     void setStartupScriptFilename(const std::string& startupScriptFile);
 
-public slots:
+public:
     void timerUpdate();
 
 protected:

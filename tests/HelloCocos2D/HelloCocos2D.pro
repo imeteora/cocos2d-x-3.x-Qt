@@ -10,17 +10,26 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET  = HelloCocos2D
 TEMPLATE = app
-CONFIG  -= app_bundle       # some thing needs to be reviewed.
+#CONFIG  -= app_bundle       # some thing needs to be reviewed.
 
 include($$PWD/../../build/QCocos2DX/libCocos2dx-header.pri)
 
-DESTDIR = $$COCOS2D_DIR/bin
+DESTDIR = $$PWD/../../bin
+
+APP_BUNDLE  = ${DESTDIR}/HelloCocos2D.app
+
+macx {
+    QMAKE_INFO_PLIST    = Info.plist
+    ICON = $$PWD/Images/Icons/icon_mac.icns
+#    QMAKE_POST_LINK += ${QTDIR}/bin/lupdate $$PWD/HelloCocos2D.pro &
+#    QMAKE_POST_LINK += ${QTDIR}/bin/lrelease $$PWD/HelloCocos2D.pro &
+    QMAKE_POST_LINK += ${QTDIR}/bin/macdeployqt $$APP_BUNDLE -verbose=1
+}
 
 INCLUDEPATH += \
     $$PWD/src \
 
-LIBS    += \
-    -L$$COCOS2D_DIR/bin -lcocos2d
+LIBS    += -L$$PWD/../../bin -lcocos2d
 
 SOURCES += main.cpp \
     src/MainWindow.cpp \

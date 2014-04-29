@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>English</string>
+	<key>CFBundleExecutable</key>
+	<string>HelloCocos2D</string>
+	<key>CFBundleGetInfoString</key>
+	<string>HelloCocos2D 0.1.1, Copyright 2013 Delun Zhu, iCloverStudio</string>
+	<key>CFBundleIconFile</key>
+	<string>icon_mac.icns</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.icloverstudio.HelloCocos2D</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+	<key>CFBundleShortVersionString</key>
+	<string>0.1.1</string>
+	<key>CFBundleVersion</key>
+	<string>0.1.1</string>
+	<key>CSResourcesFileMapped</key>
+	<true/>
+	<key>NSHumanReadableCopyright</key>
+	<string>Copyright 2013 Delun Zhu, iCloverStudio</string>
+	<key>NSHighResolutionCapable</key>
+	<true/>
+	<key>CFBundleDocumentTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeName</key>
+			<string>HelloCocos2D</string>
+			<key>CFBundleTypeIconFile</key>
+			<string>icon_mac.icns</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>canr</string>
+			</array>
+		</dict>
+	</array>
+</dict>
+</plist>
