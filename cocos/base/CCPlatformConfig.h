@@ -153,16 +153,19 @@ Config of cocos2d-x project, per target platform.
 #endif 
 #endif  // CC_PLATFORM_WIN32
 
-#if defined(__clang__)
-    #pragma clang diagnostic ignored "-Wignored-qualifiers"
-    #pragma clang diagnostic ignored "-Wunused-parameter"
-    #pragma clang diagnostic ignored "-Wunused-private-field"
-    #pragma clang diagnostic ignored "-Wunused-function"
-    #pragma clang diagnostic ignored "-Wreorder"
-    #pragma clang diagnostic ignored "-Wmissing-braces"
-    #pragma clang diagnostic ignored "-Wsign-compare"
-    #pragma clang diagnostic ignored "-Wmissing-field-initializers"
-#endif  // __clang__
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
+    #if defined(__clang__) || defined(__llvm__)
+        #pragma clang diagnostic ignored "-Wignored-qualifiers"
+        #pragma clang diagnostic ignored "-Wunused-parameter"
+        #pragma clang diagnostic ignored "-Wunused-private-field"
+        #pragma clang diagnostic ignored "-Wunused-function"
+        #pragma clang diagnostic ignored "-Wunused-const-variable"
+        #pragma clang diagnostic ignored "-Wreorder"
+        #pragma clang diagnostic ignored "-Wmissing-braces"
+        #pragma clang diagnostic ignored "-Wsign-compare"
+        #pragma clang diagnostic ignored "-Wmissing-field-initializers"
+    #endif
+#endif  // CC_TARGET_PLATFORM == CC_PLATFORM_QT5
 
 #endif  // __CC_PLATFORM_CONFIG_H__
 

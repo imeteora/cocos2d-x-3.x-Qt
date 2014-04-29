@@ -7,6 +7,6 @@
 TEMPLATE = subdirs
 CONFIG += ordered
 
-ROOT_DIR = $$(PWD)/../../
+ROOT_DIR = $$PWD/../../
 
 SUBDIRS += libCocos2dx.pro

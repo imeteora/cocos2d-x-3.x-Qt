@@ -57,7 +57,6 @@ COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR/2d/platform/renderer \
     $$COCOS2D_DIR/audio/include \
     $$COCOS2D_DIR/base \
-    $$COCOS2D_DIR/editor-support \
     $$COCOS2D_DIR/math/kazmath \
     $$COCOS2D_DIR/storage/local-storage \
     $$COCOS2D_DIR/ui \
@@ -71,5 +70,6 @@ COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR/../external/unzip \
     $$COCOS2D_DIR/../external/xxhash \
     $$COCOS2D_DIR/../external/json \
+    $$COCOS2D_DIR/editor-support \
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH
