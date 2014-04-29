@@ -19,11 +19,13 @@ SOURCES += \
     ../../cocos/2d/platform/qt/CCGLView.cpp \
     ../../cocos/2d/platform/qt/CCGLWidget.cpp \
     ../../cocos/2d/platform/qt/CCCommon.cpp \
+    ../../cocos/2d/platform/qt/CCFileUtilsQt.cpp \
     ../../cocos/2d/platform/CCFileUtils.cpp \
     ../../cocos/2d/platform/CCGLViewProtocol.cpp \
     ../../cocos/2d/platform/CCImage.cpp \
     ../../cocos/2d/platform/CCSAXParser.cpp \
     ../../cocos/2d/platform/CCThread.cpp \
+    ../../cocos/2d/platform/qt/CCDevice.cpp
 
 #../../cocos/2d/platform/desktop/CCGLView.h \
 #../../cocos/2d/platform/desktop/CCGLView.cpp \

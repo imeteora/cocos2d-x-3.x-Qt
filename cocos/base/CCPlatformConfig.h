@@ -156,10 +156,12 @@ Config of cocos2d-x project, per target platform.
 #if defined(__clang__)
     #pragma clang diagnostic ignored "-Wignored-qualifiers"
     #pragma clang diagnostic ignored "-Wunused-parameter"
+    #pragma clang diagnostic ignored "-Wunused-private-field"
     #pragma clang diagnostic ignored "-Wunused-function"
     #pragma clang diagnostic ignored "-Wreorder"
     #pragma clang diagnostic ignored "-Wmissing-braces"
-    #pragma clang diagnostic ignored "-Wunused-private-field"
+    #pragma clang diagnostic ignored "-Wsign-compare"
+    #pragma clang diagnostic ignored "-Wmissing-field-initializers"
 #endif  // __clang__
 
 #endif  // __CC_PLATFORM_CONFIG_H__

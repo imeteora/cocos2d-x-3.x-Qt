@@ -1,6 +1,7 @@
 ## latest cocos2d-x using c++11 or c++0x, so you will see below.
 QMAKE_CXXFLAGS += -std=c++11
 QMAKE_CXXFLAGS += -stdlib=libc++
+QMAKE_LFLAGS += -lc++
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
 
 SOURCE_ROOT_DIR = $$PWD/../..
@@ -35,12 +36,16 @@ unix:macx{
     # prebuilt libraries
     INCLUDEPATH += ../../external/glfw3/include/mac
     INCLUDEPATH += ../../external/openal/include
-    INCLUDEPATH += ../../external/libvorbis/include \
+    INCLUDEPATH += ../../external/freealut/include
+    INCLUDEPATH += ../../external/libvorbis/include
+    INCLUDEPATH += ../../external/sqlite3/include
     LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
     LIBS += -L$$PWD/../../external/openal/prebuilt/mac -lopenal
+    LIBS += -L$$PWD/../../external/freealut/prebuilt/mac -lalut
     LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbis
     LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisenc
     LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisfile
+    LIBS += -L$$PWD/../../external/sqlite3/libraries/mac -lsqlite3
 }
 
 COCOS2D_INCLUDEPATH = \

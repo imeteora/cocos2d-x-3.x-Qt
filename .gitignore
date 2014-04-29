@@ -3,12 +3,12 @@
 *.slo
 *.lo
 *.o
-*.a
+#*.a
 *.la
 *.lai
 *.so
 *.dll
-*.dylib
+#*.dylib
 
 # Qt-es
 
