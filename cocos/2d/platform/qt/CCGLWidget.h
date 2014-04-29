@@ -36,7 +36,7 @@ protected:
 
     virtual void resizeEvent(QResizeEvent *);
 
-public slots:
+public:
 //    void update();
 
 private:

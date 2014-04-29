@@ -41,13 +41,13 @@ class GLWidget;
 NS_CC_BEGIN
 
 class CCEGL;
-class CCTouch;
+//class CCTouch;
 
-class CC_DLL CCEGLView : public GLViewProtocol
+class CC_DLL GLView : public GLViewProtocol, public Ref
 {
 public:
-    CCEGLView();
-    virtual ~CCEGLView();
+    GLView();
+    virtual ~GLView();
 
     /* override functions */
     virtual bool isOpenGLReady();
@@ -86,7 +86,7 @@ public:
     /**
     @brief    get the shared main open gl window
     */
-    static CCEGLView* sharedOpenGLView(QWidget* param = NULL);
+    static GLView* sharedOpenGLView(QWidget* param = NULL);
     static void purgeSharedOpenGLView();
 
 protected:

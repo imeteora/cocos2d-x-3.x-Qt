@@ -28,7 +28,7 @@
 #include "ccConfig.h"
 #if CC_USE_PHYSICS
 
-#include "chipmunk.h"
+#include <chipmunk/chipmunk.h>
 #include "CCPlatformMacros.h"
 #include <vector>
 #include <unordered_map>

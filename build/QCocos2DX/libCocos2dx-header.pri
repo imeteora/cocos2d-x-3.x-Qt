@@ -33,27 +33,38 @@ unix:macx{
     LIBS += -L/usr/local/lib/ -lfreetype
 
     # prebuilt libraries
-    INCLUDEPATH += ../../external/glfw3/include/mac \
-
+    INCLUDEPATH += ../../external/glfw3/include/mac
+    INCLUDEPATH += ../../external/openal/include
+    INCLUDEPATH += ../../external/libvorbis/include \
     LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
+    LIBS += -L$$PWD/../../external/openal/prebuilt/mac -lopenal
+    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbis
+    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisenc
+    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisfile
 }
 
 COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR \
+    $$COCOS2D_DIR/.. \
     $$COCOS2D_DIR/2d \
     $$COCOS2D_DIR/2d/platform \
-    $$COCOS2D_DIR/2d/platform/desktop \
     $$COCOS2D_DIR/2d/platform/qt \
     $$COCOS2D_DIR/2d/platform/renderer \
+    $$COCOS2D_DIR/audio/include \
     $$COCOS2D_DIR/base \
+    $$COCOS2D_DIR/editor-support \
     $$COCOS2D_DIR/math/kazmath \
     $$COCOS2D_DIR/storage/local-storage \
     $$COCOS2D_DIR/ui \
     $$COCOS2D_DIR/physics \
     $$COCOS2D_DIR/physics/chipmunk \
+    $$COCOS2D_DIR/../external \
+    $$COCOS2D_DIR/../external/chipmunk/include \
+    $$COCOS2D_DIR/../external/chipmunk/include/chipmunk \
     $$COCOS2D_DIR/../external/edtaa3func \
     $$COCOS2D_DIR/../external/tinyxml2 \
     $$COCOS2D_DIR/../external/unzip \
     $$COCOS2D_DIR/../external/xxhash \
+    $$COCOS2D_DIR/../external/json \
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH

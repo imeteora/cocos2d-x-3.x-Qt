@@ -30,7 +30,7 @@
 
 #include <vector>
 #include <unordered_map>
-#include "chipmunk.h"
+#include <chipmunk/chipmunk.h>
 #include "CCPlatformMacros.h"
 
 NS_CC_BEGIN

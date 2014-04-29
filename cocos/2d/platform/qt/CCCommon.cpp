@@ -23,49 +23,43 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#ifndef __CCPLATFORMDEFINE_H__
-#define __CCPLATFORMDEFINE_H__
-
 #include "CCPlatformConfig.h"
 #if CC_TARGET_PLATFORM == CC_PLATFORM_QT5
 
-#include <QtCore/qglobal.h>
-#undef CC_DLL
-#if defined(_USRDLL)
-    #ifdef Q_OS_WIN
-            #define CC_DLL     __declspec(dllexport)
-    #else
-            #define CC_DLL     Q_DECL_EXPORT
-    #endif
-#else 		/* use a DLL library */
-    #ifdef Q_OS_WIN
-            #define CC_DLL     __declspec(dllimport)
-    #else
-            #define CC_DLL     Q_DECL_IMPORT
-    #endif
-#endif
+#include "platform/CCCommon.h"
+#include "CCStdC.h"
+#include <QMessageBox>
 
+NS_CC_BEGIN
 
-/// !about assert header
-#include <assert.h>
+#define MAX_LEN         (cocos2d::kMaxLogLen + 1)
 
-#if CC_DISABLE_ASSERT > 0
-#define CC_ASSERT(cond)
-#else
-#define CC_ASSERT(cond) assert(cond)
-#endif
+void MessageBox(const char * pszMsg, const char * pszTitle)
+{
+    QMessageBox::warning(NULL, pszTitle, pszMsg, QMessageBox::Ok, QMessageBox::NoButton);
+}
 
-#define CC_UNUSED_PARAM(unusedparam) (void)unusedparam
+void LuaLog(const char *pszMsg)
+{
+    CC_UNUSED_PARAM(pszMsg);
+//    int bufflen = MultiByteToWideChar(CP_UTF8, 0, pszMsg, -1, NULL, 0);
+//    WCHAR* widebuff = new WCHAR[bufflen + 1];
+//    memset(widebuff, 0, sizeof(WCHAR) * (bufflen + 1));
+//    MultiByteToWideChar(CP_UTF8, 0, pszMsg, -1, widebuff, bufflen);
 
-/* Define NULL pointer value */
-#ifndef NULL
-#ifdef __cplusplus
-#define NULL    0
-#else
-#define NULL    ((void *)0)
-#endif
-#endif
+//    OutputDebugStringW(widebuff);
+//    OutputDebugStringA("\n");
 
-#endif // CC_TARGET_PLATFORM == CC_PLATFORM_QT5
+//	bufflen = WideCharToMultiByte(CP_ACP, 0, widebuff, -1, NULL, 0, NULL, NULL);
+//	char* buff = new char[bufflen + 1];
+//	memset(buff, 0, sizeof(char) * (bufflen + 1));
+//	WideCharToMultiByte(CP_ACP, 0, widebuff, -1, buff, bufflen, NULL, NULL);
+//	puts(buff);
 
-#endif /* __CCPLATFORMDEFINE_H__*/
+//	delete[] widebuff;
+//	delete[] buff;
+}
+
+NS_CC_END
+
+#endif // CC_TARGET_PLATFORM == CC_PLATFORM_WIN32

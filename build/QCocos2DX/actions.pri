@@ -15,6 +15,7 @@ HEADERS += \
     ../../cocos/2d/CCActionTween.h \
 
 SOURCES += \
+    ../../cocos/2d/CCGrid.cpp \
     ../../cocos/2d/CCAction.cpp \
     ../../cocos/2d/CCActionCamera.cpp \
     ../../cocos/2d/CCActionCatmullRom.cpp \

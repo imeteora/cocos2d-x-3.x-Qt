@@ -182,7 +182,10 @@ THE SOFTWARE.
 #endif // CC_TARGET_PLATFORM == CC_PLATFORM_MAC
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
-    #include "platform/qt/CCPlatformDefine.h"
+//    #include "platform/qt/CCPlatformDefine.h"
+    #include "platform/qt/CCApplication.h"
+    #include "platform/qt/CCGL.h"
+    #include "platform/qt/CCGLView.h"
     #include "platform/qt/CCStdC.h"
 #endif  // CC_TARGET_PLATFORM == CC_PLATFORM_QT5
 
@@ -273,18 +276,18 @@ THE SOFTWARE.
 #include "CCComponent.h"
 #include "CCComponentContainer.h"
 
-//// Deprecated include
-//#include "deprecated/CCDictionary.h"
-//#include "deprecated/CCArray.h"
-//#include "deprecated/CCSet.h"
-//#include "deprecated/CCInteger.h"
-//#include "deprecated/CCFloat.h"
-//#include "deprecated/CCDouble.h"
-//#include "deprecated/CCBool.h"
-//#include "deprecated/CCString.h"
-//#include "deprecated/CCNotificationCenter.h"
-//// CCDeprecated.h must be included at the end
-//#include "deprecated/CCDeprecated.h"
+// Deprecated include
+#include "deprecated/CCDictionary.h"
+#include "deprecated/CCArray.h"
+#include "deprecated/CCSet.h"
+#include "deprecated/CCInteger.h"
+#include "deprecated/CCFloat.h"
+#include "deprecated/CCDouble.h"
+#include "deprecated/CCBool.h"
+#include "deprecated/CCString.h"
+#include "deprecated/CCNotificationCenter.h"
+// CCDeprecated.h must be included at the end
+#include "deprecated/CCDeprecated.h"
 
 
 NS_CC_BEGIN

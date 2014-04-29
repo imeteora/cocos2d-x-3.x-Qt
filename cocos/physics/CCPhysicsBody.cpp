@@ -28,7 +28,7 @@
 #include <algorithm>
 #include <cmath>
 
-#include "chipmunk.h"
+#include <chipmunk/chipmunk.h>
 
 #include "CCNode.h"
 

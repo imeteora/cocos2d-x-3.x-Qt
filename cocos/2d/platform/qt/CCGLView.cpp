@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
-#include "CCEGLView.h"
+#include "CCGLView.h"
 #include "ccMacros.h"
 #include "CCDirector.h"
 #include "CCTouch.h"
@@ -115,9 +115,9 @@ static bool glew_dynamic_binding()
 }
 
 //////////////////////////////////////////////////////////////////////////
-// impliment CCEGLView
+// impliment GLView
 //////////////////////////////////////////////////////////////////////////
-static CCEGLView* s_pMainWindow = NULL;
+static GLView* s_pMainWindow = NULL;
 
 static void mouseMove(QMouseEvent *event)
 {
@@ -134,7 +134,7 @@ static void mouseRelease(QMouseEvent *event)
     s_pMainWindow->mouseRelease(event);
 }
 
-CCEGLView::CCEGLView()
+GLView::GLView()
     : m_bCaptured(false)
     , m_fFrameZoomFactor(1.0f)
     , m_bSupportTouch(false)
@@ -148,12 +148,12 @@ CCEGLView::CCEGLView()
 //    strcpy(m_szViewName, "quick-cocos2d-x LuaHostWin32");
 }
 
-CCEGLView::~CCEGLView()
+GLView::~GLView()
 {
 
 }
 
-bool CCEGLView::initGL()
+bool GLView::initGL()
 {
     // check OpenGL version at first
     const GLubyte* glVersion = glGetString(GL_VERSION);
@@ -209,11 +209,11 @@ bool CCEGLView::initGL()
     return true;
 }
 
-void CCEGLView::destroyGL()
+void GLView::destroyGL()
 {
 }
 
-bool CCEGLView::Create(QWidget *param)
+bool GLView::Create(QWidget *param)
 {
     bool bRet = false;
     do {
@@ -246,12 +246,12 @@ bool CCEGLView::Create(QWidget *param)
     return bRet;
 }
 
-bool CCEGLView::isOpenGLReady()
+bool GLView::isOpenGLReady()
 {
     return m_bIsInit;
 }
 
-void CCEGLView::end()
+void GLView::end()
 {
     CC_SAFE_DELETE(m_pSet);
     CC_SAFE_DELETE(m_pTouch);
@@ -262,7 +262,7 @@ void CCEGLView::end()
     delete this;
 }
 
-void CCEGLView::swapBuffers()
+void GLView::swapBuffers()
 {
     if (m_bIsInit)
     {
@@ -273,12 +273,12 @@ void CCEGLView::swapBuffers()
 }
 
 
-void CCEGLView::setIMEKeyboardState(bool /*bOpen*/)
+void GLView::setIMEKeyboardState(bool /*bOpen*/)
 {
 
 }
 
-void CCEGLView::setViewName(const std::string &pszViewName)
+void GLView::setViewName(const std::string &pszViewName)
 {
     GLViewProtocol::setViewName(pszViewName);
     if (m_glParentWidget) {
@@ -286,7 +286,7 @@ void CCEGLView::setViewName(const std::string &pszViewName)
     }
 }
 
-void CCEGLView::resize(int width, int height)
+void GLView::resize(int width, int height)
 {
     do {
         CC_BREAK_IF(!m_window);
@@ -297,7 +297,7 @@ void CCEGLView::resize(int width, int height)
     return;
 }
 
-void CCEGLView::setFrameZoomFactor(float fZoomFactor)
+void GLView::setFrameZoomFactor(float fZoomFactor)
 {
     m_fFrameZoomFactor = fZoomFactor;
     resize(_screenSize.width * fZoomFactor, _screenSize.height * fZoomFactor);
@@ -305,12 +305,12 @@ void CCEGLView::setFrameZoomFactor(float fZoomFactor)
     Director::getInstance()->setProjection(Director::getInstance()->getProjection());
 }
 
-float CCEGLView::getFrameZoomFactor()
+float GLView::getFrameZoomFactor()
 {
     return m_fFrameZoomFactor;
 }
 
-void CCEGLView::setFrameSize(float width, float height)
+void GLView::setFrameSize(float width, float height)
 {
     GLViewProtocol::setFrameSize(width, height);
 
@@ -318,7 +318,7 @@ void CCEGLView::setFrameSize(float width, float height)
     centerWindow();
 }
 
-void CCEGLView::centerWindow()
+void GLView::centerWindow()
 {
     if (m_glParentWidget && !m_glParentWidget->parent()) {
         QDesktopWidget *w = qApp->desktop();
@@ -328,14 +328,14 @@ void CCEGLView::centerWindow()
     }
 }
 
-void CCEGLView::moveWindow(int left, int top)
+void GLView::moveWindow(int left, int top)
 {
     if (m_glParentWidget && !m_glParentWidget->parent()) {
         m_glParentWidget->move(left, top);
     }
 }
 
-void CCEGLView::setViewPortInPoints(float x , float y , float w , float h)
+void GLView::setViewPortInPoints(float x , float y , float w , float h)
 {
     glViewport((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
         (GLint)(y * _scaleY  * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
@@ -343,7 +343,7 @@ void CCEGLView::setViewPortInPoints(float x , float y , float w , float h)
         (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
 }
 
-void CCEGLView::setScissorInPoints(float x , float y , float w , float h)
+void GLView::setScissorInPoints(float x , float y , float w , float h)
 {
     glScissor((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
               (GLint)(y * _scaleY * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
@@ -351,13 +351,13 @@ void CCEGLView::setScissorInPoints(float x , float y , float w , float h)
               (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
 }
 
-CCEGLView* CCEGLView::sharedOpenGLView(QWidget *param)
+GLView* GLView::sharedOpenGLView(QWidget *param)
 {
     do {
         CC_BREAK_IF(param == NULL);
-        CC_BREAK_IF(s_pMainWindow);         /// if have already created CCEGLView before, just returns.
+        CC_BREAK_IF(s_pMainWindow);         /// if have already created GLView before, just returns.
 
-        s_pMainWindow = new CCEGLView;
+        s_pMainWindow = new GLView;
         if(!s_pMainWindow->Create(param)) {
             CC_SAFE_DELETE(s_pMainWindow);
         }
@@ -366,7 +366,7 @@ CCEGLView* CCEGLView::sharedOpenGLView(QWidget *param)
     return s_pMainWindow;
 }
 
-void CCEGLView::mouseMove(QMouseEvent *event)
+void GLView::mouseMove(QMouseEvent *event)
 {
     if (/*! m_pDelegate || */! m_pTouch)
         return;
@@ -380,7 +380,7 @@ void CCEGLView::mouseMove(QMouseEvent *event)
 //    m_pDelegate->touchesMoved(m_pSet, NULL);
 }
 
-void CCEGLView::mousePress(QMouseEvent *event)
+void GLView::mousePress(QMouseEvent *event)
 {
     if (/*! m_pDelegate ||*/ ! m_pTouch)
         return;
@@ -396,7 +396,7 @@ void CCEGLView::mousePress(QMouseEvent *event)
 //    m_pDelegate->touchesBegan(m_pSet, NULL);
 }
 
-void CCEGLView::mouseRelease(QMouseEvent *event)
+void GLView::mouseRelease(QMouseEvent *event)
 {
     if (/*! m_pDelegate || */! m_pTouch)
         return;
@@ -422,13 +422,13 @@ void CCEGLView::mouseRelease(QMouseEvent *event)
     return;
 }
 
-void CCEGLView::setAccelerometerKeyHook(ACCEL_PTRFUN func)
+void GLView::setAccelerometerKeyHook(ACCEL_PTRFUN func)
 {
     if (m_window)
         m_window->setKeyEventFunc(func);
 }
 
-QWidget *CCEGLView::getGLWidget()
+QWidget *GLView::getGLWidget()
 {
     return m_window;
 }

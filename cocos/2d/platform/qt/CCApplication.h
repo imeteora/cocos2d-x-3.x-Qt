@@ -11,7 +11,7 @@
 
 NS_CC_BEGIN
 
-class CCRect;
+//class CCRect;
 
 class CC_DLL Application : public QApplication, public ApplicationProtocol
 {
@@ -45,7 +45,7 @@ public:
     }
     void setStartupScriptFilename(const std::string& startupScriptFile);
 
-public slots:
+public:
     void timerUpdate();
 
 protected:

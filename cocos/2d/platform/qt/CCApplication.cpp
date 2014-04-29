@@ -1,5 +1,5 @@
 #include "CCApplication.h"
-#include "CCEGLView.h"
+#include "CCGLView.h"
 #include "CCDirector.h"
 #include <algorithm>
 #include "platform/CCFileUtils.h"

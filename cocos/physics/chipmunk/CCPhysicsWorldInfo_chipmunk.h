@@ -29,7 +29,7 @@
 #if CC_USE_PHYSICS
 
 #include <vector>
-#include "chipmunk.h"
+#include <chipmunk/chipmunk.h>
 #include "CCPlatformMacros.h"
 #include "CCGeometry.h"
 NS_CC_BEGIN

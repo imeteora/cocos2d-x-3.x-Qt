@@ -9,6 +9,8 @@ QT      += core gui opengl
 TARGET = libCocos2dx
 TEMPLATE = lib
 
+DEFINES += QT_NO_KEYWORDS
+
 include(libCocos2dx.pri)
 
 SOURCES +=
