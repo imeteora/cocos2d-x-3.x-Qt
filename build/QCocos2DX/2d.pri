@@ -19,6 +19,7 @@ include(tilemap-parallax-nodes.pri)
 include(renderer.pri)
 
 HEADERS += \
+    ../../cocos/2d/cocos2d.h \
     ../../cocos/2d/ccTypes.h \
     ../../cocos/2d/ccConfig.h \
     ../../cocos/2d/CCConfiguration.h \
@@ -29,7 +30,6 @@ HEADERS += \
     ../../cocos/2d/ccMacros.h \
     ../../cocos/2d/CCProtocols.h \
     ../../cocos/2d/CCScheduler.h \
-    ../../cocos/2d/cocos2d.h \
     ../../cocos/2d/firePngData.h \
     ../../cocos/2d/TransformUtils.h \
 

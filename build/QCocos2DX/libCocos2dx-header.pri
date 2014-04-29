@@ -5,7 +5,7 @@ QMAKE_LFLAGS += -lc++
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
 
 SOURCE_ROOT_DIR = $$PWD/../..
-COCOS2D_DIR = $$SOURCE_ROOT_DIR/cocos
+COCOS2D_DIR = $$SOURCE_ROOT_DIR
 
 DEFINES += CC_TARGET_QT5
 DEFINES += USE_FILE32API
@@ -52,26 +52,28 @@ unix:macx{
 
 COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR \
-    $$COCOS2D_DIR/.. \
-    $$COCOS2D_DIR/2d \
-    $$COCOS2D_DIR/2d/platform \
-    $$COCOS2D_DIR/2d/platform/qt \
-    $$COCOS2D_DIR/2d/platform/renderer \
-    $$COCOS2D_DIR/audio/include \
-    $$COCOS2D_DIR/base \
-    $$COCOS2D_DIR/math/kazmath \
-    $$COCOS2D_DIR/storage/local-storage \
-    $$COCOS2D_DIR/ui \
-    $$COCOS2D_DIR/physics \
-    $$COCOS2D_DIR/physics/chipmunk \
-    $$COCOS2D_DIR/../external \
-    $$COCOS2D_DIR/../external/chipmunk/include \
-    $$COCOS2D_DIR/../external/chipmunk/include/chipmunk \
-    $$COCOS2D_DIR/../external/edtaa3func \
-    $$COCOS2D_DIR/../external/tinyxml2 \
-    $$COCOS2D_DIR/../external/unzip \
-    $$COCOS2D_DIR/../external/xxhash \
-    $$COCOS2D_DIR/../external/json \
-    $$COCOS2D_DIR/editor-support \
+    $$COCOS2D_DIR/cocos \
+    $$COCOS2D_DIR/cocos/2d \
+    $$COCOS2D_DIR/cocos/2d/platform \
+    $$COCOS2D_DIR/cocos/2d/platform/qt \
+    $$COCOS2D_DIR/cocos/2d/platform/renderer \
+    $$COCOS2D_DIR/cocos/audio/include \
+    $$COCOS2D_DIR/cocos/base \
+    $$COCOS2D_DIR/cocos/math/kazmath \
+    $$COCOS2D_DIR/cocos/storage/local-storage \
+    $$COCOS2D_DIR/cocos/ui \
+    $$COCOS2D_DIR/cocos/physics \
+    $$COCOS2D_DIR/cocos/physics/chipmunk \
+    $$COCOS2D_DIR/external \
+    $$COCOS2D_DIR/external/chipmunk/include \
+    $$COCOS2D_DIR/external/chipmunk/include/chipmunk \
+    $$COCOS2D_DIR/external/edtaa3func \
+    $$COCOS2D_DIR/external/tinyxml2 \
+    $$COCOS2D_DIR/external/unzip \
+    $$COCOS2D_DIR/external/xxhash \
+    $$COCOS2D_DIR/external/json \
+    $$COCOS2D_DIR/cocos/editor-support \
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH
+
+PRECOMPILED_HEADER  = $$COCOS2D_DIR/cocos/base/CCPlatformConfig.h
