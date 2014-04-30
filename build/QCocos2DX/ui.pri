@@ -1,4 +1,4 @@
-INCLUDEPATH += \
+HEADERS += \
     ../../cocos/ui/CCProtectedNode.h \
     ../../cocos/ui/CocosGUI.h \
     ../../cocos/ui/GUIDefine.h \

@@ -22,6 +22,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
+#include "CCPlatformConfig.h"
 #include "SimpleAudioEngine.h"
 
 //#include <map>
@@ -351,6 +352,7 @@ bool SimpleAudioEngine::willPlayBackgroundMusic()
 //        return false;
 
 //    return (alIsSource(s_backgroundSource) == AL_TRUE ? true : false);
+    return true;
 }
 
 bool SimpleAudioEngine::isBackgroundMusicPlaying()
@@ -364,6 +366,7 @@ bool SimpleAudioEngine::isBackgroundMusicPlaying()
 //    checkALError("isBackgroundMusicPlaying:alGetSourcei");
 
 //    return (play_status == AL_PLAYING);
+    return true;
 }
 
 float SimpleAudioEngine::getBackgroundMusicVolume()

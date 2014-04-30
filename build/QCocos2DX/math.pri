@@ -1,4 +1,4 @@
-INCLUDEPATH += \
+HEADERS += \
     ../../cocos/math/kazmath/kazmath/aabb.h \
     ../../cocos/math/kazmath/kazmath/kazmath.h \
     ../../cocos/math/kazmath/kazmath/mat3.h \

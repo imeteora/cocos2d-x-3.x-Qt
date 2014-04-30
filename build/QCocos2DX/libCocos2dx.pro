@@ -8,6 +8,7 @@ QT      += core gui opengl
 
 TARGET = libCocos2dx
 TEMPLATE = lib
+CONFIG += static
 
 # disble the Qt keywords extension here for cocos2d-x 3.x,
 # there is some qt extension keywords in code.
@@ -25,13 +26,21 @@ unix:macx {
     TARGET = cocos2d
 }
 
+macx {
+    LIBS    += -framework Cocoa
+    LIBS    += -framework Foundation
+}
+#unix:!symbian {
+#    maemo5 {
+#        target.path = /opt/usr/lib
+#    } else {
+#        target.path = /usr/lib
+#    }
+#    INSTALLS += target
+#}
+
 SOURCES +=
 
 HEADERS +=
-
-unix {
-    target.path = /usr/lib
-    INSTALLS += target
-}
 
 OTHER_FILES +=

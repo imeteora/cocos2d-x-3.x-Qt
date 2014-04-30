@@ -18,41 +18,46 @@ DEFINES += COCOS2D_DEBUG=1
 unix:macx{
     # system libraries.
     INCLUDEPATH += /usr/local/include
-#    INCLUDEPATH += /usr/include/libxml2
-    INCLUDEPATH += /usr/local/include/webp
-#    INCLUDEPATH += /usr/local/include/freetype2
-
-    LIBS += -L/usr/local/lib/ -lpng
-#    LIBS += -L/usr/local/lib/ -ljpeg
-#    LIBS += -L/usr/local/lib/ -lxml2
     LIBS += -L/usr/local/lib/ -lGLEW
     LIBS += -L/usr/local/lib/ -lz
-    LIBS += -L/usr/local/lib/ -lcurl
-#    LIBS += -L/usr/local/lib/ -lwebp
-#    LIBS += -L/usr/local/lib/ -lwebpdecoder
-    LIBS += -L/usr/local/lib/ -ltiff
-#    LIBS += -L/usr/local/lib/ -lfreetype
 
     # prebuilt libraries
-    INCLUDEPATH += ../../external/freetype2/include/mac
+    INCLUDEPATH += ../../external/png/include/mac
+    LIBS        += -L$$PWD/../../external/curl/prebuilt/mac -lpng
+
+    INCLUDEPATH += ../../external/tiff/include/mac
+    LIBS        += -L$$PWD/../../external/tiff/prebuilt/mac -ltiff
+
     INCLUDEPATH += ../../external/jpeg/include/mac
-#    INCLUDEPATH += ../../external/glfw3/include/mac
-#    INCLUDEPATH += ../../external/openal/include
-#    INCLUDEPATH += ../../external/freealut/include
-#    INCLUDEPATH += ../../external/libvorbis/include
-    INCLUDEPATH += ../../external/sqlite3/include
-    INCLUDEPATH += ../../external/websockets/include/mac
-    INCLUDEPATH += ../../external/webp/include/mac
-    LIBS += -L$$PWD/../../external/freetype2/prebuilt/mac -lfreetype
     LIBS += -L$$PWD/../../external/jpeg/prebuilt/mac -ljpeg
-    LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
+
+    INCLUDEPATH += ../../external/curl/include/mac
+    LIBS        += -L$$PWD/../../external/curl/prebuilt/mac -lcurl
+
+#    INCLUDEPATH += ../../external/glfw3/include/mac
+#    LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
+
+#    INCLUDEPATH += ../../external/openal/include
 #    LIBS += -L$$PWD/../../external/openal/prebuilt/mac -lopenal
+
+#    INCLUDEPATH += ../../external/freealut/include
 #    LIBS += -L$$PWD/../../external/freealut/prebuilt/mac -lalut
+
+#    INCLUDEPATH += ../../external/libvorbis/include
 #    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbis
 #    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisenc
 #    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisfile
+
+    INCLUDEPATH += ../../external/sqlite3/include
     LIBS += -L$$PWD/../../external/sqlite3/libraries/mac -lsqlite3
+
+    INCLUDEPATH += ../../external/freetype2/include/mac
+    LIBS += -L$$PWD/../../external/freetype2/prebuilt/mac -lfreetype
+
+    INCLUDEPATH += ../../external/websockets/include/mac
     LIBS += -L$$PWD/../../external/websockets/prebuilt/mac -lwebsockets
+
+    INCLUDEPATH += ../../external/webp/include/mac
     LIBS += -L$$PWD/../../external/webp/prebuilt/mac -lwebp
 }
 
@@ -82,4 +87,4 @@ COCOS2D_INCLUDEPATH = \
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH
 
-PRECOMPILED_HEADER  = $$COCOS2D_DIR/cocos/base/CCPlatformConfig.h
+PRECOMPILED_HEADER  += $$COCOS2D_DIR/cocos/base/CCPlatformConfig.h

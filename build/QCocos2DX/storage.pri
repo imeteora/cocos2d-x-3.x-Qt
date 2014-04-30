@@ -1,4 +1,4 @@
-INCLUDEPATH += \
+HEADERS += \
     ../../cocos/storage/local-storage/LocalStorage.h
 
 SOURCES += \

@@ -27,6 +27,10 @@ THE SOFTWARE.
 
 #include <gl/glew.h>
 
+//#include <GL/glew.h>
+//#include <OpenGL.h>
+//#include <OpenGLAvailability.h>
+
 #define CC_GL_DEPTH24_STENCIL8		GL_DEPTH24_STENCIL8
 
 #endif // __CCGL_H__
