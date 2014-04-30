@@ -1,7 +1,7 @@
 #include "AppDelegate.h"
 #include "cocos2d.h"
 #include "MainWindow.h"
-//#include "HelloWorldScene.h"
+#include "HelloWorldScene.h"
 // Qt
 #include <QLabel>
 #include <QHBoxLayout>
@@ -39,7 +39,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     pDirector->setAnimationInterval(1.0 / 60 );
 #if 1
     // create a scene. it's an autorelease object
-    Scene *pScene = Scene::create();
+    Scene *pScene = HelloWorld::scene();
 
     // run
     pDirector->runWithScene(pScene);

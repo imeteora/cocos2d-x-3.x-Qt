@@ -23,6 +23,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
 
+#include "CCPlatformConfig.h"
 #include "CCFileUtils.h"
 #include "CCData.h"
 #include "ccMacros.h"
@@ -30,6 +31,7 @@ THE SOFTWARE.
 #include "CCSAXParser.h"
 #include "tinyxml2.h"
 #include "unzip.h"
+#include <sstream>
 #include <stack>
 
 using namespace std;
@@ -665,15 +667,24 @@ std::string FileUtils::getPathForFilename(const std::string& filename, const std
         file_path = filename.substr(0, pos+1);
         file = filename.substr(pos+1);
     }
-    
-    // searchPath + file_path + resourceDirectory
-    std::string path = searchPath;
+
+    std::string path;
+
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
+    std::stringstream ss;
+    ss << searchPath << file_path << resolutionDirectory;
+    path = ss.str();
+
+#else
+    path = searchPath;
     path += file_path;
     path += resolutionDirectory;
+
+#endif
     
     path = getFullPathForDirectoryAndFilename(path, file);
     
-    //CCLOG("getPathForFilename, fullPath = %s", path.c_str());
+    CCLOG("getPathForFilename, fullPath = %s", path.c_str());
     return path;
 }
 

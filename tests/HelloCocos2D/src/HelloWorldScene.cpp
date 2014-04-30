@@ -29,6 +29,10 @@ HelloWorld * HelloWorld::curHelloWorld()
 // on "init" you need to initialize your instance
 bool HelloWorld::init()
 {
+    UserDefault* _userDefault = UserDefault::getInstance();
+    _userDefault->setIntegerForKey("Hello", 2);
+    _userDefault->flush();
+
 	//////////////////////////////
 	// 1. super init first
     if ( !Layer::init() )

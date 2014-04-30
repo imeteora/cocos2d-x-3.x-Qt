@@ -25,6 +25,8 @@ THE SOFTWARE.
 #include "platform/CCCommon.h"
 
 // Qt
+#include <QObject>
+#include <QDir>
 #include <QApplication>
 #include <QFileInfo>
 
@@ -34,8 +36,7 @@ NS_CC_BEGIN
 
 FileUtils* FileUtils::getInstance()
 {
-    if (s_sharedFileUtils == NULL)
-    {
+    if (s_sharedFileUtils == NULL) {
         s_sharedFileUtils = new CCFileUtilsQt();
         s_sharedFileUtils->init();
     }
@@ -48,7 +49,14 @@ CCFileUtilsQt::CCFileUtilsQt()
 
 bool CCFileUtilsQt::init()
 {
-    _defaultResRootPath = qApp->applicationDirPath().toLocal8Bit().constData();
+    QDir _execDir(qApp->applicationDirPath());
+    QDir _resourceDir(_execDir);
+    _resourceDir.cdUp();
+    _resourceDir.cd("Resources");
+    QString _path = _resourceDir.absolutePath();
+    _defaultResRootPath = _path.toStdString();
+
+//    _defaultResRootPath = qApp->applicationDirPath().toLocal8Bit().constData();
     return FileUtils::init();
 }
 
