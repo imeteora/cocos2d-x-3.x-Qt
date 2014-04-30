@@ -46,3 +46,5 @@ HEADERS  += \
 FORMS    += \
     ui/MainWindow.ui
 
+OTHER_FILES += \
+    $$PWD/../../bin/CloseNormal.png \
