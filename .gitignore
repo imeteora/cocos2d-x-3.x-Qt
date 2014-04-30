@@ -11,7 +11,6 @@
 #*.dylib
 
 # Qt-es
-
 *.pro.user
 *.pro.user.*
 moc_*.cpp
@@ -26,3 +25,4 @@ build.qt/
 DerivedData/
 *.xcuserstate
 *.xccheckout
+bin/*.app/
