@@ -2,10 +2,12 @@
 #define __HELLOWORLD_SCENE_H__
 
 #include "cocos2d.h"
+#include "extensions/GUI/CCEditBox/CCEditBoxImpl.h"
+#include "extensions/GUI/CCEditBox/CCEditBoxImplMac.h"
 //#include "cocos-ext.h"
 
 USING_NS_CC;
-//USING_NS_CC_EXT;
+USING_NS_CC_EXT;
 
 class HelloWorld : public cocos2d::Layer, public cocos2d::extension::EditBoxDelegate
 {
@@ -14,11 +16,11 @@ public:
 	virtual bool init();  
 
 	// there's no 'id' in cpp, so we recommand to return the exactly class pointer
-	static cocos2d::CCScene* scene();
+    static cocos2d::Scene* scene();
     static HelloWorld* curHelloWorld();
 	
 	// a selector callback
-	virtual void menuCloseCallback(CCObject* pSender);
+    virtual void menuCloseCallback(Ref* pSender);
 
 	// implement the "static node()" method manually
     CREATE_FUNC(HelloWorld);
@@ -27,15 +29,15 @@ public:
     void addSpriteRamdon2(float dt);
 
     void addEditBox(float dt);
-    virtual void editBoxEditingDidBegin(cocos2d::extension::CCEditBox* editBox);
-    virtual void editBoxEditingDidEnd(cocos2d::extension::CCEditBox* editBox);
-    virtual void editBoxTextChanged(cocos2d::extension::CCEditBox* editBox, const std::string& text);
-    virtual void editBoxReturn(cocos2d::extension::CCEditBox* editBox);
+    virtual void editBoxEditingDidBegin(cocos2d::extension::EditBox* editBox);
+    virtual void editBoxEditingDidEnd(cocos2d::extension::EditBox* editBox);
+    virtual void editBoxTextChanged(cocos2d::extension::EditBox* editBox, const std::string& text);
+    virtual void editBoxReturn(cocos2d::extension::EditBox* editBox);
 
-    void didAccelerate(cocos2d::CCAcceleration* pAccelerationValue);
+//    void didAccelerate(cocos2d::CCAcceleration* pAccelerationValue);
 private:
-    cocos2d::CCLabelTTF *m_label;
-    cocos2d::CCSprite *m_pBall;
+    cocos2d::LabelTTF *m_label;
+    cocos2d::Sprite *m_pBall;
 };
 
 #endif // __HELLOWORLD_SCENE_H__

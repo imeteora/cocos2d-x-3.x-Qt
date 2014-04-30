@@ -45,7 +45,7 @@ public:
     }
     void setStartupScriptFilename(const std::string& startupScriptFile);
 
-public:
+public Q_SLOTS:
     void timerUpdate();
 
 protected:

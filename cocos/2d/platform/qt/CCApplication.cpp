@@ -41,7 +41,8 @@ int Application::run()
     }
 
     m_timer = new QTimer(this);
-    connect(m_timer, SIGNAL(timeout()), this, SLOT(timerUpdate()));
+    QObject::connect(m_timer, SIGNAL(timeout()),
+                     this, SLOT(timerUpdate()));
     m_timer->start(m_nAnimationInterval);
 
     return cocos2d::Application::getInstance()->exec();
