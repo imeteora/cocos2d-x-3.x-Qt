@@ -10,7 +10,6 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET      = HelloCocos2D
 TEMPLATE    = app
-VERSION     = 1.0.0
 #CONFIG  -= app_bundle       # some thing needs to be reviewed.
 
 include($$PWD/../../build/QCocos2DX/libCocos2dx-header.pri)
@@ -25,7 +24,13 @@ macx {
     ICON                = $$PWD/Images/Icons/icon_mac.icns
 #    QMAKE_POST_LINK += ${QTDIR}/bin/lupdate $$PWD/HelloCocos2D.pro &
 #    QMAKE_POST_LINK += ${QTDIR}/bin/lrelease $$PWD/HelloCocos2D.pro &
-    QMAKE_POST_LINK     += ${QTDIR}/bin/macdeployqt $$APP_BUNDLE -verbose=2
+    QMAKE_POST_LINK     += ${QTDIR}/bin/macdeployqt $$APP_BUNDLE -verbose=1 &
+    contains(CONFIG, shared) {
+        QMAKE_POST_LINK += cp $$PWD/../../bin/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/ &
+        QMAKE_POST_LINK += ln -s $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/libcocos2d.dylib &
+        QMAKE_POST_LINK += ln -s $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.dylib &
+        QMAKE_POST_LINK += ln -s $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.0.dylib &
+    }
 }
 
 INCLUDEPATH += \

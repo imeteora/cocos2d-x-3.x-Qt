@@ -8,7 +8,7 @@ QT      += core gui opengl
 
 TARGET = libCocos2dx
 TEMPLATE = lib
-CONFIG += static
+CONFIG += shared
 
 # disble the Qt keywords extension here for cocos2d-x 3.x,
 # there is some qt extension keywords in code.
