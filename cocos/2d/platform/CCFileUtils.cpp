@@ -670,17 +670,17 @@ std::string FileUtils::getPathForFilename(const std::string& filename, const std
 
     std::string path;
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
-    std::stringstream ss;
-    ss << searchPath << file_path << resolutionDirectory;
-    path = ss.str();
+//#if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
+//    std::stringstream ss;
+//    ss << searchPath << file_path << resolutionDirectory;
+//    path = ss.str();
 
-#else
-    path = searchPath;
-    path += file_path;
-    path += resolutionDirectory;
+//#else
+    path = searchPath.c_str();
+    path += file_path.c_str();
+    path += resolutionDirectory.c_str();
 
-#endif
+//#endif
     
     path = getFullPathForDirectoryAndFilename(path, file);
     
