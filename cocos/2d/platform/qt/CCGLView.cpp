@@ -150,7 +150,8 @@ GLView::GLView()
 
 GLView::~GLView()
 {
-
+    CC_SAFE_DELETE(m_pTouch);
+    CC_SAFE_DELETE(m_pSet);
 }
 
 bool GLView::initGL()
@@ -374,10 +375,14 @@ void GLView::mouseMove(QMouseEvent *event)
     if (! m_bCaptured)
         return;
 
-    m_pTouch->setTouchInfo(0
-                           , (float)(event->x()) / m_fScreenScaleFactor
-                           , (float)(event->y()) / m_fScreenScaleFactor);
-//    m_pDelegate->touchesMoved(m_pSet, NULL);
+    m_pTouch->setTouchInfo(0, (float)(event->x()) / m_fScreenScaleFactor, (float)(event->y()) / m_fScreenScaleFactor);
+
+    EventMouse _eventMouse(EventMouse::MouseEventType::MOUSE_MOVE);
+    _eventMouse.setCursorPosition(m_pTouch->getLocation().x, m_pTouch->getLocation().y);
+    auto _eventDispatcher = Director::getInstance()->getEventDispatcher();
+    _eventDispatcher->dispatchEvent(&_eventMouse);
+
+    return;
 }
 
 void GLView::mousePress(QMouseEvent *event)
@@ -393,7 +398,21 @@ void GLView::mousePress(QMouseEvent *event)
     m_pTouch->setTouchInfo(0, (float)(event->x()) / m_fScreenScaleFactor,
         (float)(event->y()) / m_fScreenScaleFactor);
     m_pSet->push_back(m_pTouch);
-//    m_pDelegate->touchesBegan(m_pSet, NULL);
+
+    EventMouse _eventMouse(EventMouse::MouseEventType::MOUSE_DOWN);
+    _eventMouse.setMouseButton(event->button() == Qt::MouseButton::LeftButton ?
+                                   MOUSE_BUTTON_LEFT :
+                                   (event->button() == Qt::MouseButton::RightButton ?
+                                        MOUSE_BUTTON_RIGHT :
+                                        (event->button() == Qt::MouseButton::MiddleButton ?
+                                             MOUSE_BUTTON_MIDDLE :
+                                             MOUSE_BUTTON_4)));
+    _eventMouse.setCursorPosition(m_pTouch->getLocation().x, m_pTouch->getLocation().y);
+
+    auto _eventDispatcher = Director::getInstance()->getEventDispatcher();
+    _eventDispatcher->dispatchEvent(&_eventMouse);
+
+    return;
 }
 
 void GLView::mouseRelease(QMouseEvent *event)
@@ -408,8 +427,20 @@ void GLView::mouseRelease(QMouseEvent *event)
 
     m_pTouch->setTouchInfo(0, (float)(event->x()) / m_fScreenScaleFactor,
         (float)(event->y()) / m_fScreenScaleFactor);
-//    m_pDelegate->touchesEnded(m_pSet, NULL);
-//    m_pSet->removeObject(m_pTouch);
+
+    EventMouse _eventMouse(EventMouse::MouseEventType::MOUSE_UP);
+    _eventMouse.setMouseButton(event->button() == Qt::MouseButton::LeftButton ?
+                                   MOUSE_BUTTON_LEFT :
+                                   (event->button() == Qt::MouseButton::RightButton ?
+                                        MOUSE_BUTTON_RIGHT :
+                                        (event->button() == Qt::MouseButton::MiddleButton ?
+                                             MOUSE_BUTTON_MIDDLE :
+                                             MOUSE_BUTTON_4)));
+    _eventMouse.setCursorPosition(m_pTouch->getLocation().x, m_pTouch->getLocation().y);
+    auto _eventDispatcher = Director::getInstance()->getEventDispatcher();
+    _eventDispatcher->dispatchEvent(&_eventMouse);
+
+    /// remove the touch info from m_pSet
     for( std::vector<Touch*>::iterator iteEachTouch = m_pSet->begin();
          iteEachTouch != m_pSet->end();
          ++iteEachTouch)
@@ -419,6 +450,7 @@ void GLView::mouseRelease(QMouseEvent *event)
             break;
         }
     }
+
     return;
 }
 
