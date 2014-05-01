@@ -89,7 +89,7 @@ bool HelloWorld::init()
 	// add the sprite as a child to this layer
 	this->addChild(pSprite, 0);
 
-    this->schedule(schedule_selector(HelloWorld::addSpriteRamdon), 2.0f);
+    this->schedule(schedule_selector(HelloWorld::addSpriteRamdon), 0.5f);
 //    this->addEditBox(0);
 
     this->setAccelerometerEnabled(true);

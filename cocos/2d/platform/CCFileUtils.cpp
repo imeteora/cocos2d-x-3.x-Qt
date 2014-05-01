@@ -31,7 +31,6 @@ THE SOFTWARE.
 #include "CCSAXParser.h"
 #include "tinyxml2.h"
 #include "unzip.h"
-#include <sstream>
 #include <stack>
 
 using namespace std;
@@ -669,19 +668,10 @@ std::string FileUtils::getPathForFilename(const std::string& filename, const std
     }
 
     std::string path;
-
-//#if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
-//    std::stringstream ss;
-//    ss << searchPath << file_path << resolutionDirectory;
-//    path = ss.str();
-
-//#else
     path = searchPath;
     path += file_path;
     path += resolutionDirectory;
 
-//#endif
-    
     path = getFullPathForDirectoryAndFilename(path, file);
     
     CCLOG("getPathForFilename, fullPath = %s", path.c_str());
