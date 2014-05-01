@@ -45,11 +45,17 @@ bool HelloWorld::init()
 	//    you may modify it.
 
 	// add a "close" icon to exit the progress. it's an autorelease object
-    MenuItemImage *pCloseItem = MenuItemImage::create(
-                                        "CloseNormal.png",
-                                        "CloseSelected.png",
-                                        this,
-                                        menu_selector(HelloWorld::menuCloseCallback) );
+//    MenuItemImage *pCloseItem = MenuItemImage::create(
+//                                        "CloseNormal.png",
+//                                        "CloseSelected.png",
+//                                        this,
+//                                        menu_selector(HelloWorld::menuCloseCallback) );
+    MenuItemImage* pCloseItem = MenuItemImage::create("CloseNormal.png", "CloseSelected.png", [&](Ref* sender)->void {
+        Director::getInstance()->end();
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
+        exit(0);
+#endif
+    });
     pCloseItem->setPosition( Point(Director::getInstance()->getWinSize().width - 20, 20) );
 
 	// create menu, it's an autorelease object
@@ -84,7 +90,7 @@ bool HelloWorld::init()
 	this->addChild(pSprite, 0);
 
     this->schedule(schedule_selector(HelloWorld::addSpriteRamdon), 2.0f);
-    this->addEditBox(0);
+//    this->addEditBox(0);
 
     this->setAccelerometerEnabled(true);
 
@@ -102,7 +108,7 @@ void HelloWorld::menuCloseCallback(Ref* /*pSender*/)
 {
     Director::getInstance()->end();
 
-#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_QT)
+#if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS || CC_TARGET_PLATFORM == CC_PLATFORM_QT5)
     exit(0);
 #endif
 }

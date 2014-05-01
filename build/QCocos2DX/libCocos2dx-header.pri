@@ -22,42 +22,42 @@ unix:macx{
     LIBS += -L/usr/local/lib/ -lz
 
     # prebuilt libraries
-    INCLUDEPATH += ../../external/png/include/mac
+    INCLUDEPATH += $$PWD/../../external/png/include/mac
     LIBS        += -L$$PWD/../../external/curl/prebuilt/mac -lpng
 
-    INCLUDEPATH += ../../external/tiff/include/mac
+    INCLUDEPATH += $$PWD/../../external/tiff/include/mac
     LIBS        += -L$$PWD/../../external/tiff/prebuilt/mac -ltiff
 
-    INCLUDEPATH += ../../external/jpeg/include/mac
+    INCLUDEPATH += $$PWD/../../external/jpeg/include/mac
     LIBS += -L$$PWD/../../external/jpeg/prebuilt/mac -ljpeg
 
-    INCLUDEPATH += ../../external/curl/include/mac
+    INCLUDEPATH += $$PWD/../../external/curl/include/mac
     LIBS        += -L$$PWD/../../external/curl/prebuilt/mac -lcurl
 
-#    INCLUDEPATH += ../../external/glfw3/include/mac
+#    INCLUDEPATH += $$PWD/../../external/glfw3/include/mac
 #    LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
 
-#    INCLUDEPATH += ../../external/openal/include
+#    INCLUDEPATH += $$PWD/../../external/openal/include
 #    LIBS += -L$$PWD/../../external/openal/prebuilt/mac -lopenal
 
-#    INCLUDEPATH += ../../external/freealut/include
+#    INCLUDEPATH += $$PWD/../../external/freealut/include
 #    LIBS += -L$$PWD/../../external/freealut/prebuilt/mac -lalut
 
-#    INCLUDEPATH += ../../external/libvorbis/include
+#    INCLUDEPATH += $$PWD/../../external/libvorbis/include
 #    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbis
 #    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisenc
 #    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisfile
 
-    INCLUDEPATH += ../../external/sqlite3/include
+    INCLUDEPATH += $$PWD/../../external/sqlite3/include
     LIBS += -L$$PWD/../../external/sqlite3/libraries/mac -lsqlite3
 
-    INCLUDEPATH += ../../external/freetype2/include/mac
+    INCLUDEPATH += $$PWD/../../external/freetype2/include/mac
     LIBS += -L$$PWD/../../external/freetype2/prebuilt/mac -lfreetype
 
-    INCLUDEPATH += ../../external/websockets/include/mac
+    INCLUDEPATH += $$PWD/../../external/websockets/include/mac
     LIBS += -L$$PWD/../../external/websockets/prebuilt/mac -lwebsockets
 
-    INCLUDEPATH += ../../external/webp/include/mac
+    INCLUDEPATH += $$PWD/../../external/webp/include/mac
     LIBS += -L$$PWD/../../external/webp/prebuilt/mac -lwebp
 }
 

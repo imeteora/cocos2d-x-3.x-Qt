@@ -15,7 +15,8 @@ CONFIG += shared
 DEFINES += QT_NO_KEYWORDS
 
 # the cocos2d-x-3.x library
-include(libCocos2dx.pri)
+include($$PWD/libCocos2dx.pri)
+include($$PWD/../../external/log4qt/src/log4qt/log4qt.pri)
 
 DESTDIR = $$PWD/../../bin
 
