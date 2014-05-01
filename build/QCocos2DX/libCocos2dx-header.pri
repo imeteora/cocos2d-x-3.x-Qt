@@ -84,6 +84,8 @@ COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR/external/xxhash \
     $$COCOS2D_DIR/external/json \
     $$COCOS2D_DIR/cocos/editor-support \
+    $$COCOS2D_DIR/extensions \
+    $$COCOS2D_DIR/extensions/GUI \
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH
 

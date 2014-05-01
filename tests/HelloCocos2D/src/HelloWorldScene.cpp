@@ -90,7 +90,7 @@ bool HelloWorld::init()
 	this->addChild(pSprite, 0);
 
     this->schedule(schedule_selector(HelloWorld::addSpriteRamdon), 0.5f);
-//    this->addEditBox(0);
+    this->addEditBox(0);
 
     this->setAccelerometerEnabled(true);
 
@@ -132,7 +132,7 @@ void HelloWorld::addSpriteRamdon2(float /*dt*/)
     ParticleSystemQuad *fire = ParticleSystemQuad::create();
     this->addChild(fire);
     fire->setPosition(Point(CCRANDOM_0_1()*size.width, CCRANDOM_0_1()*size.height));
-    fire->setTexture( TextureCache::getInstance()->addImage("Qt.png") );
+    fire->setTexture( Director::getInstance()->getTextureCache()->addImage("Qt.png") );
 }
 
 void HelloWorld::addEditBox(float /*dt*/)
