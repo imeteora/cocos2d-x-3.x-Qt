@@ -24,6 +24,7 @@
  ****************************************************************************/
 
 #include "AppDelegate.h"
+#include "MainWindow.h"
 
 #include "cocos2d.h"
 #include "controller.h"
@@ -53,16 +54,19 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // initialize director
     auto director = Director::getInstance();
-    auto glview = director->getOpenGLView();
-    if(!glview) {
-        glview = GLView::create("Cpp Tests");
-        director->setOpenGLView(glview);
-    }
+    cocos2d::GLView* glView = cocos2d::GLView::sharedOpenGLView(_mainWindow.getGLWidget());
+    glView->setFrameSize(960, 640);
+    director->setOpenGLView(glView);
+//    auto glview = director->getOpenGLView();
+//    if(!glview) {
+//        glview = GLView::create("Cpp Tests");
+//        director->setOpenGLView(glview);
+//    }
 
     director->setDisplayStats(true);
     director->setAnimationInterval(1.0 / 60);
 
-    auto screenSize = glview->getFrameSize();
+    auto screenSize = glView->getFrameSize();
 
     auto designSize = Size(480, 320);
 
@@ -106,7 +110,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // a bug in DirectX 11 level9-x on the device prevents ResolutionPolicy::NO_BORDER from working correctly
     glview->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::SHOW_ALL);
 #else
-    glview->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
+    glView->setDesignResolutionSize(designSize.width, designSize.height, ResolutionPolicy::NO_BORDER);
 #endif
 
     auto scene = Scene::create();

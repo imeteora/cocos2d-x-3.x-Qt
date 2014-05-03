@@ -28,6 +28,8 @@
 
 #include "cocos2d.h"
 #include "BaseTest.h"
+#include "MainWindow.h"
+
 /**
 @brief    The cocos2d Application.
 
@@ -62,6 +64,7 @@ public:
     void setCurrentTest(BaseTest* curTest);
 private:
     BaseTest* _curTest;
+    MainWindow _mainWindow;
 };
 
 #endif // _APP_DELEGATE_H_

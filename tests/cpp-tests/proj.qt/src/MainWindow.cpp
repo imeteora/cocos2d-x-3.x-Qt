@@ -17,3 +17,9 @@ void MainWindow::changeEvent(QEvent *e)
         break;
     }
 }
+
+QWidget*
+MainWindow::getGLWidget()
+{
+    return mCocos2dWidget;
+}

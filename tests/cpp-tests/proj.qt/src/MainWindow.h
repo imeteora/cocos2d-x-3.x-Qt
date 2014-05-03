@@ -10,6 +10,9 @@ class MainWindow : public QMainWindow, private Ui::MainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
 
+public:
+    QWidget* getGLWidget(void);
+
 protected:
     void changeEvent(QEvent *e);
 };
