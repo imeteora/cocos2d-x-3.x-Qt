@@ -28,20 +28,84 @@ macx {
         contains(CONFIG, shared) {
             QMAKE_POST_LINK += cp -R $$DEPLOY_RES/* $$APP_BUNDLE/Contents/Resources &
             QMAKE_POST_LINK += cp -R $$PWD/../../../bin/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.dylib &
-#            QMAKE_POST_LINK += ln -s $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/libcocos2d.dylib &
-#            QMAKE_POST_LINK += ln -s $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.dylib &
-#            QMAKE_POST_LINK += ln -s $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.0.dylib &
         }
     }
 }
 
+include(BaseTest.pri)
+include(AccelerometerTest.pri)
+include(ActionManagerTest.pri)
+include(ActionsEaseTest.pri)
+include(ActionsProgressTest.pri)
+include(ActionsTest.pri)
+include(Box2DTest.pri)
+include(Box2DTestBed.pri)
+include(BugsTest.pri)
+include(ChipmunkTest.pri)
+include(ClickAndMoveTest.pri)
+include(ClippingNodeTest.pri)
+include(CocosDenshionTest.pri)
+include(ConfigurationTest.pri)
+include(ConsoleTest.pri)
+include(CurlTest.pri)
+include(CurrentLanguageTest.pri)
+include(DataVisitorTest.pri)
+include(DrawPrimitivesTest.pri)
+include(EffectsAdvancedTest.pri)
+include(EffectsTest.pri)
+include(ExtensionsTest.pri)
+include(FileUtilsTest.pri)
+include(FontTest.pri)
+include(InputTest.pri)
+include(IntervalTest.pri)
+include(KeyboardTest.pri)
+include(KeypadTest.pri)
+include(LabelTest.pri)
+include(LayerTest.pri)
+include(MenuTest.pri)
+include(MotionStreakTest.pri)
+include(MutiTouchTest.pri)
+include(NewEventDispatcherTest.pri)
+include(NewRendererTest.pri)
+include(NodeTest.pri)
+include(ParallaxTest.pri)
+include(ParticleTest.pri)
+include(PerformanceTest.pri)
+include(PhysicsTest.pri)
+include(ReleasePoolTest.pri)
+include(RenderTextureTest.pri)
+include(RotateWorldTest.pri)
+include(SceneTest.pri)
+include(SchedulerTest.pri)
+include(ShaderTest.pri)
+include(SpineTest.pri)
+include(SpriteTest.pri)
+include(TextInputTest.pri)
+include(Texture2dTest.pri)
+include(TextureCacheTest.pri)
+include(TexturePackerEncryptionTest.pri)
+include(TileMapTest.pri)
+include(TouchesTest.pri)
+include(TransitionsTest.pri)
+include(UnitTest.pri)
+include(UserDefaultTest.pri)
+include(ZwoptexTest.pri)
+
+INCLUDEPATH += \
+    $$PWD   \
+    $$PWD/src   \
+    $$PWD/../Classes \
+
 SOURCES += main.cpp\
-    MainWindow.cpp
+    AppDelegate.cpp \
+    src/MainWindow.cpp \
 
 HEADERS  += \
-    MainWindow.h
+    AppDelegate.h \
+    src/MainWindow.h \
 
 FORMS    += \
-    MainWindow.ui
+    ui/MainWindow.ui
 
+OTHER_FILES += \
 

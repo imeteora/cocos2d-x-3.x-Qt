@@ -32,8 +32,9 @@
 
 USING_NS_CC;
 
-AppDelegate::AppDelegate()
-:_curTest(nullptr)
+AppDelegate::AppDelegate(int argc, char* argv[])
+    : cocos2d::Application(argc, argv)
+    , _curTest(nullptr)
 {
 }
 

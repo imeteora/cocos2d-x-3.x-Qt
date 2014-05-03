@@ -4,6 +4,10 @@ QMAKE_CXXFLAGS += -stdlib=libc++
 QMAKE_LFLAGS += -lc++
 QMAKE_MACOSX_DEPLOYMENT_TARGET = 10.7
 
+# disble the Qt keywords extension here for cocos2d-x 3.x,
+# there is some qt extension keywords in code.
+DEFINES += QT_NO_KEYWORDS
+
 SOURCE_ROOT_DIR = $$PWD/../..
 COCOS2D_DIR = $$SOURCE_ROOT_DIR
 
