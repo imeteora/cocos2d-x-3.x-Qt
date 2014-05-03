@@ -15,8 +15,8 @@ LineEditor::LineEditor(const char *contents, char *pText, QWidget *parent)
 }
 
 bool LineEditor::InputBox(const char *placeHolder, char *pText, int textMaxLen
-                          , cocos2d::extension::EditBoxInputMode inputMode
-                          , cocos2d::extension::EditBoxInputFlag inputFlag)
+                          , cocos2d::extension::EditBox::InputMode inputMode
+                          , cocos2d::extension::EditBox::InputFlag inputFlag)
 {
     Q_UNUSED(inputMode);
     Q_UNUSED(inputFlag);
@@ -37,4 +37,4 @@ void LineEditor::accept()
     QDialog::accept();
 }
 
-#endif /* #if (CC_TARGET_PLATFORM == CC_PLATFORM_QT) */
+#endif /* #if (CC_TARGET_PLATFORM == CC_PLATFORM_QT5) */

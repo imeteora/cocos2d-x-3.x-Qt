@@ -46,7 +46,7 @@ EditBoxImplQt::EditBoxImplQt(EditBox *pEditText)
 , m_pLabelPlaceHolder(NULL)
 , m_eEditBoxInputMode(EditBox::InputMode::EMAIL_ADDRESS)
 , m_eEditBoxInputFlag(EditBox::InputFlag::INITIAL_CAPS_WORD)
-, m_eKeyboardReturnType(EditBox::KeyboardReturnType::Default)
+, m_eKeyboardReturnType(EditBox::KeyboardReturnType::DEFAULT)
 , m_colText(Color3B::WHITE)
 , m_colPlaceHolder(Color3B::GRAY)
 , m_nMaxLength(-1)
@@ -66,17 +66,17 @@ bool EditBoxImplQt::initWithSize(const Size &size)
 {
     //! int fontSize = getFontSizeAccordingHeightJni(size.height-12);
     m_pLabel = CCLabelTTF::create("", "", size.height-12);
-    m_pLabel->setAnchorPoint(ccp(0, 0));
-    m_pLabel->setPosition(ccp(5, 2));
+    m_pLabel->setAnchorPoint(Point::ZERO);
+    m_pLabel->setPosition(Point(5, 2));
     m_pLabel->setColor(m_colText);
-    m_pEditBox->addChild(m_pLabel);
+    _editBox->addChild(m_pLabel);
 
     m_pLabelPlaceHolder = CCLabelTTF::create("", "", size.height-12);
-    m_pLabelPlaceHolder->setAnchorPoint(ccp(0, 0));
-    m_pLabelPlaceHolder->setPosition(ccp(5, 2));
+    m_pLabelPlaceHolder->setAnchorPoint(Point::ZERO);
+    m_pLabelPlaceHolder->setPosition(Point(5, 2));
     m_pLabelPlaceHolder->setVisible(false);
     m_pLabelPlaceHolder->setColor(m_colPlaceHolder);
-    m_pEditBox->addChild(m_pLabelPlaceHolder);
+    _editBox->addChild(m_pLabelPlaceHolder);
     
     m_EditSize = size;
     return true;
@@ -136,7 +136,7 @@ void EditBoxImplQt::setText(const char* pText)
 
             std::string strToShow;
 
-            if (kEditBoxInputFlagPassword == m_eEditBoxInputFlag)
+            if ( EditBox::InputFlag::PASSWORD == m_eEditBoxInputFlag)
             {
                 long length = cc_utf8_strlen(m_strText.c_str(), -1);
                 for (long i = 0; i < length; i++)
@@ -195,33 +195,33 @@ void EditBoxImplQt::visit(void)
 {   
 }
 
-static void editBoxCallbackFunc(const char* pText, void* ctx)
-{
-    EditBoxImplQt* thiz = (EditBoxImplQt*)ctx;
-    thiz->setText(pText);
+//static void editBoxCallbackFunc(const char* pText, void* ctx)
+//{
+//    EditBoxImplQt* thiz = (EditBoxImplQt*)ctx;
+//    thiz->setText(pText);
 
-    if (thiz->getDelegate() != NULL)
-    {
-        thiz->getDelegate()->editBoxTextChanged(thiz->getCCEditBox(), thiz->getText());
-        thiz->getDelegate()->editBoxEditingDidEnd(thiz->getCCEditBox());
-        thiz->getDelegate()->editBoxReturn(thiz->getCCEditBox());
-    }
+//    if (thiz->getDelegate() != NULL)
+//    {
+//        thiz->getDelegate()->editBoxTextChanged(thiz->getEditBox(), thiz->getText());
+//        thiz->getDelegate()->editBoxEditingDidEnd(thiz->getEditBox());
+//        thiz->getDelegate()->editBoxReturn(thiz->getCCEditBox());
+//    }
 
-    int handler = thiz->getScriptEditBoxHandler();
-    if (handler)
-    {
-        cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
-        pEngine->executeEvent(handler, "changed");
-        pEngine->executeEvent(handler, "ended");
-        pEngine->executeEvent(handler, "return");
-    }
-}
+//    int handler = thiz->getScriptEditBoxHandler();
+//    if (handler)
+//    {
+//        cocos2d::ScriptEngineProtocol* pEngine = cocos2d::ScriptEngineManager::getInstance()->getScriptEngine();
+//        pEngine->executeEvent(handler, "changed");
+//        pEngine->executeEvent(handler, "ended");
+//        pEngine->executeEvent(handler, "return");
+//    }
+//}
 
 void EditBoxImplQt::openKeyboard()
 {
-    if (m_pDelegate != NULL)
+    if (_delegate != NULL)
     {
-        m_pDelegate->editBoxEditingDidBegin(m_pEditBox);
+        _delegate->editBoxEditingDidBegin(_editBox);
     }
 
 	std::string placeHolder = m_pLabelPlaceHolder->getString();
@@ -238,28 +238,58 @@ void EditBoxImplQt::openKeyboard()
     if (didChange)
         setText(pText);
 
-	if (m_pDelegate != NULL) {
+    if (_delegate != NULL) {
 		if (didChange)
-			m_pDelegate->editBoxTextChanged(m_pEditBox, getText());
-		m_pDelegate->editBoxEditingDidEnd(m_pEditBox);
-		m_pDelegate->editBoxReturn(m_pEditBox);
+            _delegate->editBoxTextChanged(_editBox, getText());
+        _delegate->editBoxEditingDidEnd(_editBox);
+        _delegate->editBoxReturn(_editBox);
 	}
 
-	if (m_nScriptEditBoxHandler)
-    {
-        cocos2d::CCScriptEngineProtocol* pEngine = cocos2d::CCScriptEngineManager::sharedManager()->getScriptEngine();
-        if (didChange)
-        {
-            pEngine->executeEvent(m_nScriptEditBoxHandler, "changed");
-        }
-        pEngine->executeEvent(m_nScriptEditBoxHandler, "ended");
-        pEngine->executeEvent(m_nScriptEditBoxHandler, "return");
-    }
+//	if (m_nScriptEditBoxHandler)
+//    {
+//        cocos2d::ScriptEngineProtocol* pEngine = cocos2d::ScriptEngineManager::getInstance()->getScriptEngine();
+//        if (didChange)
+//        {
+//            pEngine->executeEvent(m_nScriptEditBoxHandler, "changed");
+//        }
+//        pEngine->executeEvent(m_nScriptEditBoxHandler, "ended");
+//        pEngine->executeEvent(m_nScriptEditBoxHandler, "return");
+//    }
 }
 
 void EditBoxImplQt::closeKeyboard()
 {
 
+}
+
+void
+EditBoxImplQt::setVisible(bool visible)
+{
+    CCLOG("Not Implement yet.");
+}
+
+void
+EditBoxImplQt::setAnchorPoint(const Point &anchorPoint)
+{
+    CCLOG("Not Implement yet.");
+}
+
+void
+EditBoxImplQt::setPlaceholderFont(const char *pFontName, int fontSize)
+{
+    CCLOG("Not Implement yet.");
+}
+
+void
+EditBoxImplQt::onEnter()
+{
+    CCLOG("Not Implement yet.");
+}
+
+void
+EditBoxImplQt::setFont(const char *pFontName, int fontSize)
+{
+    CCLOG("Not Implement yet.");
 }
 
 NS_CC_EXT_END

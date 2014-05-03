@@ -15,7 +15,6 @@ HEADERS += \
     ./../../extensions/GUI/CCEditBox/CCEditBox.h \
     ./../../extensions/GUI/CCEditBox/CCEditBoxImpl.h \
     ./../../extensions/GUI/CCEditBox/CCEditBoxImplQt.h \
-    ./../../extersions/proj.qt/QtInputBox.h \
     ./../../extensions/GUI/CCScrollView/CCScrollView.h \
     ./../../extensions/GUI/CCScrollView/CCTableView.h \
     ./../../extensions/GUI/CCScrollView/CCTableViewCell.h \
@@ -35,7 +34,6 @@ SOURCES += \
     ./../../extensions/GUI/CCControlExtension/CCScale9Sprite.cpp \
     ./../../extensions/GUI/CCEditBox/CCEditBox.cpp \
     ./../../extensions/GUI/CCEditBox/CCEditBoxImplQt.cpp \
-    ./../../extensions/proj.qt/QtInputBox.cpp \
     ./../../extensions/GUI/CCScrollView/CCScrollView.cpp \
     ./../../extensions/GUI/CCScrollView/CCTableView.cpp \
     ./../../extensions/GUI/CCScrollView/CCTableViewCell.cpp \
