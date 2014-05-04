@@ -1,14 +1,16 @@
 # C++ objects and libs
-
 *.slo
 *.lo
 *.o
+*.o.d
+*.d
 *.a
 *.la
 *.lai
 *.so
 *.dll
 *.dylib
+*.hmap
 
 # Qt-es
 *.pro.user
