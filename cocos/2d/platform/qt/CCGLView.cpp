@@ -145,7 +145,6 @@ GLView::GLView()
 {
     m_pTouch = new Touch;
     m_pSet = new std::vector<Touch*>();
-//    strcpy(m_szViewName, "quick-cocos2d-x LuaHostWin32");
 }
 
 GLView::~GLView()
@@ -214,7 +213,7 @@ void GLView::destroyGL()
 {
 }
 
-bool GLView::Create(QWidget *param)
+bool GLView::_createInWidget(QWidget *param)
 {
     bool bRet = false;
     do {
@@ -231,8 +230,6 @@ bool GLView::Create(QWidget *param)
         m_window->setMouseMoveFunc(&cocos2d::mouseMove);
         m_window->setMousePressFunc(&cocos2d::mousePress);
         m_window->setMouseReleaseFunc(&cocos2d::mouseRelease);
-//        m_window->setWindowFlags(m_window->windowFlags()& ~Qt::WindowMaximizeButtonHint);
-//        m_window->setFixedSize(iWidth, iHeight);
         m_window->makeCurrent();
 
         bRet = initGL();
@@ -352,19 +349,39 @@ void GLView::setScissorInPoints(float x , float y , float w , float h)
               (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
 }
 
-GLView* GLView::sharedOpenGLView(QWidget *param)
+GLView* GLView::create(const std::string &viewName)
+{
+    return GLView::create(NULL);
+}
+
+GLView* GLView::create(QWidget *param)
+{
+    return GLView::createWithWidget(param);
+}
+
+GLView* GLView::createWithWidget(QWidget *param)
 {
     do {
         CC_BREAK_IF(param == NULL);
         CC_BREAK_IF(s_pMainWindow);         /// if have already created GLView before, just returns.
 
         s_pMainWindow = new GLView;
-        if(!s_pMainWindow->Create(param)) {
+        if(!s_pMainWindow->_createInWidget(param)) {
             CC_SAFE_DELETE(s_pMainWindow);
         }
 
     } while (false);
     return s_pMainWindow;
+}
+
+GLView* GLView::createWithRect(const std::string &viewName, Rect rect, float frameZoomFactor)
+{
+    return NULL;
+}
+
+GLView* GLView::createWithFullScreen(const std::string &viewName)
+{
+    return NULL;
 }
 
 void GLView::mouseMove(QMouseEvent *event)

@@ -27,7 +27,7 @@ bool AppDelegate::applicationDidFinishLaunching()
 {
     // initialize director
     Director* pDirector = Director::getInstance();
-    cocos2d::GLView* eglView = cocos2d::GLView::sharedOpenGLView(m_mainWindow.getGLViewSuperWidget());
+    cocos2d::GLView* eglView = cocos2d::GLView::createWithWidget(m_mainWindow.getGLViewSuperWidget());
     eglView->setFrameSize(640, 480);
 
     pDirector->setOpenGLView(eglView);

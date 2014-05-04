@@ -65,7 +65,7 @@ public:
     QWidget * getGLWidget();
 
 private:
-    virtual bool Create(QWidget* param);
+    virtual bool _createInWidget(QWidget* param);
     bool initGL();
     void destroyGL();
 public:
@@ -86,7 +86,12 @@ public:
     /**
     @brief    get the shared main open gl window
     */
-    static GLView* sharedOpenGLView(QWidget* param = NULL);
+    static GLView* create(const std::string& viewName);
+    static GLView* create(QWidget* param /*= NULL*/);
+    static GLView* createWithWidget(QWidget* param = NULL);
+    static GLView* createWithRect(const std::string& viewName, Rect rect, float frameZoomFactor = 1.0);
+    static GLView* createWithFullScreen(const std::string& viewName);
+
     static void purgeSharedOpenGLView();
 
 protected:

@@ -79,6 +79,12 @@ COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR/cocos/ui \
     $$COCOS2D_DIR/cocos/physics \
     $$COCOS2D_DIR/cocos/physics/chipmunk \
+    $$COCOS2D_DIR/cocos/editor-support \
+    $$COCOS2D_DIR/cocos/editor-support/spine \
+    $$COCOS2D_DIR/cocos/editor-support/cocosbuilder \
+    $$COCOS2D_DIR/cocos/editor-support/cocostudio \
+    $$COCOS2D_DIR/cocos/scripting/lua-bindings/auto \
+    $$COCOS2D_DIR/cocos/scripting/lua-bindings/manual \
     $$COCOS2D_DIR/external \
     $$COCOS2D_DIR/external/chipmunk/include \
     $$COCOS2D_DIR/external/chipmunk/include/chipmunk \
@@ -87,7 +93,10 @@ COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR/external/unzip \
     $$COCOS2D_DIR/external/xxhash \
     $$COCOS2D_DIR/external/json \
-    $$COCOS2D_DIR/cocos/editor-support \
+    $$COCOS2D_DIR/external/lua/tolua \
+    $$COCOS2D_DIR/external/lua/lua \
+    $$COCOS2D_DIR/external/lua/luajit/include \
+    $$COCOS2D_DIR/external/lua/luasocket \
     $$COCOS2D_DIR/extensions \
     $$COCOS2D_DIR/extensions/GUI \
 

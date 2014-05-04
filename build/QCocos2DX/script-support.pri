@@ -1,3 +1,5 @@
+include(scripting.pri)
+
 HEADERS += \
     ../../cocos/2d/CCScriptSupport.h \
 
