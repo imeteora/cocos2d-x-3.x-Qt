@@ -18,6 +18,7 @@ DEFINES += CC_KEYBOARD_SUPPORT
 DEFINES += __QT__
 DEFINES += CC_UNDER_QT
 DEFINES += COCOS2D_DEBUG=1
+#DEFINES += CC_ENABLE_SCRIPT_BINDING
 
 unix:macx{
     # system libraries.
@@ -63,9 +64,12 @@ unix:macx{
 
     INCLUDEPATH += $$PWD/../../external/webp/include/mac
     LIBS += -L$$PWD/../../external/webp/prebuilt/mac -lwebp
+
+#    INCLUDEPATH += $$PWD/../../external/lua/luajit/include \
+#    LIBS += -L$$PWD/../../external/lua/luajit/prebuilt/mac -lluajit
 }
 
-COCOS2D_INCLUDEPATH = \
+COCOS2D_INCLUDEPATH += \
     $$COCOS2D_DIR \
     $$COCOS2D_DIR/cocos \
     $$COCOS2D_DIR/cocos/2d \
@@ -93,10 +97,12 @@ COCOS2D_INCLUDEPATH = \
     $$COCOS2D_DIR/external/unzip \
     $$COCOS2D_DIR/external/xxhash \
     $$COCOS2D_DIR/external/json \
-    $$COCOS2D_DIR/external/lua/tolua \
-    $$COCOS2D_DIR/external/lua/lua \
-    $$COCOS2D_DIR/external/lua/luajit/include \
-    $$COCOS2D_DIR/external/lua/luasocket \
+#    $$COCOS2D_DIR/external/lua \
+#    $$COCOS2D_DIR/external/lua/tolua \
+#    $$COCOS2D_DIR/external/lua/lua \
+#    $$COCOS2D_DIR/external/lua/luajit/include \
+#    $$COCOS2D_DIR/external/lua/luajit/src/src \
+#    $$COCOS2D_DIR/external/lua/luasocket \
     $$COCOS2D_DIR/extensions \
     $$COCOS2D_DIR/extensions/GUI \
 

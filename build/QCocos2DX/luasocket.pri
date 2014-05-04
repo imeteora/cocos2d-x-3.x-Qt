@@ -13,8 +13,7 @@ HEADERS += \
     ../../external/lua/luasocket/timeout.h \
     ../../external/lua/luasocket/udp.h \
     ../../external/lua/luasocket/unix.h \
-    ../../external/lua/luasocket/usocket.h \
-    ../../external/lua/luasocket/wsocket.h
+    ../../external/lua/luasocket/usocket.h
 
 SOURCES += \
     ../../external/lua/luasocket/auxiliar.c \
@@ -31,5 +30,4 @@ SOURCES += \
     ../../external/lua/luasocket/timeout.c \
     ../../external/lua/luasocket/udp.c \
     ../../external/lua/luasocket/unix.c \
-    ../../external/lua/luasocket/usocket.c \
-    ../../external/lua/luasocket/wsocket.c
+    ../../external/lua/luasocket/usocket.c
