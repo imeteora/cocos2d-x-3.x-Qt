@@ -68,7 +68,7 @@ Controller g_aTestNames[] = {
 	{ "FileUtils", []() { return new FileUtilsTestScene(); } },
 	{ "Fonts", []() { return new FontTestScene(); } },
 	{ "Interval", [](){return new IntervalTestScene(); } },
-//	{ "Keyboard", []() { return new KeyboardTestScene(); } },
+    { "Keyboard", []() { return new KeyboardTestScene(); } },
     { "Keypad", []() { return new KeypadTestScene(); } },
 	{ "Node: Clipping", []() { return new ClippingNodeTestScene(); } },
 	{ "Node: Draw", [](){return new DrawPrimitivesTestScene();} },
@@ -102,7 +102,7 @@ Controller g_aTestNames[] = {
 	{ "Touches", [](){return new PongScene();} },
 	{ "Transitions", [](){return new TransitionsTestScene();} },
     { "Unit Test", []() { return new UnitTestScene(); }},
-//	{ "UserDefault", []() { return new UserDefaultTestScene(); } },
+    { "UserDefault", []() { return new UserDefaultTestScene(); } },
 	{ "Zwoptex", []() { return new ZwoptexTestScene(); } },
 };
 
