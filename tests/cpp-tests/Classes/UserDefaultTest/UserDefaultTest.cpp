@@ -6,6 +6,7 @@
 #define COCOS2D_DEBUG 1
 
 UserDefaultTest::UserDefaultTest()
+    : Layer()
 {
     auto s = Director::getInstance()->getWinSize();
     auto label = Label::createWithTTF("CCUserDefault test see log", "fonts/arial.ttf", 28);

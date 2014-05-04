@@ -55,7 +55,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     // initialize director
     auto director = Director::getInstance();
     cocos2d::GLView* glView = cocos2d::GLView::sharedOpenGLView(_mainWindow.getGLWidget());
-    glView->setFrameSize(960, 640);
+    glView->setFrameSize(480, 320);
     director->setOpenGLView(glView);
 //    auto glview = director->getOpenGLView();
 //    if(!glview) {
@@ -129,6 +129,7 @@ bool AppDelegate::applicationDidFinishLaunching()
     auto console = director->getConsole();
     console->listenOnTCP(5678);
 #endif
+    _mainWindow.show();
 
     return true;
 }
@@ -153,4 +154,9 @@ void AppDelegate::setCurrentTest(BaseTest* curTest)
 BaseTest* AppDelegate::getCurrentTest()
 {
     return _curTest;
+}
+
+const char * AppDelegate::getCurrentLanguageCode()
+{
+    return (const char*)NULL;
 }

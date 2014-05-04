@@ -60,6 +60,8 @@ public:
     */
     virtual void applicationWillEnterForeground();
 
+    virtual const char* getCurrentLanguageCode();
+
     BaseTest* getCurrentTest();
     void setCurrentTest(BaseTest* curTest);
 private:

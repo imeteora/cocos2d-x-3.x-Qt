@@ -19,6 +19,7 @@ private:
 class KeypadTestScene : public TestScene
 {
 public:
+    KeypadTestScene(bool bPortrait = false, bool physics = false);
     virtual void runThisTest();
 };
 

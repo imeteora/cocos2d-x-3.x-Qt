@@ -54,9 +54,13 @@ bool CCFileUtilsQt::init()
     _resourceDir.cdUp();
     _resourceDir.cd("Resources");
     QString _path = _resourceDir.absolutePath();
+    if (_path.endsWith("/", Qt::CaseInsensitive) == false) {
+        _path.append("/");
+    }
     _defaultResRootPath = _path.toStdString();
 
-//    _defaultResRootPath = qApp->applicationDirPath().toLocal8Bit().constData();
+    CCLOG("%s", _defaultResRootPath.c_str());
+
     return FileUtils::init();
 }
 
@@ -83,11 +87,5 @@ CCFileUtilsQt::getWritablePath() const
     std::string ret(qApp->applicationDirPath().toLocal8Bit().constData());
     return ret;
 }
-
-//bool
-//CCFileUtilsQt::isFileExistInternal(const string &filename) const
-//{
-//    return true;
-//}
 
 NS_CC_END

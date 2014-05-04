@@ -1,6 +1,7 @@
 #include "KeypadTest.h"
 
 KeypadTest::KeypadTest()
+    : Layer()
 {
     auto s = Director::getInstance()->getWinSize();
     auto label = Label::createWithTTF("Keypad Test", "fonts/arial.ttf", 28);
@@ -35,6 +36,11 @@ void KeypadTest::onKeyReleased(EventKeyboard::KeyCode keycode, Event* event)
     {
         _label->setString("MENU clicked!");
     }
+}
+
+KeypadTestScene::KeypadTestScene(bool bPortrait, bool physics)
+    : TestScene(bPortrait, physics)
+{
 }
 
 void KeypadTestScene::runThisTest()
