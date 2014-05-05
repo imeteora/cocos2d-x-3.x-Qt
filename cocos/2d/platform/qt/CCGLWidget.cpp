@@ -2,10 +2,11 @@
 
 
 GLWidget::GLWidget(QWidget *parent, const int width, const int height)
-    : QGLWidget(QGLFormat(QGL::DoubleBuffer), parent)
+    : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
     , mouseMoveFunc(NULL)
     , mousePressFunc(NULL)
     , mouseReleaseFunc(NULL)
+    , frameResizeFunc(NULL)
     , keyEventFunc(NULL)
 {
     resize(width, height);
@@ -15,22 +16,28 @@ GLWidget::~GLWidget()
 {
 }
 
-void GLWidget::setMouseMoveFunc(PTRFUN func)
+void GLWidget::setMouseMoveFunc(MOUSEEVENT_FUNCPTR func)
 {
     mouseMoveFunc = func;
 }
 
-void GLWidget::setMousePressFunc(PTRFUN func)
+void GLWidget::setMousePressFunc(MOUSEEVENT_FUNCPTR func)
 {
     mousePressFunc = func;
 }
 
-void GLWidget::setMouseReleaseFunc(PTRFUN func)
+void GLWidget::setMouseReleaseFunc(MOUSEEVENT_FUNCPTR func)
 {
     mouseReleaseFunc = func;
 }
 
-void GLWidget::setKeyEventFunc(ACCEL_PTRFUN func)
+void
+GLWidget::setResizeFunc(RESIZE_FUNCPTR func)
+{
+    frameResizeFunc = func;
+}
+
+void GLWidget::setKeyEventFunc(ACCEL_FUNCPTR func)
 {
     keyEventFunc = func;
 }
@@ -78,5 +85,9 @@ void GLWidget::keyReleaseEvent(QKeyEvent *e)
 void
 GLWidget::resizeEvent(QResizeEvent *e)
 {
+    if (frameResizeFunc)
+        frameResizeFunc(e);
+
     QGLWidget::resizeEvent(e);
 }
+

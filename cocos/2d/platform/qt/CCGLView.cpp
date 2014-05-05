@@ -121,17 +121,38 @@ static GLView* s_pMainWindow = NULL;
 
 static void mouseMove(QMouseEvent *event)
 {
-    s_pMainWindow->mouseMove(event);
+    do {
+        CC_BREAK_IF(s_pMainWindow == NULL);
+        s_pMainWindow->mouseMove(event);
+    } while (false);
+    return;
 }
 
 static void mousePress(QMouseEvent *event)
 {
-    s_pMainWindow->mousePress(event);
+    do {
+        CC_BREAK_IF(s_pMainWindow == NULL);
+        s_pMainWindow->mousePress(event);
+    } while (false);
+    return;
 }
 
 static void mouseRelease(QMouseEvent *event)
 {
-    s_pMainWindow->mouseRelease(event);
+    do {
+        CC_BREAK_IF(s_pMainWindow == NULL);
+        s_pMainWindow->mouseRelease(event);
+    } while(false);
+    return;
+}
+
+static void viewResize(QResizeEvent *event)
+{
+    do {
+        CC_BREAK_IF(s_pMainWindow == NULL);
+        s_pMainWindow->setFrameSize(event->size().width(), event->size().height());
+    } while (false);
+    return;
 }
 
 GLView::GLView()
@@ -230,6 +251,7 @@ bool GLView::_createInWidget(QWidget *param)
         m_window->setMouseMoveFunc(&cocos2d::mouseMove);
         m_window->setMousePressFunc(&cocos2d::mousePress);
         m_window->setMouseReleaseFunc(&cocos2d::mouseRelease);
+        m_window->setResizeFunc(&cocos2d::viewResize);
         m_window->makeCurrent();
 
         bRet = initGL();

@@ -23,7 +23,7 @@ public:
     virtual void menuCloseCallback(Ref* pSender);
 
 	// implement the "static node()" method manually
-    CREATE_FUNC(HelloWorld);
+    CREATE_FUNC(HelloWorld)
 
     void addSpriteRamdon(float dt);
     void addSpriteRamdon2(float dt);
@@ -36,7 +36,7 @@ public:
 
 //    void didAccelerate(cocos2d::CCAcceleration* pAccelerationValue);
 private:
-    cocos2d::LabelTTF *m_label;
+    cocos2d::Label *m_label;
     cocos2d::Sprite *m_pBall;
 };
 

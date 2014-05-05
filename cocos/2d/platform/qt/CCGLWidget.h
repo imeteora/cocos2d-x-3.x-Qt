@@ -10,41 +10,39 @@
 class QTimer;
 USING_NS_CC;
 
-typedef void(*PTRFUN)(QMouseEvent *event);
-typedef void(*ACCEL_PTRFUN)(QKeyEvent *event);
+typedef void(*MOUSEEVENT_FUNCPTR)(QMouseEvent *event);
+typedef void(*RESIZE_FUNCPTR)(QResizeEvent* event);
+typedef void(*ACCEL_FUNCPTR)(QKeyEvent *event);
 
 class CC_DLL GLWidget : public QGLWidget
 {
     Q_OBJECT
 
 public:
-    //GLWidget(){}
     explicit GLWidget(QWidget *parent = 0, const int width = 800, const int height = 600);
     virtual ~GLWidget();
 
-    void setMouseMoveFunc(PTRFUN func);
-    void setMousePressFunc(PTRFUN func);
-    void setMouseReleaseFunc(PTRFUN func);
-    void setKeyEventFunc(ACCEL_PTRFUN func);
+    void setMouseMoveFunc( MOUSEEVENT_FUNCPTR func);
+    void setMousePressFunc( MOUSEEVENT_FUNCPTR func);
+    void setMouseReleaseFunc( MOUSEEVENT_FUNCPTR func);
+    void setResizeFunc( RESIZE_FUNCPTR func);
+    void setKeyEventFunc( ACCEL_FUNCPTR func);
 
 protected:
     virtual void mouseMoveEvent(QMouseEvent *event);
     virtual void mousePressEvent(QMouseEvent *event);
     virtual void mouseReleaseEvent(QMouseEvent *event);
-    virtual void keyPressEvent(QKeyEvent *);
-    virtual void keyReleaseEvent(QKeyEvent *);
-
-    virtual void resizeEvent(QResizeEvent *);
-
-public:
-//    void update();
+    virtual void keyPressEvent(QKeyEvent *event);
+    virtual void keyReleaseEvent(QKeyEvent *event);
+    virtual void resizeEvent(QResizeEvent *event);
 
 private:
-    PTRFUN mouseMoveFunc;
-    PTRFUN mousePressFunc;
-    PTRFUN mouseReleaseFunc;
+    MOUSEEVENT_FUNCPTR mouseMoveFunc;
+    MOUSEEVENT_FUNCPTR mousePressFunc;
+    MOUSEEVENT_FUNCPTR mouseReleaseFunc;
+    RESIZE_FUNCPTR frameResizeFunc;
 
-    ACCEL_PTRFUN keyEventFunc;
+    ACCEL_FUNCPTR keyEventFunc;
 };
 
 #endif // _GL_WIDGET_H_

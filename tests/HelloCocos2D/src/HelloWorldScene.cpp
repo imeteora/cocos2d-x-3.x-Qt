@@ -68,7 +68,7 @@ bool HelloWorld::init()
 
 	// add a label shows "Hello World"
 	// create and initialize a label
-    LabelTTF* pLabel = LabelTTF::create("Hello World By Qt", "Arial", 24);
+    Label* pLabel = Label::createWithSystemFont("Hello World By Qt", "Arial", 24);   //LabelTTF::create("Hello World By Qt", "Arial", 24);
     m_label = pLabel;
 	// ask director the window size
     Size size = Director::getInstance()->getWinSize();
