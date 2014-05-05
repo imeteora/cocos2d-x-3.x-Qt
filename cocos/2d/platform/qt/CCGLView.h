@@ -46,9 +46,10 @@ class CCEGL;
 class CC_DLL GLView : public GLViewProtocol, public Ref
 {
 public:
-    GLView();
+    explicit GLView();
     virtual ~GLView();
 
+public:
     /* override functions */
     virtual bool isOpenGLReady();
     virtual void end();
@@ -56,19 +57,6 @@ public:
     virtual void setFrameSize(float width, float height);
     virtual void setIMEKeyboardState(bool bOpen);
     virtual void setViewName(const std::string& pszViewName);
-
-    // Qt
-    void mouseMove(QMouseEvent *event);
-    void mousePress(QMouseEvent *event);
-    void mouseRelease(QMouseEvent *event);
-    void setAccelerometerKeyHook(ACCEL_PTRFUN func);
-    QWidget * getGLWidget();
-
-private:
-    virtual bool _createInWidget(QWidget* param);
-    bool initGL();
-    void destroyGL();
-public:
 
     void resize(int width, int height);
     /* 
@@ -94,7 +82,17 @@ public:
 
     static void purgeSharedOpenGLView();
 
-protected:
+    // Qt
+    void mouseMove(QMouseEvent *event);
+    void mousePress(QMouseEvent *event);
+    void mouseRelease(QMouseEvent *event);
+    void setAccelerometerKeyHook(ACCEL_PTRFUN func);
+    QWidget * getGLWidget(void);
+
+private:
+    virtual bool _createInWidget(QWidget* param);
+    bool initGL();
+    void destroyGL();
 
 private:
     bool m_bIsInit;

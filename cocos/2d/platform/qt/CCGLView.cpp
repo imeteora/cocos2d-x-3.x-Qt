@@ -462,7 +462,7 @@ void GLView::setAccelerometerKeyHook(ACCEL_PTRFUN func)
         m_window->setKeyEventFunc(func);
 }
 
-QWidget *GLView::getGLWidget()
+QWidget *GLView::getGLWidget(void)
 {
     return m_window;
 }
