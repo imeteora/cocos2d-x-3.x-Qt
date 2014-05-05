@@ -1,0 +1,26 @@
+#ifndef COCOS2DXQT_PCH
+#define COCOS2DXQT_PCH
+
+#if defined __cplusplus
+    #include <string>
+    #include <map>
+    #include <vector>
+    #include <set>
+    #include <queue>
+    #include <cstdlib>
+    #include <cstdio>
+    #include <cstdarg>
+
+    using namespace std;
+
+#else   /// not __cplusplus compiler
+    #include <stdlib.h>
+    #include <stdio.h>
+    #include <stdarg.h>
+
+#endif  /// __cplusplus
+
+/// Project relate
+#include "CCPlatformConfig.h"
+
+#endif // COCOS2DXQT_PCH

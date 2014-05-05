@@ -6,9 +6,12 @@
 
 QT      += core gui opengl
 
-TARGET = libCocos2dx
-TEMPLATE = lib
-CONFIG += shared
+TARGET      = libCocos2dx
+TEMPLATE    = lib
+CONFIG      += shared
+
+CONFIG      += precompile_header
+PRECOMPILED_HEADER  += cocos2dx-qt.pch
 
 # the cocos2d-x-3.x library
 include($$PWD/libCocos2dx.pri)
@@ -27,6 +30,7 @@ macx {
     LIBS    += -framework Cocoa
     LIBS    += -framework Foundation
 }
+
 #unix:!symbian {
 #    maemo5 {
 #        target.path = /opt/usr/lib
@@ -38,6 +42,6 @@ macx {
 
 SOURCES +=
 
-HEADERS +=
+HEADERS += \
 
 OTHER_FILES +=
