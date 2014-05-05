@@ -31,7 +31,7 @@ macx {
 
     # prebuilt libraries
     INCLUDEPATH += $$PWD/../../external/png/include/mac
-    LIBS        += -L$$PWD/../../external/curl/prebuilt/mac -lpng
+    LIBS        += -L$$PWD/../../external/png/prebuilt/mac -lpng
 
     INCLUDEPATH += $$PWD/../../external/tiff/include/mac
     LIBS        += -L$$PWD/../../external/tiff/prebuilt/mac -ltiff
