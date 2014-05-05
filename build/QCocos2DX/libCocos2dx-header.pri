@@ -19,11 +19,15 @@ DEFINES += __QT__
 DEFINES += CC_UNDER_QT
 DEFINES += COCOS2D_DEBUG=1
 
-unix:macx{
+macx {
     # system libraries.
     INCLUDEPATH += /usr/local/include
     LIBS += -L/usr/local/lib/ -lGLEW
     LIBS += -L/usr/local/lib/ -lz
+
+    LIBS    += -framework Cocoa
+    LIBS    += -framework Foundation
+    LIBS    += -framework OpenAL
 
     # prebuilt libraries
     INCLUDEPATH += $$PWD/../../external/png/include/mac
@@ -41,16 +45,16 @@ unix:macx{
 #    INCLUDEPATH += $$PWD/../../external/glfw3/include/mac
 #    LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
 
-#    INCLUDEPATH += $$PWD/../../external/openal/include
-#    LIBS += -L$$PWD/../../external/openal/prebuilt/mac -lopenal
+    INCLUDEPATH += $$PWD/../../external/openal/include
+    LIBS += -L$$PWD/../../external/openal/prebuilt/mac -lopenal
 
-#    INCLUDEPATH += $$PWD/../../external/freealut/include
-#    LIBS += -L$$PWD/../../external/freealut/prebuilt/mac -lalut
+    INCLUDEPATH += $$PWD/../../external/freealut/include
+    LIBS += -L$$PWD/../../external/freealut/prebuilt/mac -lalut
 
-#    INCLUDEPATH += $$PWD/../../external/libvorbis/include
-#    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbis
-#    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisenc
-#    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisfile
+    INCLUDEPATH += $$PWD/../../external/libvorbis/include
+    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbis
+    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisenc
+    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisfile
 
     INCLUDEPATH += $$PWD/../../external/sqlite3/include
     LIBS += -L$$PWD/../../external/sqlite3/libraries/mac -lsqlite3

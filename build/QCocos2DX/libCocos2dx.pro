@@ -26,11 +26,6 @@ unix:macx {
     TARGET = cocos2d
 }
 
-macx {
-    LIBS    += -framework Cocoa
-    LIBS    += -framework Foundation
-}
-
 #unix:!symbian {
 #    maemo5 {
 #        target.path = /opt/usr/lib

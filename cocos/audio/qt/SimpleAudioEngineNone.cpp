@@ -25,144 +25,144 @@ THE SOFTWARE.
 #include "CCPlatformConfig.h"
 #include "SimpleAudioEngine.h"
 
-//#include <map>
-//#include <string>
-//#include <vector>
-//#include <stdio.h>
-//#include <unistd.h>
+#include <map>
+#include <string>
+#include <vector>
+#include <stdio.h>
+#include <unistd.h>
 
-//#include <AL/al.h>
-//#include <AL/alc.h>
-//#include <AL/alut.h>
-//#include "OpenALDecoder.h"
+#include <AL/al.h>
+#include <AL/alc.h>
+#include <AL/alut.h>
+#include "OpenALDecoder.h"
 
 #ifdef ENABLE_MPG123
 #include <mpg123.h>
 #endif
 
-//USING_NS_CC;
+USING_NS_CC;
 
 using namespace std;
 
 namespace CocosDenshion {
 
-//struct soundData {
-//    ALuint buffer;
-//    ALuint source;
-//    bool   isLooped;
-//    float pitch;
-//    float pan;
-//    float gain;
-//};
+struct soundData {
+    ALuint buffer;
+    ALuint source;
+    bool   isLooped;
+    float pitch;
+    float pan;
+    float gain;
+};
 
-//typedef map<string, soundData *> EffectsMap;
-//EffectsMap s_effects;
+typedef map<string, soundData *> EffectsMap;
+EffectsMap s_effects;
 
-//typedef enum {
-//    PLAYING,
-//    STOPPED,
-//    PAUSED,
-//} playStatus;
+typedef enum {
+    PLAYING,
+    STOPPED,
+    PAUSED,
+} playStatus;
 
-//static float s_volume                  = 1.0f;
-//static float s_effectVolume            = 1.0f;
+static float s_volume                  = 1.0f;
+static float s_effectVolume            = 1.0f;
 
-//struct backgroundMusicData {
-//    ALuint buffer;
-//    ALuint source;
-//};
+struct backgroundMusicData {
+    ALuint buffer;
+    ALuint source;
+};
 
-//typedef map<string, backgroundMusicData *> BackgroundMusicsMap;
-//BackgroundMusicsMap s_backgroundMusics;
+typedef map<string, backgroundMusicData *> BackgroundMusicsMap;
+BackgroundMusicsMap s_backgroundMusics;
 
-//static ALuint s_backgroundSource = AL_NONE;
+static ALuint s_backgroundSource = AL_NONE;
 
 static SimpleAudioEngine  *s_engine = nullptr;
 
 static int checkALError(const char *funcName)
 {
-    return 0;
-//    int err = alGetError();
+//    return 0;
+    int err = alGetError();
 
-//    if (err != AL_NO_ERROR)
-//    {
-//        switch (err)
-//        {
-//            case AL_INVALID_NAME:
-//                fprintf(stderr, "AL_INVALID_NAME in %s\n", funcName);
-//                break;
+    if (err != AL_NO_ERROR)
+    {
+        switch (err)
+        {
+            case AL_INVALID_NAME:
+                fprintf(stderr, "AL_INVALID_NAME in %s\n", funcName);
+                break;
 
-//            case AL_INVALID_ENUM:
-//                fprintf(stderr, "AL_INVALID_ENUM in %s\n", funcName);
-//                break;
+            case AL_INVALID_ENUM:
+                fprintf(stderr, "AL_INVALID_ENUM in %s\n", funcName);
+                break;
 
-//            case AL_INVALID_VALUE:
-//                fprintf(stderr, "AL_INVALID_VALUE in %s\n", funcName);
-//                break;
+            case AL_INVALID_VALUE:
+                fprintf(stderr, "AL_INVALID_VALUE in %s\n", funcName);
+                break;
 
-//            case AL_INVALID_OPERATION:
-//                fprintf(stderr, "AL_INVALID_OPERATION in %s\n", funcName);
-//                break;
+            case AL_INVALID_OPERATION:
+                fprintf(stderr, "AL_INVALID_OPERATION in %s\n", funcName);
+                break;
 
-//            case AL_OUT_OF_MEMORY:
-//                fprintf(stderr, "AL_OUT_OF_MEMORY in %s\n", funcName);
-//                break;
-//        }
-//    }
+            case AL_OUT_OF_MEMORY:
+                fprintf(stderr, "AL_OUT_OF_MEMORY in %s\n", funcName);
+                break;
+        }
+    }
 
-//    return err;
+    return err;
 }
 
 static void stopBackground(bool bReleaseData)
 {
-//    // The background music might have been already stopped
-//    // Stop request can come from
-//    //   - stopBackgroundMusic(..)
-//    //   - end(..)
-//    if (s_backgroundSource != AL_NONE)
-//        alSourceStop(s_backgroundSource);
+    // The background music might have been already stopped
+    // Stop request can come from
+    //   - stopBackgroundMusic(..)
+    //   - end(..)
+    if (s_backgroundSource != AL_NONE)
+        alSourceStop(s_backgroundSource);
 
-//    if (bReleaseData)
-//    {
-//        for (auto it = s_backgroundMusics.begin(); it != s_backgroundMusics.end(); ++it)
-//        {
-//            if (it->second->source == s_backgroundSource)
-//            {
-//                alDeleteSources(1, &it->second->source);
-//                checkALError("stopBackground:alDeleteSources");
-//                alDeleteBuffers(1, &it->second->buffer);
-//                checkALError("stopBackground:alDeleteBuffers");
-//                delete it->second;
-//                s_backgroundMusics.erase(it);
-//                break;
-//            }
-//        }
-//    }
+    if (bReleaseData)
+    {
+        for (auto it = s_backgroundMusics.begin(); it != s_backgroundMusics.end(); ++it)
+        {
+            if (it->second->source == s_backgroundSource)
+            {
+                alDeleteSources(1, &it->second->source);
+                checkALError("stopBackground:alDeleteSources");
+                alDeleteBuffers(1, &it->second->buffer);
+                checkALError("stopBackground:alDeleteBuffers");
+                delete it->second;
+                s_backgroundMusics.erase(it);
+                break;
+            }
+        }
+    }
 
-//    s_backgroundSource = AL_NONE;
+    s_backgroundSource = AL_NONE;
 }
 
 static void setBackgroundVolume(float volume)
 {
-//    alSourcef(s_backgroundSource, AL_GAIN, volume);
+    alSourcef(s_backgroundSource, AL_GAIN, volume);
 }
 
 SimpleAudioEngine::SimpleAudioEngine()
 {
-//    alutInit(0, 0);
-//#ifdef ENABLE_MPG123
-//    mpg123_init();
-//#endif
-//    checkALError("SimpleAudioEngine:alutInit");
-//    OpenALDecoder::installDecoders();
+    alutInit(0, 0);
+#ifdef ENABLE_MPG123
+    mpg123_init();
+#endif
+    checkALError("SimpleAudioEngine:alutInit");
+    OpenALDecoder::installDecoders();
 }
 
 SimpleAudioEngine::~SimpleAudioEngine()
 {
-//#ifdef ENABLE_MPG123
-//    mpg123_exit();
-//#endif
-//    alutExit();
+#ifdef ENABLE_MPG123
+    mpg123_exit();
+#endif
+    alutExit();
 }
 
 SimpleAudioEngine* SimpleAudioEngine::getInstance()
@@ -175,44 +175,44 @@ SimpleAudioEngine* SimpleAudioEngine::getInstance()
 
 void SimpleAudioEngine::end()
 {
-//    checkALError("end:init");
+    checkALError("end:init");
 
-//    // clear all the sound effects
-//    EffectsMap::const_iterator end = s_effects.end();
-//    for (auto it = s_effects.begin(); it != end; ++it)
-//    {
-//        alSourceStop(it->second->source);
-//        checkALError("end:alSourceStop");
+    // clear all the sound effects
+    EffectsMap::const_iterator end = s_effects.end();
+    for (auto it = s_effects.begin(); it != end; ++it)
+    {
+        alSourceStop(it->second->source);
+        checkALError("end:alSourceStop");
 
-//        alDeleteSources(1, &it->second->source);
-//        checkALError("end:alDeleteSources");
+        alDeleteSources(1, &it->second->source);
+        checkALError("end:alDeleteSources");
 
-//        alDeleteBuffers(1, &it->second->buffer);
-//        checkALError("end:alDeleteBuffers");
+        alDeleteBuffers(1, &it->second->buffer);
+        checkALError("end:alDeleteBuffers");
 
-//        delete it->second;
-//    }
-//    s_effects.clear();
+        delete it->second;
+    }
+    s_effects.clear();
 
-//    // and the background music too
-//    stopBackground(true);
+    // and the background music too
+    stopBackground(true);
 
-//    for (auto it = s_backgroundMusics.begin(); it != s_backgroundMusics.end(); ++it)
-//    {
-//        alSourceStop(it->second->source);
-//        checkALError("end:alSourceStop");
+    for (auto it = s_backgroundMusics.begin(); it != s_backgroundMusics.end(); ++it)
+    {
+        alSourceStop(it->second->source);
+        checkALError("end:alSourceStop");
 
-//        alDeleteSources(1, &it->second->source);
-//        checkALError("end:alDeleteSources");
+        alDeleteSources(1, &it->second->source);
+        checkALError("end:alDeleteSources");
 
-//        alDeleteBuffers(1, &it->second->buffer);
-//        checkALError("end:alDeleteBuffers");
+        alDeleteBuffers(1, &it->second->buffer);
+        checkALError("end:alDeleteBuffers");
 
-//        delete it->second;
-//    }
-//    s_backgroundMusics.clear();
+        delete it->second;
+    }
+    s_backgroundMusics.clear();
 
-//    CC_SAFE_DELETE(s_engine);
+    CC_SAFE_DELETE(s_engine);
 }
 
 //
@@ -220,173 +220,173 @@ void SimpleAudioEngine::end()
 //
 void SimpleAudioEngine::preloadBackgroundMusic(const char* pszFilePath)
 {
-//    // Changing file path to full path
-//    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
+    // Changing file path to full path
+    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
 
-//    BackgroundMusicsMap::const_iterator it = s_backgroundMusics.find(fullPath);
-//    if (it == s_backgroundMusics.end())
-//    {
-//        ALuint buffer = AL_NONE;
-//        bool success = false;
-//        OpenALFile file;
-//        file.debugName = pszFilePath;
-//        file.file = fopen(fullPath.c_str(), "rb");
-//        if (!file.file) {
-//            fprintf(stderr, "Cannot read file: '%s'\n", fullPath.data());
-//            return;
-//        }
+    BackgroundMusicsMap::const_iterator it = s_backgroundMusics.find(fullPath);
+    if (it == s_backgroundMusics.end())
+    {
+        ALuint buffer = AL_NONE;
+        bool success = false;
+        OpenALFile file;
+        file.debugName = pszFilePath;
+        file.file = fopen(fullPath.c_str(), "rb");
+        if (!file.file) {
+            fprintf(stderr, "Cannot read file: '%s'\n", fullPath.data());
+            return;
+        }
 
-//        const std::vector<OpenALDecoder *> &decoders = OpenALDecoder::getDecoders();
-//        for (size_t i = 0, n = decoders.size(); !success && i < n; ++i)
-//            success = decoders[i]->decode(file, buffer);
-//        file.clear();
+        const std::vector<OpenALDecoder *> &decoders = OpenALDecoder::getDecoders();
+        for (size_t i = 0, n = decoders.size(); !success && i < n; ++i)
+            success = decoders[i]->decode(file, buffer);
+        file.clear();
 
-//        ALuint source = AL_NONE;
-//        alGenSources(1, &source);
-//        checkALError("preloadBackgroundMusic:alGenSources");
+        ALuint source = AL_NONE;
+        alGenSources(1, &source);
+        checkALError("preloadBackgroundMusic:alGenSources");
 
-//        alSourcei(source, AL_BUFFER, buffer);
-//        checkALError("preloadBackgroundMusic:alSourcei");
+        alSourcei(source, AL_BUFFER, buffer);
+        checkALError("preloadBackgroundMusic:alSourcei");
 
-//        backgroundMusicData* data = new backgroundMusicData();
-//        data->buffer = buffer;
-//        data->source = source;
-//        s_backgroundMusics.insert(BackgroundMusicsMap::value_type(fullPath, data));
-//    }
+        backgroundMusicData* data = new backgroundMusicData();
+        data->buffer = buffer;
+        data->source = source;
+        s_backgroundMusics.insert(BackgroundMusicsMap::value_type(fullPath, data));
+    }
 }
 
 void SimpleAudioEngine::playBackgroundMusic(const char* pszFilePath, bool bLoop)
 {
-//    // If there is already a background music source we stop it first
-//    if (s_backgroundSource != AL_NONE)
-//        stopBackgroundMusic(false);
+    // If there is already a background music source we stop it first
+    if (s_backgroundSource != AL_NONE)
+        stopBackgroundMusic(false);
 
-//    // Changing file path to full path
-//    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
+    // Changing file path to full path
+    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
 
-//    BackgroundMusicsMap::const_iterator it = s_backgroundMusics.find(fullPath);
-//    if (it == s_backgroundMusics.end())
-//    {
-//        preloadBackgroundMusic(fullPath.c_str());
-//        it = s_backgroundMusics.find(fullPath);
-//    }
+    BackgroundMusicsMap::const_iterator it = s_backgroundMusics.find(fullPath);
+    if (it == s_backgroundMusics.end())
+    {
+        preloadBackgroundMusic(fullPath.c_str());
+        it = s_backgroundMusics.find(fullPath);
+    }
 
-//    if (it != s_backgroundMusics.end())
-//    {
-//        s_backgroundSource = it->second->source;
-//        alSourcei(s_backgroundSource, AL_LOOPING, bLoop ? AL_TRUE : AL_FALSE);
-//        setBackgroundVolume(s_volume);
-//        alSourcePlay(s_backgroundSource);
-//        checkALError("playBackgroundMusic:alSourcePlay");
-//    }
+    if (it != s_backgroundMusics.end())
+    {
+        s_backgroundSource = it->second->source;
+        alSourcei(s_backgroundSource, AL_LOOPING, bLoop ? AL_TRUE : AL_FALSE);
+        setBackgroundVolume(s_volume);
+        alSourcePlay(s_backgroundSource);
+        checkALError("playBackgroundMusic:alSourcePlay");
+    }
 }
 
 void SimpleAudioEngine::stopBackgroundMusic(bool bReleaseData)
 {
-//    // If there is no source, then there is nothing that can be stopped
-//    if (s_backgroundSource == AL_NONE)
-//        return;
+    // If there is no source, then there is nothing that can be stopped
+    if (s_backgroundSource == AL_NONE)
+        return;
 
-//    ALint state;
-//    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &state);
-//    if (state == AL_PLAYING)
-//        stopBackground(bReleaseData);
+    ALint state;
+    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &state);
+    if (state == AL_PLAYING)
+        stopBackground(bReleaseData);
 }
 
 void SimpleAudioEngine::pauseBackgroundMusic()
 {
-//    // If there is no source, then there is nothing that can be paused
-//    if (s_backgroundSource == AL_NONE)
-//        return;
+    // If there is no source, then there is nothing that can be paused
+    if (s_backgroundSource == AL_NONE)
+        return;
 
-//    ALint state;
-//    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &state);
-//    if (state == AL_PLAYING)
-//        alSourcePause(s_backgroundSource);
+    ALint state;
+    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &state);
+    if (state == AL_PLAYING)
+        alSourcePause(s_backgroundSource);
 
-//    checkALError("pauseBackgroundMusic:alSourcePause");
+    checkALError("pauseBackgroundMusic:alSourcePause");
 }
 
 void SimpleAudioEngine::resumeBackgroundMusic()
 {
-//    // If there is no source, then there is nothing that can be resumed
-//    if (s_backgroundSource == AL_NONE)
-//        return;
+    // If there is no source, then there is nothing that can be resumed
+    if (s_backgroundSource == AL_NONE)
+        return;
 
-//    ALint state;
-//    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &state);
-//    if (state == AL_PAUSED)
-//        alSourcePlay(s_backgroundSource);
+    ALint state;
+    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &state);
+    if (state == AL_PAUSED)
+        alSourcePlay(s_backgroundSource);
 
-//    checkALError("resumeBackgroundMusic:alSourcePlay");
+    checkALError("resumeBackgroundMusic:alSourcePlay");
 }
 
 void SimpleAudioEngine::rewindBackgroundMusic()
 {
-//    // If there is no source, then there is nothing that can be rewinded
-//    if (s_backgroundSource == AL_NONE)
-//        return;
+    // If there is no source, then there is nothing that can be rewinded
+    if (s_backgroundSource == AL_NONE)
+        return;
 
-//    // Rewind and prevent the last state the source had
-//    ALint state;
-//    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &state);
-//    alSourceRewind(s_backgroundSource);
+    // Rewind and prevent the last state the source had
+    ALint state;
+    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &state);
+    alSourceRewind(s_backgroundSource);
 
-//    if (state == AL_PLAYING)
-//    {
-//        alSourcePlay(s_backgroundSource);
-//    }
-//    else if (state == AL_PAUSED)
-//    {
-//        alSourcePlay(s_backgroundSource);
-//        alSourcePause(s_backgroundSource);
-//    }
-//    checkALError("rewindBackgroundMusic:alSourceRewind");
+    if (state == AL_PLAYING)
+    {
+        alSourcePlay(s_backgroundSource);
+    }
+    else if (state == AL_PAUSED)
+    {
+        alSourcePlay(s_backgroundSource);
+        alSourcePause(s_backgroundSource);
+    }
+    checkALError("rewindBackgroundMusic:alSourceRewind");
 }
 
 bool SimpleAudioEngine::willPlayBackgroundMusic()
 {
-//    // We are able to play background music
-//    // if we have a valid background source
-//    if (s_backgroundSource == AL_NONE)
-//        return false;
+    // We are able to play background music
+    // if we have a valid background source
+    if (s_backgroundSource == AL_NONE)
+        return false;
 
-//    return (alIsSource(s_backgroundSource) == AL_TRUE ? true : false);
-    return true;
+    return (alIsSource(s_backgroundSource) == AL_TRUE ? true : false);
+//    return true;
 }
 
 bool SimpleAudioEngine::isBackgroundMusicPlaying()
 {
-//    // If there is no source, then there is nothing that is playing
-//    if (s_backgroundSource == AL_NONE)
-//        return false;
+    // If there is no source, then there is nothing that is playing
+    if (s_backgroundSource == AL_NONE)
+        return false;
 
-//    ALint play_status;
-//    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &play_status);
-//    checkALError("isBackgroundMusicPlaying:alGetSourcei");
+    ALint play_status;
+    alGetSourcei(s_backgroundSource, AL_SOURCE_STATE, &play_status);
+    checkALError("isBackgroundMusicPlaying:alGetSourcei");
 
-//    return (play_status == AL_PLAYING);
-    return true;
+    return (play_status == AL_PLAYING);
+//    return true;
 }
 
 float SimpleAudioEngine::getBackgroundMusicVolume()
 {
-    return 0.0;
-//    return s_volume;
+//    return 0.0;
+    return s_volume;
 }
 
 void SimpleAudioEngine::setBackgroundMusicVolume(float volume)
 {
-//    if (s_volume != volume && volume >= -0.0001 && volume <= 1.0001)
-//    {
-//        s_volume = volume;
+    if (s_volume != volume && volume >= -0.0001 && volume <= 1.0001)
+    {
+        s_volume = volume;
 
-//        // No source, no background music, no volume adjustment
-//        if (s_backgroundSource != AL_NONE)
-//        {
-//            setBackgroundVolume(volume);
-//        }
-//    }
+        // No source, no background music, no volume adjustment
+        if (s_backgroundSource != AL_NONE)
+        {
+            setBackgroundVolume(volume);
+        }
+    }
 }
 
 //
@@ -394,202 +394,202 @@ void SimpleAudioEngine::setBackgroundMusicVolume(float volume)
 //
 float SimpleAudioEngine::getEffectsVolume()
 {
-    return 0.0;
-//    return s_effectVolume;
+//    return 0.0;
+    return s_effectVolume;
 }
 
 void SimpleAudioEngine::setEffectsVolume(float volume)
 {
-//    if (volume != s_effectVolume)
-//    {
-//        EffectsMap::const_iterator end = s_effects.end();
-//        for (EffectsMap::const_iterator it = s_effects.begin(); it != end; it++)
-//        {
-//            alSourcef(it->second->source, AL_GAIN, volume * it->second->gain);
-//        }
+    if (volume != s_effectVolume)
+    {
+        EffectsMap::const_iterator end = s_effects.end();
+        for (EffectsMap::const_iterator it = s_effects.begin(); it != end; it++)
+        {
+            alSourcef(it->second->source, AL_GAIN, volume * it->second->gain);
+        }
 
-//        s_effectVolume = volume;
-//    }
+        s_effectVolume = volume;
+    }
 }
 
 unsigned int SimpleAudioEngine::playEffect(const char* pszFilePath, bool bLoop,
                                            float pitch, float pan, float gain)
 {
-    return 0;
-//    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
+//    return 0;
+    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
 
-//    EffectsMap::iterator iter = s_effects.find(fullPath);
+    EffectsMap::iterator iter = s_effects.find(fullPath);
 
-//    if (iter == s_effects.end())
-//    {
-//        preloadEffect(fullPath.c_str());
+    if (iter == s_effects.end())
+    {
+        preloadEffect(fullPath.c_str());
 
-//        // let's try again
-//        iter = s_effects.find(fullPath);
-//        if (iter == s_effects.end())
-//        {
-//            fprintf(stderr, "could not find play sound %s\n", fullPath.c_str());
-//            return -1;
-//        }
-//    }
+        // let's try again
+        iter = s_effects.find(fullPath);
+        if (iter == s_effects.end())
+        {
+            fprintf(stderr, "could not find play sound %s\n", fullPath.c_str());
+            return -1;
+        }
+    }
 
-//    checkALError("playEffect:init");
+    checkALError("playEffect:init");
 
-//    soundData &d = *iter->second;
-//    d.isLooped = bLoop;
-//    d.pitch = pitch;
-//    d.pan = pan;
-//    d.gain = gain;
-//    alSourcei(d.source, AL_LOOPING, d.isLooped ? AL_TRUE : AL_FALSE);
-//    alSourcef(d.source, AL_GAIN, s_effectVolume * d.gain);
-//    alSourcef(d.source, AL_PITCH, d.pitch);
-//    float sourcePosAL[] = {d.pan, 0.0f, 0.0f};//Set position - just using left and right panning
-//    alSourcefv(d.source, AL_POSITION, sourcePosAL);
-//    alSourcePlay(d.source);
-//    checkALError("playEffect:alSourcePlay");
+    soundData &d = *iter->second;
+    d.isLooped = bLoop;
+    d.pitch = pitch;
+    d.pan = pan;
+    d.gain = gain;
+    alSourcei(d.source, AL_LOOPING, d.isLooped ? AL_TRUE : AL_FALSE);
+    alSourcef(d.source, AL_GAIN, s_effectVolume * d.gain);
+    alSourcef(d.source, AL_PITCH, d.pitch);
+    float sourcePosAL[] = {d.pan, 0.0f, 0.0f};//Set position - just using left and right panning
+    alSourcefv(d.source, AL_POSITION, sourcePosAL);
+    alSourcePlay(d.source);
+    checkALError("playEffect:alSourcePlay");
 
-//    return d.source;
+    return d.source;
 }
 
 void SimpleAudioEngine::stopEffect(unsigned int nSoundId)
 {
-//    alSourceStop(nSoundId);
-//    checkALError("stopEffect:alSourceStop");
+    alSourceStop(nSoundId);
+    checkALError("stopEffect:alSourceStop");
 }
 
 void SimpleAudioEngine::preloadEffect(const char* pszFilePath)
 {
-//    // Changing file path to full path
-//    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
+    // Changing file path to full path
+    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
 
-//    EffectsMap::iterator iter = s_effects.find(fullPath);
+    EffectsMap::iterator iter = s_effects.find(fullPath);
 
-//    // check if we have this already
-//    if (iter == s_effects.end())
-//    {
-//        ALuint      buffer = AL_NONE;
-//        ALuint      source = AL_NONE;
+    // check if we have this already
+    if (iter == s_effects.end())
+    {
+        ALuint      buffer = AL_NONE;
+        ALuint      source = AL_NONE;
         
 
-//        checkALError("preloadEffect:init");
-//        OpenALFile file;
-//        file.debugName = pszFilePath;
-//        file.file = fopen(fullPath.c_str(), "rb");
-//        if (!file.file) {
-//            fprintf(stderr, "Cannot read file: '%s'\n", fullPath.data());
-//            return;
-//        }
+        checkALError("preloadEffect:init");
+        OpenALFile file;
+        file.debugName = pszFilePath;
+        file.file = fopen(fullPath.c_str(), "rb");
+        if (!file.file) {
+            fprintf(stderr, "Cannot read file: '%s'\n", fullPath.data());
+            return;
+        }
         
-//        bool success = false;
-//        const std::vector<OpenALDecoder *> &decoders = OpenALDecoder::getDecoders();
-//        for (size_t i = 0, n = decoders.size(); !success && i < n; ++i)
-//            success = decoders[i]->decode(file, buffer);
-//        file.clear();
+        bool success = false;
+        const std::vector<OpenALDecoder *> &decoders = OpenALDecoder::getDecoders();
+        for (size_t i = 0, n = decoders.size(); !success && i < n; ++i)
+            success = decoders[i]->decode(file, buffer);
+        file.clear();
 
-//        alGenSources(1, &source);
+        alGenSources(1, &source);
 
-//        if (checkALError("preloadEffect:alGenSources") != AL_NO_ERROR)
-//        {
-//            alDeleteBuffers(1, &buffer);
-//            return;
-//        }
+        if (checkALError("preloadEffect:alGenSources") != AL_NO_ERROR)
+        {
+            alDeleteBuffers(1, &buffer);
+            return;
+        }
 
-//        alSourcei(source, AL_BUFFER, buffer);
-//        checkALError("preloadEffect:alSourcei");
+        alSourcei(source, AL_BUFFER, buffer);
+        checkALError("preloadEffect:alSourcei");
         
-//        soundData  *data = new soundData;
-//        data->isLooped = false;
-//        data->buffer = buffer;
-//        data->source = source;
-//        data->pitch = 1.0;
-//        data->pan = 0.0;
-//        data->gain = 1.0;
+        soundData  *data = new soundData;
+        data->isLooped = false;
+        data->buffer = buffer;
+        data->source = source;
+        data->pitch = 1.0;
+        data->pan = 0.0;
+        data->gain = 1.0;
 
-//        s_effects.insert(EffectsMap::value_type(fullPath, data));
-//    }
+        s_effects.insert(EffectsMap::value_type(fullPath, data));
+    }
 }
 
 void SimpleAudioEngine::unloadEffect(const char* pszFilePath)
 {
-//    // Changing file path to full path
-//    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
+    // Changing file path to full path
+    std::string fullPath = FileUtils::getInstance()->fullPathForFilename(pszFilePath);
 
-//    EffectsMap::iterator iter = s_effects.find(fullPath);
+    EffectsMap::iterator iter = s_effects.find(fullPath);
 
-//    if (iter != s_effects.end())
-//    {
-//        checkALError("unloadEffect:init");
+    if (iter != s_effects.end())
+    {
+        checkALError("unloadEffect:init");
 
-//        alSourceStop(iter->second->source);
-//        checkALError("unloadEffect:alSourceStop");
+        alSourceStop(iter->second->source);
+        checkALError("unloadEffect:alSourceStop");
 
-//        alDeleteSources(1, &iter->second->source);
-//        checkALError("unloadEffect:DeletSources");
+        alDeleteSources(1, &iter->second->source);
+        checkALError("unloadEffect:DeletSources");
 
-//        alDeleteBuffers(1, &iter->second->buffer);
-//        checkALError("unloadEffect:alDeleteBuffers");
-//        delete iter->second;
+        alDeleteBuffers(1, &iter->second->buffer);
+        checkALError("unloadEffect:alDeleteBuffers");
+        delete iter->second;
 
-//        s_effects.erase(iter);
-//    }
+        s_effects.erase(iter);
+    }
 }
 
 void SimpleAudioEngine::pauseEffect(unsigned int nSoundId)
 {
-//    ALint state;
-//    alGetSourcei(nSoundId, AL_SOURCE_STATE, &state);
-//    if (state == AL_PLAYING)
-//        alSourcePause(nSoundId);
-//    checkALError("pauseEffect:alSourcePause");
+    ALint state;
+    alGetSourcei(nSoundId, AL_SOURCE_STATE, &state);
+    if (state == AL_PLAYING)
+        alSourcePause(nSoundId);
+    checkALError("pauseEffect:alSourcePause");
 }
 
 void SimpleAudioEngine::pauseAllEffects()
 {
-//    EffectsMap::iterator iter = s_effects.begin();
-//    ALint state;
-//    while (iter != s_effects.end())
-//    {
-//        alGetSourcei(iter->second->source, AL_SOURCE_STATE, &state);
-//        if (state == AL_PLAYING)
-//            alSourcePause(iter->second->source);
-//        checkALError("pauseAllEffects:alSourcePause");
-//        ++iter;
-//    }
+    EffectsMap::iterator iter = s_effects.begin();
+    ALint state;
+    while (iter != s_effects.end())
+    {
+        alGetSourcei(iter->second->source, AL_SOURCE_STATE, &state);
+        if (state == AL_PLAYING)
+            alSourcePause(iter->second->source);
+        checkALError("pauseAllEffects:alSourcePause");
+        ++iter;
+    }
 }
 
 void SimpleAudioEngine::resumeEffect(unsigned int nSoundId)
 {
-//    ALint state;
-//    alGetSourcei(nSoundId, AL_SOURCE_STATE, &state);
-//    if (state == AL_PAUSED)
-//        alSourcePlay(nSoundId);
-//    checkALError("resumeEffect:alSourcePlay");
+    ALint state;
+    alGetSourcei(nSoundId, AL_SOURCE_STATE, &state);
+    if (state == AL_PAUSED)
+        alSourcePlay(nSoundId);
+    checkALError("resumeEffect:alSourcePlay");
 }
 
 void SimpleAudioEngine::resumeAllEffects()
 {
-//    EffectsMap::iterator iter = s_effects.begin();
-//    ALint state;
-//    while (iter != s_effects.end())
-//    {
-//        alGetSourcei(iter->second->source, AL_SOURCE_STATE, &state);
-//        if (state == AL_PAUSED)
-//            alSourcePlay(iter->second->source);
-//        checkALError("resumeAllEffects:alSourcePlay");
-//        ++iter;
-//    }
+    EffectsMap::iterator iter = s_effects.begin();
+    ALint state;
+    while (iter != s_effects.end())
+    {
+        alGetSourcei(iter->second->source, AL_SOURCE_STATE, &state);
+        if (state == AL_PAUSED)
+            alSourcePlay(iter->second->source);
+        checkALError("resumeAllEffects:alSourcePlay");
+        ++iter;
+    }
 }
 
 void SimpleAudioEngine::stopAllEffects()
 {
-//    EffectsMap::iterator iter = s_effects.begin();
+    EffectsMap::iterator iter = s_effects.begin();
 
-//    if (iter != s_effects.end())
-//    {
-//        checkALError("stopAllEffects:init");
-//        alSourceStop(iter->second->source);
-//        checkALError("stopAllEffects:alSourceStop");
-//    }
+    if (iter != s_effects.end())
+    {
+        checkALError("stopAllEffects:init");
+        alSourceStop(iter->second->source);
+        checkALError("stopAllEffects:alSourceStop");
+    }
 }
 
 } // namespace CocosDenshion {

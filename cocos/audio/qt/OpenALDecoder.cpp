@@ -22,6 +22,38 @@ using namespace Tizen::Media;
 
 namespace CocosDenshion {
 
+void OpenALFile::clear()
+{
+    if (mappedFile) {
+        ::munmap(mappedFile, fileSize);
+        mappedFile = 0;
+        fileSize = 0;
+    }
+    if (file) {
+        fclose(file);
+        file = 0;
+    }
+}
+
+bool OpenALFile::mapToMemory()
+{
+    if (!file)
+        return false;
+    if (mappedFile != NULL)
+        return true;
+
+    const int fd = fileno(file);
+    struct stat fileStats;
+    if (0 != fstat(fd, &fileStats))
+        return false;
+    fileSize = fileStats.st_size;
+    mappedFile = ::mmap(NULL, fileSize, PROT_READ, MAP_PRIVATE, fd, 0);
+    if (mappedFile != MAP_FAILED)
+        return true;
+    mappedFile = NULL;
+    return false;
+}
+
 static int checkALError(const char *funcName)
 {
     int err = alGetError();
@@ -404,38 +436,6 @@ bool OpenALDecoder::initALBuffer(ALuint &result, ALenum format,
 const std::vector<OpenALDecoder *> &OpenALDecoder::getDecoders()
 {
     return _decoders;
-}
-
-void OpenALFile::clear()
-{
-    if (mappedFile) {
-        ::munmap(mappedFile, fileSize);
-        mappedFile = 0;
-        fileSize = 0;
-    }
-    if (file) {
-        fclose(file);
-        file = 0;
-    }
-}
-
-bool OpenALFile::mapToMemory()
-{
-    if (!file)
-        return false;
-    if (mappedFile != NULL)
-        return true;
-
-    const int fd = fileno(file);
-    struct stat fileStats;
-    if (0 != fstat(fd, &fileStats))
-        return false;
-    fileSize = fileStats.st_size;
-    mappedFile = ::mmap(NULL, fileSize, PROT_READ, MAP_PRIVATE, fd, 0);
-    if (mappedFile != MAP_FAILED)
-        return true;
-    mappedFile = NULL;
-    return false;
 }
 
 } // namespace CocosDenshion
