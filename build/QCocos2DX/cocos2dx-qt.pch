@@ -18,7 +18,14 @@
     #include <stdio.h>
     #include <stdarg.h>
 
+
 #endif  /// __cplusplus
+
+///
+#include <math.h>
+#include <sys/time.h>
+#include <sys/sockio.h>
+#include <sys/socket.h>
 
 /// Project relate
 #include "CCPlatformConfig.h"

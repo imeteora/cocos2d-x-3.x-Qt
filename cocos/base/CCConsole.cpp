@@ -339,7 +339,7 @@ bool Console::listenOnTCP(int port)
             continue;       /* error, try next one */
 
         setsockopt(listenfd, SOL_SOCKET, SO_REUSEADDR, (const char*)&on, sizeof(on));
-        if (bind(listenfd, res->ai_addr, res->ai_addrlen) == 0)
+        if (::bind(listenfd, res->ai_addr, res->ai_addrlen) == 0)
             break;          /* success */
 
 /* bind error, close and try next one */
