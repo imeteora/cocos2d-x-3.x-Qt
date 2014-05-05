@@ -28,8 +28,8 @@ macx {
 #        QMAKE_POST_LINK += ${QTDIR}/bin/lrelease $$PWD/HelloCocos2D.pro &
         QMAKE_POST_LINK     += ${QTDIR}/bin/macdeployqt $$APP_BUNDLE -verbose=1 &
         contains(CONFIG, shared) {
-            QMAKE_POST_LINK += cp -R $$DEPLOY_RES/* $$APP_BUNDLE/Contents/Resources &
             QMAKE_POST_LINK += cp -f $$PWD/../../bin/libcocos2d.1.0.0.dylib $$APP_BUNDLE/Contents/Frameworks/libcocos2d.1.dylib &
+            QMAKE_POST_LINK += cp -R $$DEPLOY_RES/* $$APP_BUNDLE/Contents/Resources &
         }
     }
 }

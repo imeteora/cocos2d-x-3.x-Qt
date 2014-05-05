@@ -59,7 +59,7 @@ bool CCFileUtilsQt::init()
     }
     _defaultResRootPath = _path.toStdString();
 
-    CCLOG("%s", _defaultResRootPath.c_str());
+//    CCLOG("%s", _defaultResRootPath.c_str());
 
     return FileUtils::init();
 }
