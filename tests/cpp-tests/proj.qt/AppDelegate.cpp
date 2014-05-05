@@ -57,11 +57,6 @@ bool AppDelegate::applicationDidFinishLaunching()
     cocos2d::GLView* glView = cocos2d::GLView::createWithWidget(_mainWindow.getGLWidget());
     glView->setFrameSize(480, 320);
     director->setOpenGLView(glView);
-//    auto glview = director->getOpenGLView();
-//    if(!glview) {
-//        glview = GLView::create("Cpp Tests");
-//        director->setOpenGLView(glview);
-//    }
 
     director->setDisplayStats(true);
     director->setAnimationInterval(1.0 / 60);

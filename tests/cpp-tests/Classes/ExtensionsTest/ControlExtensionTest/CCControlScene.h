@@ -68,7 +68,7 @@ public:
     /** Title label of the scene. */
     CC_SYNTHESIZE_RETAIN(Label*, _sceneTitleLabel, SceneTitleLabel)
 
-    CONTROL_SCENE_CREATE_FUNC(ControlScene);
+    CONTROL_SCENE_CREATE_FUNC(ControlScene)
 };
 
 #endif /* __CCCONTROLSCENE_H__ */
