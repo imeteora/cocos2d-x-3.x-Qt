@@ -65,13 +65,13 @@ void EditBoxImplQt::doAnimationWhenKeyboardMove(float duration, float distance)
 bool EditBoxImplQt::initWithSize(const Size &size)
 {
     //! int fontSize = getFontSizeAccordingHeightJni(size.height-12);
-    m_pLabel = CCLabelTTF::create("", "", size.height-12);
+    m_pLabel = Label::createWithSystemFont("", "Helvetica",14);         // LabelTTF::create("", "", size.height-12);
     m_pLabel->setAnchorPoint(Point::ZERO);
     m_pLabel->setPosition(Point(5, 2));
     m_pLabel->setColor(m_colText);
     _editBox->addChild(m_pLabel);
 
-    m_pLabelPlaceHolder = CCLabelTTF::create("", "", size.height-12);
+    m_pLabelPlaceHolder = Label::createWithSystemFont("", "Helvetica", 14);    //LabelTTF::create("", "", size.height-12);
     m_pLabelPlaceHolder->setAnchorPoint(Point::ZERO);
     m_pLabelPlaceHolder->setPosition(Point(5, 2));
     m_pLabelPlaceHolder->setVisible(false);
