@@ -10,7 +10,7 @@ include(physics.pri)
 include(storage.pri)
 include(ui.pri)
 include(external.pri)
-#include(script-support.pri)
+include(script-support.pri)
 include(extensions.pri)
 include(deprecated.pri)
 

@@ -68,45 +68,45 @@ macx {
     INCLUDEPATH += $$PWD/../../external/webp/include/mac
     LIBS += -L$$PWD/../../external/webp/prebuilt/mac -lwebp
 
-#    INCLUDEPATH += $$PWD/../../external/lua/luajit/include \
+#    INCLUDEPATH += $$PWD/../../external/lua/luajit/include
 #    LIBS += -L$$PWD/../../external/lua/luajit/prebuilt/mac -lluajit
 }
 
-COCOS2D_INCLUDEPATH += \
-    $$COCOS2D_DIR \
-    $$COCOS2D_DIR/cocos \
-    $$COCOS2D_DIR/cocos/2d \
-    $$COCOS2D_DIR/cocos/2d/platform \
-    $$COCOS2D_DIR/cocos/2d/platform/qt \
-    $$COCOS2D_DIR/cocos/2d/platform/renderer \
-    $$COCOS2D_DIR/cocos/audio/include \
-    $$COCOS2D_DIR/cocos/base \
-    $$COCOS2D_DIR/cocos/math/kazmath \
-    $$COCOS2D_DIR/cocos/storage/local-storage \
-    $$COCOS2D_DIR/cocos/ui \
-    $$COCOS2D_DIR/cocos/physics \
-    $$COCOS2D_DIR/cocos/physics/chipmunk \
-    $$COCOS2D_DIR/cocos/editor-support \
-    $$COCOS2D_DIR/cocos/editor-support/spine \
-    $$COCOS2D_DIR/cocos/editor-support/cocosbuilder \
-    $$COCOS2D_DIR/cocos/editor-support/cocostudio \
-    $$COCOS2D_DIR/cocos/scripting/lua-bindings/auto \
-    $$COCOS2D_DIR/cocos/scripting/lua-bindings/manual \
-    $$COCOS2D_DIR/external \
-    $$COCOS2D_DIR/external/chipmunk/include \
-    $$COCOS2D_DIR/external/chipmunk/include/chipmunk \
-    $$COCOS2D_DIR/external/edtaa3func \
-    $$COCOS2D_DIR/external/tinyxml2 \
-    $$COCOS2D_DIR/external/unzip \
-    $$COCOS2D_DIR/external/xxhash \
-    $$COCOS2D_DIR/external/json \
-#    $$COCOS2D_DIR/external/lua \
-#    $$COCOS2D_DIR/external/lua/tolua \
-#    $$COCOS2D_DIR/external/lua/lua \
-#    $$COCOS2D_DIR/external/lua/luajit/include \
-#    $$COCOS2D_DIR/external/lua/luajit/src/src \
-#    $$COCOS2D_DIR/external/lua/luasocket \
-    $$COCOS2D_DIR/extensions \
-    $$COCOS2D_DIR/extensions/GUI \
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/2d
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/2d/platform
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/2d/platform/qt
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/2d/platform/renderer
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/audio/include
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/base
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/math/kazmath
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/storage/local-storage
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/ui
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/physics
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/physics/chipmunk
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/editor-support
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/editor-support/spine
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/editor-support/cocosbuilder
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/editor-support/cocostudio
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/scripting/lua-bindings/auto
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/cocos/scripting/lua-bindings/manual
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/chipmunk/include
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/chipmunk/include/chipmunk
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/edtaa3func
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/tinyxml2
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/unzip
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/xxhash
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/json
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/extensions
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/extensions/GUI
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/lua
+COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/lua/tolua
+#COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/lua/lua
+#COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/lua/luajit/include
+#COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/lua/luajit/src/src
+#COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/lua/luasocket
+
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH

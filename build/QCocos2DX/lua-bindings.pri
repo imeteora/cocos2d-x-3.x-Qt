@@ -27,7 +27,8 @@ HEADERS += \
     ../../cocos/scripting/lua-bindings/manual/LuaScriptHandlerMgr.h \
     ../../cocos/scripting/lua-bindings/manual/LuaSkeletonAnimation.h \
     ../../cocos/scripting/lua-bindings/manual/tolua_fix.h \
-    ../../cocos/scripting/lua-bindings/manual/platform/qt/CCLuaObjcBridge.h
+
+#    ../../cocos/scripting/lua-bindings/manual/platform/qt/CCLuaObjcBridge.h
 
 SOURCES += \
     ../../cocos/scripting/lua-bindings/auto/lua_cocos2dx_auto.cpp \
@@ -58,4 +59,5 @@ SOURCES += \
     ../../cocos/scripting/lua-bindings/manual/tolua_fix.cpp \
     ../../cocos/scripting/lua-bindings/manual/lua_debugger.c \
     ../../cocos/scripting/lua-bindings/manual/lua_extensions.c \
-    ../../cocos/scripting/lua-bindings/manual/platform/qt/CCLuaObjcBridge.cpp
+
+#    ../../cocos/scripting/lua-bindings/manual/platform/qt/CCLuaObjcBridge.cpp

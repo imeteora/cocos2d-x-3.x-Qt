@@ -28874,7 +28874,7 @@ int lua_register_cocos2dx_TiledGrid3D(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_enableShadow(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -28886,7 +28886,7 @@ int lua_cocos2dx_LabelTTF_enableShadow(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -28899,15 +28899,15 @@ int lua_cocos2dx_LabelTTF_enableShadow(lua_State* tolua_S)
     argc = lua_gettop(tolua_S)-1;
     if (argc == 3) 
     {
-        cocos2d::Size arg0;
-        double arg1;
-        double arg2;
+        cocos2d::Color4B arg0;
+        cocos2d::Size arg1;
+        int arg2;
 
-        ok &= luaval_to_size(tolua_S, 2, &arg0);
+        ok &= luaval_to_color4b(tolua_S, 2, &arg0);
 
-        ok &= luaval_to_number(tolua_S, 3,&arg1);
+        ok &= luaval_to_size(tolua_S, 3, &arg1);
 
-        ok &= luaval_to_number(tolua_S, 4,&arg2);
+        ok &= luaval_to_int32(tolua_S, 4, &arg2);
         if(!ok)
             return 0;
         cobj->enableShadow(arg0, arg1, arg2);
@@ -28929,7 +28929,11 @@ int lua_cocos2dx_LabelTTF_enableShadow(lua_State* tolua_S)
         ok &= luaval_to_boolean(tolua_S, 5,&arg3);
         if(!ok)
             return 0;
-        cobj->enableShadow(arg0, arg1, arg2, arg3);
+
+        Color4B temp(Color3B::BLACK);
+        temp.a = 255 * arg1;
+        cobj->enableShadow(temp, arg0, arg2);
+//        cobj->enableShadow(arg0, arg1, arg2, arg3);
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "enableShadow",argc, 3);
@@ -28945,7 +28949,7 @@ int lua_cocos2dx_LabelTTF_enableShadow(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setDimensions(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -28957,7 +28961,7 @@ int lua_cocos2dx_LabelTTF_setDimensions(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -28975,7 +28979,7 @@ int lua_cocos2dx_LabelTTF_setDimensions(lua_State* tolua_S)
         ok &= luaval_to_size(tolua_S, 2, &arg0);
         if(!ok)
             return 0;
-        cobj->setDimensions(arg0);
+        cobj->setDimensions(arg0.width, arg0.height);
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setDimensions",argc, 1);
@@ -28991,7 +28995,7 @@ int lua_cocos2dx_LabelTTF_setDimensions(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_getFontSize(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29003,7 +29007,7 @@ int lua_cocos2dx_LabelTTF_getFontSize(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29018,7 +29022,7 @@ int lua_cocos2dx_LabelTTF_getFontSize(lua_State* tolua_S)
     {
         if(!ok)
             return 0;
-        double ret = cobj->getFontSize();
+        double ret = cobj->getSystemFontSize();
         tolua_pushnumber(tolua_S,(lua_Number)ret);
         return 1;
     }
@@ -29035,7 +29039,7 @@ int lua_cocos2dx_LabelTTF_getFontSize(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_getString(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29047,7 +29051,7 @@ int lua_cocos2dx_LabelTTF_getString(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29079,7 +29083,7 @@ int lua_cocos2dx_LabelTTF_getString(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setFlippedY(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29091,7 +29095,7 @@ int lua_cocos2dx_LabelTTF_setFlippedY(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29109,7 +29113,8 @@ int lua_cocos2dx_LabelTTF_setFlippedY(lua_State* tolua_S)
         ok &= luaval_to_boolean(tolua_S, 2,&arg0);
         if(!ok)
             return 0;
-        cobj->setFlippedY(arg0);
+//        cobj->setFlippedY(arg0);
+        cobj->setScaleY(arg0 ? -1.f : 1.f);
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setFlippedY",argc, 1);
@@ -29125,7 +29130,7 @@ int lua_cocos2dx_LabelTTF_setFlippedY(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setFlippedX(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29137,7 +29142,7 @@ int lua_cocos2dx_LabelTTF_setFlippedX(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29155,7 +29160,7 @@ int lua_cocos2dx_LabelTTF_setFlippedX(lua_State* tolua_S)
         ok &= luaval_to_boolean(tolua_S, 2,&arg0);
         if(!ok)
             return 0;
-        cobj->setFlippedX(arg0);
+        cobj->setScaleX(arg0 ? -1.f : 1.f);
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setFlippedX",argc, 1);
@@ -29171,7 +29176,7 @@ int lua_cocos2dx_LabelTTF_setFlippedX(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setTextDefinition(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29183,7 +29188,7 @@ int lua_cocos2dx_LabelTTF_setTextDefinition(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29201,7 +29206,8 @@ int lua_cocos2dx_LabelTTF_setTextDefinition(lua_State* tolua_S)
         ok &= luaval_to_fontdefinition(tolua_S, 2, &arg0);
         if(!ok)
             return 0;
-        cobj->setTextDefinition(arg0);
+//        cobj->setTextDefinition(arg0);
+        cobj->setFontDefinition(arg0);
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setTextDefinition",argc, 1);
@@ -29217,7 +29223,7 @@ int lua_cocos2dx_LabelTTF_setTextDefinition(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setFontName(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29229,7 +29235,7 @@ int lua_cocos2dx_LabelTTF_setFontName(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29247,7 +29253,8 @@ int lua_cocos2dx_LabelTTF_setFontName(lua_State* tolua_S)
         ok &= luaval_to_std_string(tolua_S, 2,&arg0);
         if(!ok)
             return 0;
-        cobj->setFontName(arg0);
+//        cobj->setFontName(arg0);
+        cobj->setSystemFontName(arg0);
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setFontName",argc, 1);
@@ -29263,7 +29270,7 @@ int lua_cocos2dx_LabelTTF_setFontName(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_getHorizontalAlignment(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29275,7 +29282,7 @@ int lua_cocos2dx_LabelTTF_getHorizontalAlignment(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29307,7 +29314,7 @@ int lua_cocos2dx_LabelTTF_getHorizontalAlignment(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_initWithStringAndTextDefinition(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29319,7 +29326,7 @@ int lua_cocos2dx_LabelTTF_initWithStringAndTextDefinition(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29340,8 +29347,11 @@ int lua_cocos2dx_LabelTTF_initWithStringAndTextDefinition(lua_State* tolua_S)
         ok &= luaval_to_fontdefinition(tolua_S, 3, &arg1);
         if(!ok)
             return 0;
-        bool ret = cobj->initWithStringAndTextDefinition(arg0, arg1);
-        tolua_pushboolean(tolua_S,(bool)ret);
+//        bool ret = cobj->initWithStringAndTextDefinition(arg0, arg1);
+        cobj->setFontDefinition(arg1);
+        cobj->setString(arg0);
+
+        tolua_pushboolean(tolua_S, true);
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "initWithStringAndTextDefinition",argc, 2);
@@ -29357,7 +29367,7 @@ int lua_cocos2dx_LabelTTF_initWithStringAndTextDefinition(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setString(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29369,7 +29379,7 @@ int lua_cocos2dx_LabelTTF_setString(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29403,7 +29413,7 @@ int lua_cocos2dx_LabelTTF_setString(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_initWithString(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29415,7 +29425,7 @@ int lua_cocos2dx_LabelTTF_initWithString(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29439,8 +29449,14 @@ int lua_cocos2dx_LabelTTF_initWithString(lua_State* tolua_S)
         ok &= luaval_to_number(tolua_S, 4,&arg2);
         if(!ok)
             return 0;
-        bool ret = cobj->initWithString(arg0, arg1, arg2);
-        tolua_pushboolean(tolua_S,(bool)ret);
+//        bool ret = cobj->initWithString(arg0, arg1, arg2);
+        cobj->setString(arg0);
+        cobj->setSystemFontSize(arg2);
+        cobj->setSystemFontName(arg1);
+        cobj->setDimensions(cocos2d::Size::ZERO.width, cocos2d::Size::ZERO.height);
+        cobj->setAlignment(cocos2d::TextHAlignment::LEFT, cocos2d::TextVAlignment::TOP);
+
+        tolua_pushboolean(tolua_S, true);
         return 1;
     }
     if (argc == 4) 
@@ -29459,8 +29475,14 @@ int lua_cocos2dx_LabelTTF_initWithString(lua_State* tolua_S)
         ok &= luaval_to_size(tolua_S, 5, &arg3);
         if(!ok)
             return 0;
-        bool ret = cobj->initWithString(arg0, arg1, arg2, arg3);
-        tolua_pushboolean(tolua_S,(bool)ret);
+//        bool ret = cobj->initWithString(arg0, arg1, arg2, arg3);
+        cobj->setString(arg0);
+        cobj->setSystemFontSize(arg2);
+        cobj->setSystemFontName(arg1);
+        cobj->setDimensions(arg3.width, arg3.height);
+        cobj->setAlignment(cocos2d::TextHAlignment::LEFT, cocos2d::TextVAlignment::TOP);
+
+        tolua_pushboolean(tolua_S,true);
         return 1;
     }
     if (argc == 5) 
@@ -29482,8 +29504,14 @@ int lua_cocos2dx_LabelTTF_initWithString(lua_State* tolua_S)
         ok &= luaval_to_int32(tolua_S, 6,(int *)&arg4);
         if(!ok)
             return 0;
-        bool ret = cobj->initWithString(arg0, arg1, arg2, arg3, arg4);
-        tolua_pushboolean(tolua_S,(bool)ret);
+//        bool ret = cobj->initWithString(arg0, arg1, arg2, arg3, arg4);
+        cobj->setString(arg0);
+        cobj->setSystemFontSize(arg2);
+        cobj->setSystemFontName(arg1);
+        cobj->setDimensions(arg3.width, arg3.height);
+        cobj->setAlignment(arg4, cocos2d::TextVAlignment::TOP);
+
+        tolua_pushboolean(tolua_S, true);
         return 1;
     }
     if (argc == 6) 
@@ -29508,8 +29536,14 @@ int lua_cocos2dx_LabelTTF_initWithString(lua_State* tolua_S)
         ok &= luaval_to_int32(tolua_S, 7,(int *)&arg5);
         if(!ok)
             return 0;
-        bool ret = cobj->initWithString(arg0, arg1, arg2, arg3, arg4, arg5);
-        tolua_pushboolean(tolua_S,(bool)ret);
+//        bool ret = cobj->initWithString(arg0, arg1, arg2, arg3, arg4, arg5);
+        cobj->setString(arg0);
+        cobj->setSystemFontSize(arg2);
+        cobj->setSystemFontName(arg1);
+        cobj->setDimensions(arg3.width, arg3.height);
+        cobj->setAlignment(arg4, arg5);
+
+        tolua_pushboolean(tolua_S, true);
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "initWithString",argc, 3);
@@ -29525,7 +29559,7 @@ int lua_cocos2dx_LabelTTF_initWithString(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setFontFillColor(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29537,7 +29571,7 @@ int lua_cocos2dx_LabelTTF_setFontFillColor(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29555,7 +29589,8 @@ int lua_cocos2dx_LabelTTF_setFontFillColor(lua_State* tolua_S)
         ok &= luaval_to_color3b(tolua_S, 2, &arg0);
         if(!ok)
             return 0;
-        cobj->setFontFillColor(arg0);
+//        cobj->setFontFillColor(arg0);
+        cobj->setTextColor(cocos2d::Color4B(arg0));
         return 0;
     }
     if (argc == 2) 
@@ -29568,7 +29603,8 @@ int lua_cocos2dx_LabelTTF_setFontFillColor(lua_State* tolua_S)
         ok &= luaval_to_boolean(tolua_S, 3,&arg1);
         if(!ok)
             return 0;
-        cobj->setFontFillColor(arg0, arg1);
+//        cobj->setFontFillColor(arg0, arg1);
+        cobj->setTextColor(cocos2d::Color4B(arg0));
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setFontFillColor",argc, 1);
@@ -29584,7 +29620,7 @@ int lua_cocos2dx_LabelTTF_setFontFillColor(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_getBlendFunc(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29596,7 +29632,7 @@ int lua_cocos2dx_LabelTTF_getBlendFunc(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29628,7 +29664,7 @@ int lua_cocos2dx_LabelTTF_getBlendFunc(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_enableStroke(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29640,7 +29676,7 @@ int lua_cocos2dx_LabelTTF_enableStroke(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29661,7 +29697,8 @@ int lua_cocos2dx_LabelTTF_enableStroke(lua_State* tolua_S)
         ok &= luaval_to_number(tolua_S, 3,&arg1);
         if(!ok)
             return 0;
-        cobj->enableStroke(arg0, arg1);
+//        cobj->enableStroke(arg0, arg1);
+        cobj->enableOutline(cocos2d::Color4B(arg0), arg1);
         return 0;
     }
     if (argc == 3) 
@@ -29677,7 +29714,8 @@ int lua_cocos2dx_LabelTTF_enableStroke(lua_State* tolua_S)
         ok &= luaval_to_boolean(tolua_S, 4,&arg2);
         if(!ok)
             return 0;
-        cobj->enableStroke(arg0, arg1, arg2);
+//        cobj->enableStroke(arg0, arg1, arg2);
+        cobj->enableOutline(cocos2d::Color4B(arg0), arg1);
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "enableStroke",argc, 2);
@@ -29693,7 +29731,7 @@ int lua_cocos2dx_LabelTTF_enableStroke(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_getDimensions(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29705,7 +29743,7 @@ int lua_cocos2dx_LabelTTF_getDimensions(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29737,7 +29775,7 @@ int lua_cocos2dx_LabelTTF_getDimensions(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setVerticalAlignment(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29749,7 +29787,7 @@ int lua_cocos2dx_LabelTTF_setVerticalAlignment(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29783,7 +29821,7 @@ int lua_cocos2dx_LabelTTF_setVerticalAlignment(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setFontSize(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29795,7 +29833,7 @@ int lua_cocos2dx_LabelTTF_setFontSize(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29813,7 +29851,8 @@ int lua_cocos2dx_LabelTTF_setFontSize(lua_State* tolua_S)
         ok &= luaval_to_number(tolua_S, 2,&arg0);
         if(!ok)
             return 0;
-        cobj->setFontSize(arg0);
+//        cobj->setFontSize(arg0);
+        cobj->setSystemFontSize(arg0);
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "setFontSize",argc, 1);
@@ -29829,7 +29868,7 @@ int lua_cocos2dx_LabelTTF_setFontSize(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_getVerticalAlignment(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29841,7 +29880,7 @@ int lua_cocos2dx_LabelTTF_getVerticalAlignment(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29873,7 +29912,7 @@ int lua_cocos2dx_LabelTTF_getVerticalAlignment(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_getTextDefinition(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29885,7 +29924,7 @@ int lua_cocos2dx_LabelTTF_getTextDefinition(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29900,7 +29939,7 @@ int lua_cocos2dx_LabelTTF_getTextDefinition(lua_State* tolua_S)
     {
         if(!ok)
             return 0;
-        const cocos2d::FontDefinition& ret = cobj->getTextDefinition();
+        const cocos2d::FontDefinition& ret = cobj->getFontDefinition(); // cobj->getTextDefinition();
         fontdefinition_to_luaval(tolua_S, ret);
         return 1;
     }
@@ -29917,7 +29956,7 @@ int lua_cocos2dx_LabelTTF_getTextDefinition(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setBlendFunc(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29929,7 +29968,7 @@ int lua_cocos2dx_LabelTTF_setBlendFunc(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29963,7 +30002,7 @@ int lua_cocos2dx_LabelTTF_setBlendFunc(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_getFontName(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -29975,7 +30014,7 @@ int lua_cocos2dx_LabelTTF_getFontName(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -29990,7 +30029,7 @@ int lua_cocos2dx_LabelTTF_getFontName(lua_State* tolua_S)
     {
         if(!ok)
             return 0;
-        const std::string& ret = cobj->getFontName();
+        const std::string& ret = cobj->getSystemFontName(); /// cobj->getFontName();
         tolua_pushcppstring(tolua_S,ret);
         return 1;
     }
@@ -30007,7 +30046,7 @@ int lua_cocos2dx_LabelTTF_getFontName(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_setHorizontalAlignment(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -30019,7 +30058,7 @@ int lua_cocos2dx_LabelTTF_setHorizontalAlignment(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -30053,7 +30092,7 @@ int lua_cocos2dx_LabelTTF_setHorizontalAlignment(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_disableShadow(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -30065,7 +30104,7 @@ int lua_cocos2dx_LabelTTF_disableShadow(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -30080,7 +30119,8 @@ int lua_cocos2dx_LabelTTF_disableShadow(lua_State* tolua_S)
     {
         if(!ok)
             return 0;
-        cobj->disableShadow();
+//        cobj->disableShadow();
+        cobj->disableEffect();
         return 0;
     }
     if (argc == 1) 
@@ -30090,7 +30130,8 @@ int lua_cocos2dx_LabelTTF_disableShadow(lua_State* tolua_S)
         ok &= luaval_to_boolean(tolua_S, 2,&arg0);
         if(!ok)
             return 0;
-        cobj->disableShadow(arg0);
+//        cobj->disableShadow(arg0);
+        cobj->disableEffect();
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "disableShadow",argc, 0);
@@ -30106,7 +30147,7 @@ int lua_cocos2dx_LabelTTF_disableShadow(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_disableStroke(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -30118,7 +30159,7 @@ int lua_cocos2dx_LabelTTF_disableStroke(lua_State* tolua_S)
     if (!tolua_isusertype(tolua_S,1,"cc.LabelTTF",0,&tolua_err)) goto tolua_lerror;
 #endif
 
-    cobj = (cocos2d::LabelTTF*)tolua_tousertype(tolua_S,1,0);
+    cobj = (cocos2d::Label*)tolua_tousertype(tolua_S,1,0);
 
 #if COCOS2D_DEBUG >= 1
     if (!cobj) 
@@ -30133,7 +30174,8 @@ int lua_cocos2dx_LabelTTF_disableStroke(lua_State* tolua_S)
     {
         if(!ok)
             return 0;
-        cobj->disableStroke();
+//        cobj->disableStroke();
+        cobj->disableEffect();
         return 0;
     }
     if (argc == 1) 
@@ -30143,7 +30185,8 @@ int lua_cocos2dx_LabelTTF_disableStroke(lua_State* tolua_S)
         ok &= luaval_to_boolean(tolua_S, 2,&arg0);
         if(!ok)
             return 0;
-        cobj->disableStroke(arg0);
+//        cobj->disableStroke(arg0);
+        cobj->disableEffect();
         return 0;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "disableStroke",argc, 0);
@@ -30174,8 +30217,8 @@ int lua_cocos2dx_LabelTTF_create(lua_State* tolua_S)
     {
         if (argc == 0)
         {
-            cocos2d::LabelTTF* ret = cocos2d::LabelTTF::create();
-            object_to_luaval<cocos2d::LabelTTF>(tolua_S, "cc.LabelTTF",(cocos2d::LabelTTF*)ret);
+            cocos2d::Label* ret = cocos2d::Label::create();
+            object_to_luaval<cocos2d::Label>(tolua_S, "cc.LabelTTF",(cocos2d::Label*)ret);
             return 1;
         }
     } while (0);
@@ -30193,8 +30236,8 @@ int lua_cocos2dx_LabelTTF_create(lua_State* tolua_S)
             double arg2;
             ok &= luaval_to_number(tolua_S, 4,&arg2);
             if (!ok) { break; }
-            cocos2d::LabelTTF* ret = cocos2d::LabelTTF::create(arg0, arg1, arg2);
-            object_to_luaval<cocos2d::LabelTTF>(tolua_S, "cc.LabelTTF",(cocos2d::LabelTTF*)ret);
+            cocos2d::Label* ret = cocos2d::Label::create(arg0, arg1, arg2);
+            object_to_luaval<cocos2d::Label>(tolua_S, "cc.LabelTTF",(cocos2d::Label*)ret);
             return 1;
         }
     } while (0);
@@ -30215,8 +30258,8 @@ int lua_cocos2dx_LabelTTF_create(lua_State* tolua_S)
             cocos2d::Size arg3;
             ok &= luaval_to_size(tolua_S, 5, &arg3);
             if (!ok) { break; }
-            cocos2d::LabelTTF* ret = cocos2d::LabelTTF::create(arg0, arg1, arg2, arg3);
-            object_to_luaval<cocos2d::LabelTTF>(tolua_S, "cc.LabelTTF",(cocos2d::LabelTTF*)ret);
+            cocos2d::Label* ret = cocos2d::Label::create(arg0, arg1, arg2, arg3);
+            object_to_luaval<cocos2d::Label>(tolua_S, "cc.LabelTTF",(cocos2d::Label*)ret);
             return 1;
         }
     } while (0);
@@ -30240,8 +30283,8 @@ int lua_cocos2dx_LabelTTF_create(lua_State* tolua_S)
             cocos2d::TextHAlignment arg4;
             ok &= luaval_to_int32(tolua_S, 6,(int *)&arg4);
             if (!ok) { break; }
-            cocos2d::LabelTTF* ret = cocos2d::LabelTTF::create(arg0, arg1, arg2, arg3, arg4);
-            object_to_luaval<cocos2d::LabelTTF>(tolua_S, "cc.LabelTTF",(cocos2d::LabelTTF*)ret);
+            cocos2d::Label* ret = cocos2d::Label::create(arg0, arg1, arg2, arg3, arg4);
+            object_to_luaval<cocos2d::Label>(tolua_S, "cc.LabelTTF",(cocos2d::Label*)ret);
             return 1;
         }
     } while (0);
@@ -30268,8 +30311,8 @@ int lua_cocos2dx_LabelTTF_create(lua_State* tolua_S)
             cocos2d::TextVAlignment arg5;
             ok &= luaval_to_int32(tolua_S, 7,(int *)&arg5);
             if (!ok) { break; }
-            cocos2d::LabelTTF* ret = cocos2d::LabelTTF::create(arg0, arg1, arg2, arg3, arg4, arg5);
-            object_to_luaval<cocos2d::LabelTTF>(tolua_S, "cc.LabelTTF",(cocos2d::LabelTTF*)ret);
+            cocos2d::Label* ret = cocos2d::Label::create(arg0, arg1, arg2, arg3, arg4, arg5);
+            object_to_luaval<cocos2d::Label>(tolua_S, "cc.LabelTTF",(cocos2d::Label*)ret);
             return 1;
         }
     } while (0);
@@ -30305,8 +30348,11 @@ int lua_cocos2dx_LabelTTF_createWithFontDefinition(lua_State* tolua_S)
         ok &= luaval_to_fontdefinition(tolua_S, 3, &arg1);
         if(!ok)
             return 0;
-        cocos2d::LabelTTF* ret = cocos2d::LabelTTF::createWithFontDefinition(arg0, arg1);
-        object_to_luaval<cocos2d::LabelTTF>(tolua_S, "cc.LabelTTF",(cocos2d::LabelTTF*)ret);
+        cocos2d::Label* ret = cocos2d::Label::create(); // cocos2d::Label::createWithFontDefinition(arg0, arg1);
+        ret->setFontDefinition(arg1);
+        ret->setString(arg0);
+
+        object_to_luaval<cocos2d::Label>(tolua_S, "cc.LabelTTF",(cocos2d::Label*)ret);
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d\n ", "createWithFontDefinition",argc, 2);
@@ -30320,7 +30366,7 @@ int lua_cocos2dx_LabelTTF_createWithFontDefinition(lua_State* tolua_S)
 int lua_cocos2dx_LabelTTF_constructor(lua_State* tolua_S)
 {
     int argc = 0;
-    cocos2d::LabelTTF* cobj = nullptr;
+    cocos2d::Label* cobj = nullptr;
     bool ok  = true;
 
 #if COCOS2D_DEBUG >= 1
@@ -30334,7 +30380,7 @@ int lua_cocos2dx_LabelTTF_constructor(lua_State* tolua_S)
     {
         if(!ok)
             return 0;
-        cobj = new cocos2d::LabelTTF();
+        cobj = cocos2d::Label::create();    // new cocos2d::Label();
         cobj->autorelease();
         int ID =  (int)cobj->_ID ;
         int* luaID =  &cobj->_luaID ;
@@ -30392,7 +30438,7 @@ int lua_register_cocos2dx_LabelTTF(lua_State* tolua_S)
         tolua_function(tolua_S,"create", lua_cocos2dx_LabelTTF_create);
         tolua_function(tolua_S,"createWithFontDefinition", lua_cocos2dx_LabelTTF_createWithFontDefinition);
     tolua_endmodule(tolua_S);
-    std::string typeName = typeid(cocos2d::LabelTTF).name();
+    std::string typeName = typeid(cocos2d::Label).name();
     g_luaType[typeName] = "cc.LabelTTF";
     g_typeCast["LabelTTF"] = "cc.LabelTTF";
     return 1;
