@@ -2,13 +2,14 @@
 #include "cocos2d.h"
 #include "MainWindow.h"
 #include "HelloWorldScene.h"
+
 // Qt
 #include <QLabel>
 #include <QHBoxLayout>
 #include <QGLWidget>
 
-//#include "CCLuaEngine.h"
-//#include "lua_extensions.h"
+#include "CCLuaEngine.h"
+#include "lua_extensions.h"
 //#include "cocos2dx_extensions_luabinding.h"
 //#include "cocos2dx_extra_luabinding.h"
 
@@ -46,10 +47,10 @@ bool AppDelegate::applicationDidFinishLaunching()
 #else
 
     // register lua engine
-    CCLuaEngine *pEngine = CCLuaEngine::defaultEngine();
-    CCScriptEngineManager::sharedManager()->setScriptEngine(pEngine);
+    LuaEngine *pEngine = LuaEngine::getInstance();
+    ScriptEngineManager::getInstance()->setScriptEngine(pEngine);
 
-    CCLuaStack *pStack = pEngine->getLuaStack();
+    LuaStack *pStack = pEngine->getLuaStack();
     lua_State* L = pStack->getLuaState();
 
     // load lua extensions
@@ -66,12 +67,12 @@ bool AppDelegate::applicationDidFinishLaunching()
     luaopen_cocos2dx_extra_ios_iap_luabinding(L);
 #endif
 
-    string path("scripts/main.lua");
-    path = CCFileUtils::sharedFileUtils()->fullPathForFilename(path.c_str());
+    std::string path("scripts/main.lua");
+    path = FileUtils::getInstance()->fullPathForFilename(path);
     size_t p = path.find_last_of("/\\");
     if (p != path.npos)
     {
-        const string dir = path.substr(0, p);
+        const std::string dir = path.substr(0, p);
         pStack->addSearchPath(dir.c_str());
 
         p = dir.find_last_of("/\\");
@@ -81,7 +82,7 @@ bool AppDelegate::applicationDidFinishLaunching()
         }
     }
 
-    string env = "__LUA_STARTUP_FILE__=\"";
+    std::string env = "__LUA_STARTUP_FILE__=\"";
     env.append(path);
     env.append("\"");
     pEngine->executeString(env.c_str());
