@@ -110,3 +110,8 @@ COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/lua/tolua
 
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH
+
+macx {
+    contains(TEMPLATE, app) {
+    }
+}

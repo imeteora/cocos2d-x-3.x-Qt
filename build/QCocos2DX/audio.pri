@@ -7,5 +7,3 @@ HEADERS += \
 SOURCES += \
     ../../cocos/audio/qt/OpenALDecoder.cpp \
     ../../cocos/audio/qt/SimpleAudioEngineNone.cpp \
-
-#    ../../cocos/audio/qt/OpenALDecoder.cpp \
