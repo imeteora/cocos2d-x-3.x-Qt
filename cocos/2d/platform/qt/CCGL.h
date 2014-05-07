@@ -1,5 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010 cocos2d-x.org
+Copyright (c) 2013-2014 Zhu Delun (delun.zhu@gmail.com)
 
 http://www.cocos2d-x.org
 
@@ -26,10 +27,6 @@ THE SOFTWARE.
 #define __CCGL_H__
 
 #include <gl/glew.h>
-
-//#include <GL/glew.h>
-//#include <OpenGL.h>
-//#include <OpenGLAvailability.h>
 
 #define CC_GL_DEPTH24_STENCIL8		GL_DEPTH24_STENCIL8
 

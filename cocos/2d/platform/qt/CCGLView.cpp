@@ -1,5 +1,7 @@
 /****************************************************************************
-Copyright (c) 2010 cocos2d-x.org
+Copyright (c) 2010-2012 cocos2d-x.org
+Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Zhu Delun (delun.zhu@gmail.com)
 
 http://www.cocos2d-x.org
 
@@ -316,7 +318,7 @@ void GLView::resize(int width, int height)
     do {
         CC_BREAK_IF(!m_window);
         CC_BREAK_IF (Director::getInstance()->getOpenGLView() == NULL);
-
+        CCTRACE();
 //        m_window->setFixedSize(width, height);
 //        m_glParentWidget->setFixedSize(width, height);
 
@@ -329,6 +331,7 @@ void GLView::resize(int width, int height)
 
 void GLView::setFrameZoomFactor(float fZoomFactor)
 {
+    CCTRACE();
     m_fFrameZoomFactor = fZoomFactor;
     resize(_screenSize.width * fZoomFactor, _screenSize.height * fZoomFactor);
     centerWindow();
@@ -342,6 +345,7 @@ float GLView::getFrameZoomFactor()
 
 void GLView::setFrameSize(float width, float height)
 {
+    CCTRACE();
     GLViewProtocol::setFrameSize(width, height);
 
     resize(width, height); // adjust window size for menubar
@@ -369,6 +373,7 @@ void GLView::centerWindow()
 
 void GLView::setViewPortInPoints(float x , float y , float w , float h)
 {
+    CCTRACE();
     GLViewProtocol::setViewPortInPoints(x, y, w, h);
 //    glViewport((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
 //        (GLint)(y * _scaleY  * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
@@ -378,6 +383,7 @@ void GLView::setViewPortInPoints(float x , float y , float w , float h)
 
 void GLView::setScissorInPoints(float x , float y , float w , float h)
 {
+    CCTRACE();
     GLViewProtocol::setScissorInPoints(x, y, w, h);
 //    glScissor((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
 //              (GLint)(y * _scaleY * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),

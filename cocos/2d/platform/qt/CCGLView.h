@@ -1,5 +1,6 @@
 /****************************************************************************
 Copyright (c) 2010 cocos2d-x.org
+Copyright (c) 2013-2014 Zhu Delun (delun.zhu@gmail.com)
 
 http://www.cocos2d-x.org
 

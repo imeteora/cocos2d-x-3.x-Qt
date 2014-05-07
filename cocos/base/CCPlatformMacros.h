@@ -221,7 +221,7 @@ public: virtual void set##funName(varType var)   \
 #define CCLOGERROR(format,...)  cocos2d::log(format, ##__VA_ARGS__)
 #define CCLOGINFO(format,...)   do {} while (0)
 #define CCLOGWARN(...)          __CCLOGWITHFUNCTION(__VA_ARGS__)
-#define CCTRACE()               cocos2d::log("## %s(%d): %s", __FILE__, __LINE__, __FUNCTION__)
+#define CCTRACE()               cocos2d::log("## %s(%d): In the \'%s\'.", __FILE__, __LINE__, __FUNCTION__)
 
 #elif COCOS2D_DEBUG > 1
 #define CCLOG(format, ...)      cocos2d::log(format, ##__VA_ARGS__)

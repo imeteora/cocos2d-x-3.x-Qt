@@ -1,5 +1,7 @@
 /****************************************************************************
-Copyright (c) 2010 cocos2d-x.org
+Copyright (c) 2010-2012 cocos2d-x.org
+Copyright (c) 2013-2014 Chukong Technologies Inc.
+Copyright (c) 2013-2014 Zhu Delun (delun.zhu@gmail.com)
 
 http://www.cocos2d-x.org
 
@@ -21,6 +23,7 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 ****************************************************************************/
+
 #include "CCFileUtilsQt.h"
 #include "platform/CCCommon.h"
 
