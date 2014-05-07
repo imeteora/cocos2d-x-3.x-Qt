@@ -22,6 +22,8 @@ Makefile
 
 # Qt Creator-es
 build.qt/
+build-*-Debug/
+build-*-Release/
 
 # Xcode-es
 DerivedData/
