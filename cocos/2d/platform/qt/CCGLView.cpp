@@ -41,6 +41,7 @@ THE SOFTWARE.
 
 /// Qt
 #include <QDesktopWidget>
+#include <QVBoxLayout>
 
 NS_CC_BEGIN
 
@@ -243,16 +244,20 @@ bool GLView::_createInWidget(QWidget *param)
 
         m_glParentWidget = param;
 
-        // Qt Window
-        float iWidth = m_glParentWidget->frameGeometry().size().width();     // m_glParentWidget->frameSize().width();
-        float iHeight = m_glParentWidget->frameGeometry().size().height();    // m_glParentWidget->frameSize().height();
+//        // Qt Window
+//        float iWidth = m_glParentWidget->frameGeometry().size().width();     // m_glParentWidget->frameSize().width();
+//        float iHeight = m_glParentWidget->frameGeometry().size().height();    // m_glParentWidget->frameSize().height();
 
-        m_window = new GLWidget(m_glParentWidget, iWidth, iHeight);
+        m_window = new GLWidget;
         m_window->setMouseMoveFunc(&cocos2d::mouseMove);
         m_window->setMousePressFunc(&cocos2d::mousePress);
         m_window->setMouseReleaseFunc(&cocos2d::mouseRelease);
         m_window->setResizeFunc(&cocos2d::viewResize);
         m_window->makeCurrent();
+
+        QVBoxLayout* _newBoxLayout = new QVBoxLayout;
+        _newBoxLayout->addWidget(m_window);
+        m_glParentWidget->setLayout(_newBoxLayout);
 
         bRet = initGL();
         if(!bRet) destroyGL();
@@ -310,8 +315,13 @@ void GLView::resize(int width, int height)
 {
     do {
         CC_BREAK_IF(!m_window);
-        m_window->setFixedSize(width, height);
-        m_glParentWidget->setFixedSize(width, height);
+        CC_BREAK_IF (Director::getInstance()->getOpenGLView() == NULL);
+
+//        m_window->setFixedSize(width, height);
+//        m_glParentWidget->setFixedSize(width, height);
+
+        setDesignResolutionSize(width, height, ResolutionPolicy::EXACT_FIT);
+        Director::getInstance()->setViewport();
 
     } while(false);
     return;
@@ -340,35 +350,39 @@ void GLView::setFrameSize(float width, float height)
 
 void GLView::centerWindow()
 {
-    if (m_glParentWidget && !m_glParentWidget->parent()) {
-        QDesktopWidget *w = qApp->desktop();
-        QRect rect = w->screenGeometry();
-        m_glParentWidget->move((rect.width()-m_glParentWidget->width())/2.0f
-                              ,(rect.height()-m_glParentWidget->height())/2.0f);
-    }
+    CCTRACE();
+
+//    if (m_glParentWidget && !m_glParentWidget->parent()) {
+//        QDesktopWidget *w = qApp->desktop();
+//        QRect rect = w->screenGeometry();
+//        m_glParentWidget->move((rect.width()-m_glParentWidget->width())/2.0f
+//                              ,(rect.height()-m_glParentWidget->height())/2.0f);
+//    }
 }
 
-void GLView::moveWindow(int left, int top)
-{
-    if (m_glParentWidget && !m_glParentWidget->parent()) {
-        m_glParentWidget->move(left, top);
-    }
-}
+//void GLView::moveWindow(int left, int top)
+//{
+//    if (m_glParentWidget && !m_glParentWidget->parent()) {
+//        m_glParentWidget->move(left, top);
+//    }
+//}
 
 void GLView::setViewPortInPoints(float x , float y , float w , float h)
 {
-    glViewport((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
-        (GLint)(y * _scaleY  * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
-        (GLsizei)(w * _scaleX * m_fFrameZoomFactor),
-        (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
+    GLViewProtocol::setViewPortInPoints(x, y, w, h);
+//    glViewport((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
+//        (GLint)(y * _scaleY  * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
+//        (GLsizei)(w * _scaleX * m_fFrameZoomFactor),
+//        (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
 }
 
 void GLView::setScissorInPoints(float x , float y , float w , float h)
 {
-    glScissor((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
-              (GLint)(y * _scaleY * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
-              (GLsizei)(w * _scaleX * m_fFrameZoomFactor),
-              (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
+    GLViewProtocol::setScissorInPoints(x, y, w, h);
+//    glScissor((GLint)(x * _scaleX * m_fFrameZoomFactor + _viewPortRect.origin.x * m_fFrameZoomFactor),
+//              (GLint)(y * _scaleY * m_fFrameZoomFactor + _viewPortRect.origin.y * m_fFrameZoomFactor),
+//              (GLsizei)(w * _scaleX * m_fFrameZoomFactor),
+//              (GLsizei)(h * _scaleY * m_fFrameZoomFactor));
 }
 
 GLView* GLView::create(const std::string &viewName)

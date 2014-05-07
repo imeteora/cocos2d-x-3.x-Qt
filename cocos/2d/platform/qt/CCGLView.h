@@ -40,9 +40,6 @@ class GLWidget;
 
 NS_CC_BEGIN
 
-class CCEGL;
-//class CCTouch;
-
 class CC_DLL GLView : public GLViewProtocol, public Ref
 {
 public:
@@ -65,7 +62,7 @@ public:
     void setFrameZoomFactor(float fZoomFactor);
 	float getFrameZoomFactor();
     void centerWindow();
-    void moveWindow(int left, int top);
+//    void moveWindow(int left, int top);
 
     virtual void setViewPortInPoints(float x , float y , float w , float h);
     virtual void setScissorInPoints(float x , float y , float w , float h);

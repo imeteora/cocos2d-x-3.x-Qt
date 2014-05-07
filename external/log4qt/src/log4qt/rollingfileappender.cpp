@@ -103,7 +103,6 @@ namespace Log4Qt
         if (ok)
             setMaximumFileSize(max_file_size);
     }
-
 	
 	void RollingFileAppender::append(const LoggingEvent &rEvent)
 	{

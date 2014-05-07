@@ -1,8 +1,8 @@
 #include "CCGLWidget.h"
-
+#include <QResizeEvent>
 
 GLWidget::GLWidget(QWidget *parent, const int width, const int height)
-    : QGLWidget(QGLFormat(QGL::SampleBuffers), parent)
+    : QGLWidget(QGLFormat(QGL::SampleBuffers | QGL::DoubleBuffer), parent)
     , mouseMoveFunc(NULL)
     , mousePressFunc(NULL)
     , mouseReleaseFunc(NULL)
@@ -44,6 +44,7 @@ void GLWidget::setKeyEventFunc(ACCEL_FUNCPTR func)
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event)
 {
+    CCTRACE();
     if (mouseMoveFunc)
         mouseMoveFunc(event);
 
@@ -52,6 +53,7 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event)
 
 void GLWidget::mousePressEvent(QMouseEvent *event)
 {
+    CCTRACE();
     if (mousePressFunc)
         mousePressFunc(event);
 
@@ -60,6 +62,7 @@ void GLWidget::mousePressEvent(QMouseEvent *event)
 
 void GLWidget::mouseReleaseEvent(QMouseEvent *event)
 {
+    CCTRACE();
     if (mouseReleaseFunc)
         mouseReleaseFunc(event);
 
@@ -68,6 +71,7 @@ void GLWidget::mouseReleaseEvent(QMouseEvent *event)
 
 void GLWidget::keyPressEvent(QKeyEvent *e)
 {
+    CCTRACE();
     if (keyEventFunc)
         keyEventFunc(e);
 
@@ -76,6 +80,7 @@ void GLWidget::keyPressEvent(QKeyEvent *e)
 
 void GLWidget::keyReleaseEvent(QKeyEvent *e)
 {
+    CCTRACE();
     if (keyEventFunc)
         keyEventFunc(e);
 
@@ -83,11 +88,15 @@ void GLWidget::keyReleaseEvent(QKeyEvent *e)
 }
 
 void
-GLWidget::resizeEvent(QResizeEvent *e)
+GLWidget::resizeEvent(QResizeEvent *event)
 {
-    if (frameResizeFunc)
-        frameResizeFunc(e);
+    CCTRACE();
+    QSize newSize = event->size();
+    resize(newSize);
 
-    QGLWidget::resizeEvent(e);
+    if (frameResizeFunc)
+        frameResizeFunc(event);
+
+    QGLWidget::resizeEvent(event);
 }
 
