@@ -70,6 +70,21 @@ macx {
 
 #    INCLUDEPATH += $$PWD/../../external/lua/luajit/include
 #    LIBS += -L$$PWD/../../external/lua/luajit/prebuilt/mac -lluajit
+
+    contains(TEMPLATE, app) {
+        APP_BUNDLE_PATH  = $${DESTDIR}/$${TARGET}.app
+        DYLIB_PATH  = $${DESTDIR}/libcocos2d.1.0.0.dylib
+        message(------------------------BEGIN------------------------------)
+        message($$APP_BUNDLE_PATH)
+        message($$DYLIB_PATH)
+        message(-------------------------END-------------------------------)
+
+        QMAKE_POST_LINK     += ${QTDIR}/bin/macdeployqt $$APP_BUNDLE_PATH -verbose=1 &
+        contains(CONFIG, shared) {
+            QMAKE_POST_LINK += cp -f $$DYLIB_PATH $$APP_BUNDLE_PATH/Contents/Frameworks/libcocos2d.1.dylib &
+            QMAKE_POST_LINK += cp -f $$PWD/../../external/openal/prebuilt/mac/*openal*.dylib    $$APP_BUNDLE_PATH/Contents/Frameworks &
+        }
+    }
 }
 
 COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR
@@ -111,7 +126,4 @@ COCOS2D_INCLUDEPATH +=    $$COCOS2D_DIR/external/lua/tolua
 
 INCLUDEPATH += $$COCOS2D_INCLUDEPATH
 
-macx {
-    contains(TEMPLATE, app) {
-    }
-}
+

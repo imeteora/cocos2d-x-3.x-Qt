@@ -13,6 +13,12 @@ CONFIG      += shared
 CONFIG      += precompile_header
 PRECOMPILED_HEADER  += cocos2dx-qt.pch
 
+#VER_MAJ     = 3
+#VER_MIN     = 0
+#VER_PAT     = 0
+
+#COCOS2D_VERSION = $${VER_MAJ}.$${VER_MIN}.$${VER_PAT}
+
 # the cocos2d-x-3.x library
 include($$PWD/libCocos2dx.pri)
 include($$PWD/../../external/log4qt/src/log4qt/log4qt.pri)

@@ -1,8 +1,10 @@
 #include "HelloWorldScene.h"
-//#include <cocos-ext.h>
+#include <cocos-ext.h>
+#include <SimpleAudioEngine.h>
 
 USING_NS_CC;
-//USING_NS_CC_EXT;
+USING_NS_CC_EXT;
+using namespace CocosDenshion;
 
 static HelloWorld *g_pHelloWorld = NULL;
 Scene *HelloWorld::scene()
@@ -101,6 +103,9 @@ bool HelloWorld::init()
         m_pBall->setPosition( Point(size.width/2, size.height/2) );
         addChild(m_pBall);
     }
+
+//    SimpleAudioEngine::getInstance()->playEffect("background.mp3");
+
 	return true;
 }
 

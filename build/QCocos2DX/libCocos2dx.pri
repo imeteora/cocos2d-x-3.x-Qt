@@ -1,3 +1,5 @@
+QMAKE_LFLAGS    +=  -headerpad_max_install_names
+
 include(libCocos2dx-header.pri)
 
 include(2d.pri)
