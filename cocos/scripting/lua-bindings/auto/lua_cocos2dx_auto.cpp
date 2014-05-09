@@ -1615,7 +1615,7 @@ int lua_cocos2dx_GLProgram_setUniformLocationWithMatrix4fv(lua_State* tolua_S)
 
         ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
 
-        #pragma warning NO CONVERSION TO NATIVE FOR float*;
+        #pragma message("NO CONVERSION TO NATIVE FOR float*")
 
         ok &= luaval_to_uint32(tolua_S, 4,&arg2);
         if(!ok)
@@ -1955,7 +1955,7 @@ int lua_cocos2dx_GLProgram_setUniformLocationWith3iv(lua_State* tolua_S)
 
         ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
 
-        #pragma warning NO CONVERSION TO NATIVE FOR int*;
+        #pragma message ("NO CONVERSION TO NATIVE FOR int*")
 
         ok &= luaval_to_uint32(tolua_S, 4,&arg2);
         if(!ok)
@@ -2050,7 +2050,7 @@ int lua_cocos2dx_GLProgram_setUniformLocationWith4iv(lua_State* tolua_S)
 
         ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
 
-        #pragma warning NO CONVERSION TO NATIVE FOR int*;
+        #pragma message ("NO CONVERSION TO NATIVE FOR int*")
 
         ok &= luaval_to_uint32(tolua_S, 4,&arg2);
         if(!ok)
@@ -2198,7 +2198,7 @@ int lua_cocos2dx_GLProgram_setUniformLocationWith2iv(lua_State* tolua_S)
 
         ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
 
-        #pragma warning NO CONVERSION TO NATIVE FOR int*;
+        #pragma message ("NO CONVERSION TO NATIVE FOR int*")
 
         ok &= luaval_to_uint32(tolua_S, 4,&arg2);
         if(!ok)
@@ -2250,7 +2250,7 @@ int lua_cocos2dx_GLProgram_setUniformLocationWithMatrix3fv(lua_State* tolua_S)
 
         ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
 
-        #pragma warning NO CONVERSION TO NATIVE FOR float*;
+        #pragma message ("NO CONVERSION TO NATIVE FOR float*")
 
         ok &= luaval_to_uint32(tolua_S, 4,&arg2);
         if(!ok)
@@ -2441,7 +2441,7 @@ int lua_cocos2dx_GLProgram_setUniformLocationWithMatrix2fv(lua_State* tolua_S)
 
         ok &= luaval_to_int32(tolua_S, 2,(int *)&arg0);
 
-        #pragma warning NO CONVERSION TO NATIVE FOR float*;
+        #pragma message ("NO CONVERSION TO NATIVE FOR float*")
 
         ok &= luaval_to_uint32(tolua_S, 4,&arg2);
         if(!ok)
@@ -3875,7 +3875,7 @@ int lua_cocos2dx_Texture2D_updateWithData(lua_State* tolua_S)
         int arg3;
         int arg4;
 
-        #pragma warning NO CONVERSION TO NATIVE FOR void*;
+        #pragma message ("NO CONVERSION TO NATIVE FOR void*")
 
         ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1);
 
@@ -3978,7 +3978,7 @@ int lua_cocos2dx_Texture2D_initWithMipmaps(lua_State* tolua_S)
         int arg3;
         int arg4;
 
-        #pragma warning NO CONVERSION TO NATIVE FOR _MipmapInfo*;
+        #pragma message ("NO CONVERSION TO NATIVE FOR _MipmapInfo*")
 
         ok &= luaval_to_int32(tolua_S, 3,(int *)&arg1);
 
@@ -7075,7 +7075,7 @@ int lua_cocos2dx_Node_getNodeToWorldTransform(lua_State* tolua_S)
         if(!ok)
             return 0;
         kmMat4 ret = cobj->getNodeToWorldTransform();
-        #pragma warning NO CONVERSION FROM NATIVE FOR kmMat4;
+        #pragma message ("NO CONVERSION FROM NATIVE FOR kmMat4")
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getNodeToWorldTransform",argc, 0);
@@ -7119,7 +7119,7 @@ int lua_cocos2dx_Node_getPosition3D(lua_State* tolua_S)
         if(!ok)
             return 0;
         cocos2d::Vertex3F ret = cobj->getPosition3D();
-        #pragma warning NO CONVERSION FROM NATIVE FOR Vertex3F;
+        #pragma message ("NO CONVERSION FROM NATIVE FOR Vertex3F")
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getPosition3D",argc, 0);
@@ -7723,7 +7723,7 @@ int lua_cocos2dx_Node_getRotation3D(lua_State* tolua_S)
         if(!ok)
             return 0;
         cocos2d::Vertex3F ret = cobj->getRotation3D();
-        #pragma warning NO CONVERSION FROM NATIVE FOR Vertex3F;
+        #pragma message ("NO CONVERSION FROM NATIVE FOR Vertex3F")
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getRotation3D",argc, 0);
@@ -7767,7 +7767,7 @@ int lua_cocos2dx_Node_getNodeToParentTransform(lua_State* tolua_S)
         if(!ok)
             return 0;
         const kmMat4& ret = cobj->getNodeToParentTransform();
-        #pragma warning NO CONVERSION FROM NATIVE FOR kmMat4;
+        #pragma message ("NO CONVERSION FROM NATIVE FOR kmMat4")
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getNodeToParentTransform",argc, 0);
@@ -8235,7 +8235,7 @@ int lua_cocos2dx_Node_setRotation3D(lua_State* tolua_S)
     {
         cocos2d::Vertex3F arg0;
 
-        #pragma warning NO CONVERSION TO NATIVE FOR Vertex3F;
+        #pragma message ("NO CONVERSION TO NATIVE FOR Vertex3F")
         if(!ok)
             return 0;
         cobj->setRotation3D(arg0);
@@ -9197,7 +9197,7 @@ int lua_cocos2dx_Node_setAdditionalTransform(lua_State* tolua_S)
     do{
         if (argc == 1) {
             kmMat4* arg0;
-            #pragma warning NO CONVERSION TO NATIVE FOR kmMat4*;
+            #pragma message ("NO CONVERSION TO NATIVE FOR kmMat4*")
 
             if (!ok) { break; }
             cobj->setAdditionalTransform(arg0);
@@ -9981,7 +9981,7 @@ int lua_cocos2dx_Node_getParentToNodeTransform(lua_State* tolua_S)
         if(!ok)
             return 0;
         const kmMat4& ret = cobj->getParentToNodeTransform();
-        #pragma warning NO CONVERSION FROM NATIVE FOR kmMat4;
+        #pragma message ("NO CONVERSION FROM NATIVE FOR kmMat4")
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getParentToNodeTransform",argc, 0);
@@ -10998,7 +10998,7 @@ int lua_cocos2dx_Node_setPosition3D(lua_State* tolua_S)
     {
         cocos2d::Vertex3F arg0;
 
-        #pragma warning NO CONVERSION TO NATIVE FOR Vertex3F;
+        #pragma message ("NO CONVERSION TO NATIVE FOR Vertex3F")
         if(!ok)
             return 0;
         cobj->setPosition3D(arg0);
@@ -11134,7 +11134,7 @@ int lua_cocos2dx_Node_getWorldToNodeTransform(lua_State* tolua_S)
         if(!ok)
             return 0;
         kmMat4 ret = cobj->getWorldToNodeTransform();
-        #pragma warning NO CONVERSION FROM NATIVE FOR kmMat4;
+        #pragma message ("NO CONVERSION FROM NATIVE FOR kmMat4")
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getWorldToNodeTransform",argc, 0);
@@ -14551,7 +14551,7 @@ int lua_cocos2dx_RotateBy_create(lua_State* tolua_S)
             ok &= luaval_to_number(tolua_S, 2,&arg0);
             if (!ok) { break; }
             cocos2d::Vertex3F arg1;
-            #pragma warning NO CONVERSION TO NATIVE FOR Vertex3F;
+            #pragma message ("NO CONVERSION TO NATIVE FOR Vertex3F")
             if (!ok) { break; }
             cocos2d::RotateBy* ret = cocos2d::RotateBy::create(arg0, arg1);
             object_to_luaval<cocos2d::RotateBy>(tolua_S, "cc.RotateBy",(cocos2d::RotateBy*)ret);
@@ -15987,7 +15987,7 @@ int lua_cocos2dx_ActionCamera_setEye(lua_State* tolua_S)
     do{
         if (argc == 1) {
             kmVec3 arg0;
-            #pragma warning NO CONVERSION TO NATIVE FOR kmVec3;
+            #pragma message ("NO CONVERSION TO NATIVE FOR kmVec3")
 
             if (!ok) { break; }
             cobj->setEye(arg0);
@@ -33622,7 +33622,7 @@ int lua_cocos2dx_LabelBMFont_getBlendFunc(lua_State* tolua_S)
         if(!ok)
             return 0;
         const cocos2d::BlendFunc& ret = cobj->getBlendFunc();
-        #pragma warning NO CONVERSION FROM NATIVE FOR BlendFunc;
+        #pragma message ("NO CONVERSION FROM NATIVE FOR BlendFunc")
         return 1;
     }
     CCLOG("%s has wrong number of arguments: %d, was expecting %d \n", "getBlendFunc",argc, 0);

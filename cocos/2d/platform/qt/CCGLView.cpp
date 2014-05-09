@@ -153,7 +153,7 @@ static void viewResize(QResizeEvent *event)
 {
     do {
         CC_BREAK_IF(s_pMainWindow == NULL);
-        s_pMainWindow->setFrameSize(event->size().width(), event->size().height());
+        s_pMainWindow->resize(event->size().width(), event->size().height());
     } while (false);
     return;
 }
@@ -323,7 +323,7 @@ void GLView::resize(int width, int height)
 //        m_glParentWidget->setFixedSize(width, height);
 
         setDesignResolutionSize(width, height, ResolutionPolicy::EXACT_FIT);
-        Director::getInstance()->setViewport();
+//        Director::getInstance()->setViewport();
 
     } while(false);
     return;
@@ -354,8 +354,7 @@ void GLView::setFrameSize(float width, float height)
 
 void GLView::centerWindow()
 {
-    CCTRACE();
-
+//    CCTRACE();
 //    if (m_glParentWidget && !m_glParentWidget->parent()) {
 //        QDesktopWidget *w = qApp->desktop();
 //        QRect rect = w->screenGeometry();

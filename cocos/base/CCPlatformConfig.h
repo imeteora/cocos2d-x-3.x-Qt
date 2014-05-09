@@ -157,6 +157,7 @@ Config of cocos2d-x project, per target platform.
     #if defined(__clang__) || defined(__llvm__)
         #pragma clang diagnostic ignored "-Wignored-qualifiers"
         #pragma clang diagnostic ignored "-Wempty-body"
+        #pragma clang diagnostic ignored "-Wunused-label"
         #pragma clang diagnostic ignored "-Wunused-parameter"
         #pragma clang diagnostic ignored "-Wunused-private-field"
         #pragma clang diagnostic ignored "-Wunused-function"

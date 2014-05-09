@@ -74,7 +74,12 @@ macx {
     contains(TEMPLATE, app) {
         APP_BUNDLE_PATH  = $${DESTDIR}/$${TARGET}.app
         DYLIB_PATH  = $${DESTDIR}/libcocos2d.1.0.0.dylib
+
         message(------------------------BEGIN------------------------------)
+        ## checking `DESTDIR`, 3rd party programmer must define the `DESTDIR` before including ME in your own project.
+        count(DESTDIR, 0) {
+            message("`DESTDIR` is empty, Setting `DESTDIR` before including `libCocos2dx-header.pri`")
+        }
         message($$APP_BUNDLE_PATH)
         message($$DYLIB_PATH)
         message(-------------------------END-------------------------------)
