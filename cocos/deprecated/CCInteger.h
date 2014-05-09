@@ -28,6 +28,7 @@
 #include "CCRef.h"
 #include "CCDataVisitor.h"
 #include "platform/CCCommon.h"
+#include "ccMacros.h"
 
 NS_CC_BEGIN
 

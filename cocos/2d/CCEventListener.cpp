@@ -23,6 +23,7 @@
  ****************************************************************************/
 
 #include "CCEventListener.h"
+#include "ccMacros.h"
 #include "platform/CCCommon.h"
 
 NS_CC_BEGIN
@@ -32,7 +33,7 @@ EventListener::EventListener()
     
 EventListener::~EventListener() 
 {
-	CCLOGINFO("In the destructor of EventListener. %p", this);
+    CCLOGINFO("In the destructor of EventListener. %p", this);
 }
 
 bool EventListener::init(Type t, const ListenerID& listenerID, const std::function<void(Event*)>& callback)
