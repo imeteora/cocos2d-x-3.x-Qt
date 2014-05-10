@@ -25,7 +25,7 @@ macx {
         QMAKE_INFO_PLIST    = Info.plist
         ICON                = $$PWD/Images/Icons/icon_mac.icns
 
-        QMAKE_POST_LINK += yes|cp -R $$DEPLOY_RES/* $$APP_BUNDLE/Contents/Resources &
+        QMAKE_POST_LINK += cp -R $$DEPLOY_RES/* $$APP_BUNDLE/Contents/Resources &
     }
 }
 

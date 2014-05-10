@@ -35,6 +35,11 @@ THE SOFTWARE.
 #include "CCGeometry.h"
 #include "CCGLViewProtocol.h"
 
+typedef enum {
+    GLVIEW_WINDOW_MODE_FIXSIZE = 0,     // GL window with the fixed windows size
+    GLVIEW_WINDOW_MODE_RESIZABLE,       // resizable GL window
+}   GLViewWindowModeType;
+
 typedef void(*ACCEL_PTRFUN)(QKeyEvent *event);
 
 class GLWidget;
@@ -99,6 +104,7 @@ private:
     float m_fFrameZoomFactor;
     float m_fScreenScaleFactor;
 
+    GLViewWindowModeType GLViewWindowMode;
     std::vector<Touch*> * m_pSet;
     Touch * m_pTouch;
     GLWidget* m_window;

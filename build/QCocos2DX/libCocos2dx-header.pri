@@ -17,7 +17,7 @@ DEFINES += CC_KEYBOARD_SUPPORT
 
 DEFINES += __QT__
 DEFINES += CC_UNDER_QT
-DEFINES += COCOS2D_DEBUG=2
+DEFINES += COCOS2D_DEBUG=1
 
 macx {
     # system libraries.
@@ -80,15 +80,14 @@ macx {
         count(DESTDIR, 0) {
             message("`DESTDIR` is empty, Setting `DESTDIR` before including `libCocos2dx-header.pri`")
         }
+        message($(QTDIR))
         message($$APP_BUNDLE_PATH)
         message($$DYLIB_PATH)
         message(-------------------------END-------------------------------)
 
-        QMAKE_POST_LINK     += ${QTDIR}/bin/macdeployqt $$APP_BUNDLE_PATH -verbose=1 &
-        contains(CONFIG, shared) {
-            QMAKE_POST_LINK += cp -f $$DYLIB_PATH $$APP_BUNDLE_PATH/Contents/Frameworks/libcocos2d.1.dylib &
-            QMAKE_POST_LINK += cp -f $$PWD/../../external/openal/prebuilt/mac/*openal*.dylib    $$APP_BUNDLE_PATH/Contents/Frameworks &
-        }
+        QMAKE_POST_LINK += $(QTDIR)/bin/macdeployqt $$APP_BUNDLE_PATH &
+        QMAKE_POST_LINK += cp -R $$DYLIB_PATH  $$APP_BUNDLE_PATH/Contents/Frameworks/libcocos2d.1.dylib &
+
     }
 }
 
