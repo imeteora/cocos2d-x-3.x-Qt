@@ -204,7 +204,7 @@ Only valid for cocos2d-mac. Not supported on cocos2d-ios.
  2 -- draw texture box
 */
 #ifndef CC_SPRITE_DEBUG_DRAW
-#define CC_SPRITE_DEBUG_DRAW 2
+#define CC_SPRITE_DEBUG_DRAW 0
 #endif
 
 /** @def CC_SPRITEBATCHNODE_DEBUG_DRAW
@@ -214,7 +214,7 @@ Useful for debugging purposes only. It is recommended to leave it disabled.
 To enable set it to a value different than 0. Disabled by default.
 */
 #ifndef CC_SPRITEBATCHNODE_DEBUG_DRAW
-#define CC_SPRITEBATCHNODE_DEBUG_DRAW 1
+#define CC_SPRITEBATCHNODE_DEBUG_DRAW 0
 #endif
 
 /** @def CC_LABELBMFONT_DEBUG_DRAW
@@ -245,7 +245,7 @@ To enable set it to a value different than 0. Disabled by default.
  Note: event listener verification will always be disabled in builds where assertions are disabled regardless of this setting.
  */
 #ifndef CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS
-#define CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS 1
+#define CC_NODE_DEBUG_VERIFY_EVENT_LISTENERS 0
 #endif
 
 /** @def CC_ENABLE_PROFILERS

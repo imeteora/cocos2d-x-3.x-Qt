@@ -1,6 +1,49 @@
 <img src="http://www.cocos2d-x.org/attachments/801/cocos2dx_portrait.png" width=200>
 
+------------------------------------------------------------------------------
+COCOS2D-X (3.x) for Qt
+=========  
 
+This is the Qt port of the cocos2d-x (3.0). Starting the Qt port after Cocos2d-x team release the first 3.x version of cocos2d-x. No modification in the cocos2d-x 3.x.
+
+Starts:  
+    
+1. Open `(Project folder)/build/QCocos2DX/QCocos2DX.pro` in Qt creator. This is the library project.
+
+2. Two runable sample projects
+	* Hello world - `(Project folder)/tests/HelloCocos2D/HelloCocos2D.pro`
+	* cpp-tests - `(Project folder)/test/cpp-tests/proj.qt/cpp-test-qt.pro`
+
+3. Envrionment  
+
+	* Qt 5.x
+	* PNG
+	* JPEG
+	* TIFF
+	* WEBP
+	* CURL
+	* OpenAL
+	* freeALUT
+	* Vorbis 
+	* Sqlite3
+	* freetype
+	* websocket
+	* GLEW
+	
+4. Status  
+
+	|       |  Win32 | Mac OSX 1.9.x|
+	|:-----:|:------:|:------------:|
+	|Compile| N/A    | PASS         |
+	| Run   | N/A    | PASS         |
+
+5. Issue
+	
+    * Touch has the wrong position  
+    * In `GLVIEW_WINDOW_MODE_RESIZABLE` mode, resize the widget, the graphic has the flash bug.
+    * There are some issues in making app bundle for Mac OSX.
+
+------------------------------------------------------------------------------
 cocos2d-x
 =========
 

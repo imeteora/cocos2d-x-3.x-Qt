@@ -166,6 +166,7 @@ GLView::GLView()
     , m_window(NULL)
     , m_fScreenScaleFactor(1.0f)
     , m_glParentWidget(NULL)
+    , GLViewWindowMode(GLVIEW_WINDOW_MODE_FIXSIZE)
 {
     m_pTouch = new Touch;
     m_pSet = new std::vector<Touch*>();
@@ -318,12 +319,14 @@ void GLView::resize(int width, int height)
     do {
         CC_BREAK_IF(!m_window);
         CC_BREAK_IF (Director::getInstance()->getOpenGLView() == NULL);
-        CCTRACE();
-//        m_window->setFixedSize(width, height);
-//        m_glParentWidget->setFixedSize(width, height);
 
-        setDesignResolutionSize(width, height, ResolutionPolicy::EXACT_FIT);
-//        Director::getInstance()->setViewport();
+        if (GLViewWindowMode == GLVIEW_WINDOW_MODE_FIXSIZE) {
+            m_window->setFixedSize(width, height);
+            m_glParentWidget->setFixedSize(width, height);
+        }
+        else {
+            setDesignResolutionSize(width, height, ResolutionPolicy::EXACT_FIT);
+        }
 
     } while(false);
     return;
