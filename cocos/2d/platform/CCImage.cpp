@@ -770,9 +770,9 @@ bool Image::initWithJpgData(const unsigned char * data, ssize_t dataLen)
         /* setup decompression process and source, then read JPEG header */
         jpeg_create_decompress( &cinfo );
 
-#ifndef CC_TARGET_QT5
+//#ifndef CC_TARGET_QT5
         jpeg_mem_src( &cinfo, const_cast<unsigned char*>(data), dataLen );
-#endif /* CC_TARGET_QT5 */
+//#endif /* CC_TARGET_QT5 */
 
         /* reading the image header which contains image information */
 #if (JPEG_LIB_VERSION >= 90)
