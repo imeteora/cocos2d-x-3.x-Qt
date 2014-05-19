@@ -22,8 +22,14 @@ DEFINES += COCOS2D_DEBUG=1
 macx {
     # system libraries.
     INCLUDEPATH += /usr/local/include
-    LIBS += -L/usr/local/lib/ -lGLEW
+#    LIBS += -L/usr/local/lib/ -lGLEW
     LIBS += -L/usr/local/lib/ -lz
+    LIBS += -L/usr/local/lib/ -lcurl
+
+    INCLUDEPATH += /usr/local/homebrew/Cellar/glew/1.10.0/include
+    LIBS += /usr/local/homebrew/Cellar/glew/1.10.0/lib/libGLEW.a
+
+    INCLUDEPATH += $$PWD/../../external/lua/luajit/include
 
     LIBS    += -framework Cocoa
     LIBS    += -framework Foundation
@@ -40,21 +46,22 @@ macx {
     LIBS += -L$$PWD/../../external/jpeg/prebuilt/mac -ljpeg
 
     INCLUDEPATH += $$PWD/../../external/curl/include/mac
-    LIBS        += -L$$PWD/../../external/curl/prebuilt/mac -lcurl
+#    LIBS        += -L$$PWD/../../external/curl/prebuilt/mac -lcurl
+#    LIBS        += $$PWD/../../external/curl/prebuilt/mac/libcurl.a
 
-#    INCLUDEPATH += $$PWD/../../external/glfw3/include/mac
-#    LIBS += -L$$PWD/../../external/glfw3/prebuilt/mac -lglfw3
+    INCLUDEPATH += $$PWD/../../external/glfw3/include/mac
+    LIBS += $$PWD/../../external/glfw3/prebuilt/mac/libglfw3.a
 
     INCLUDEPATH += $$PWD/../../external/openal/include
     LIBS += -L$$PWD/../../external/openal/prebuilt/mac -lopenal
 
     INCLUDEPATH += $$PWD/../../external/freealut/include
-    LIBS += -L$$PWD/../../external/freealut/prebuilt/mac -lalut
+    LIBS += $$PWD/../../external/freealut/prebuilt/mac/libalut.a
 
     INCLUDEPATH += $$PWD/../../external/libvorbis/include
-    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbis
-    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisenc
-    LIBS += -L$$PWD/../../external/libvorbis/prebuilt/mac -lvorbisfile
+    LIBS += $$PWD/../../external/libvorbis/prebuilt/mac/libvorbis.a
+    LIBS += $$PWD/../../external/libvorbis/prebuilt/mac/libvorbisenc.a
+    LIBS += $$PWD/../../external/libvorbis/prebuilt/mac/libvorbisfile.a
 
     INCLUDEPATH += $$PWD/../../external/sqlite3/include
     LIBS += -L$$PWD/../../external/sqlite3/libraries/mac -lsqlite3
