@@ -29,8 +29,10 @@ bool AppDelegate::applicationDidFinishLaunching()
     // initialize director
     Director* pDirector = Director::getInstance();
     cocos2d::GLView* eglView = cocos2d::GLView::createWithWidget(m_mainWindow.getGLViewSuperWidget());
-    eglView->setFrameSize(640, 480);
+//    cocos2d::GLView *eglView = cocos2d::GLView::createWithRect("HelloCocos2d",cocos2d::Rect(0,0,960,640));
 
+    //    eglView->setFrameSize(960, 640);
+    eglView->setDesignResolutionSize(960,640,ResolutionPolicy::NO_BORDER);
     pDirector->setOpenGLView(eglView);
 
     // turn on display FPS
@@ -38,12 +40,13 @@ bool AppDelegate::applicationDidFinishLaunching()
 
     // set FPS. the default value is 1.0/60 if you don't call this
     pDirector->setAnimationInterval(1.0 / 60 );
-#if 1
+#ifdef defx
     // create a scene. it's an autorelease object
     Scene *pScene = HelloWorld::scene();
 
     // run
     pDirector->runWithScene(pScene);
+
 #else
 
     // register lua engine
@@ -53,44 +56,20 @@ bool AppDelegate::applicationDidFinishLaunching()
     LuaStack *pStack = pEngine->getLuaStack();
     lua_State* L = pStack->getLuaState();
 
-    // load lua extensions
-    luaopen_lua_extensions(L);
-
-    // FIXME:
-
-    // load cocos2dx_extensions luabinding
-    luaopen_cocos2dx_extensions_luabinding(L);
-    // load cocos2dx_extra luabinding
-    luaopen_cocos2dx_extra_luabinding(L);
+//    // load lua extensions
+//    luaopen_lua_extensions(L);
 
 #if (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
     luaopen_cocos2dx_extra_ios_iap_luabinding(L);
 #endif
 
-    std::string path("scripts/main.lua");
-    path = FileUtils::getInstance()->fullPathForFilename(path);
-    size_t p = path.find_last_of("/\\");
-    if (p != path.npos)
-    {
-        const std::string dir = path.substr(0, p);
-        pStack->addSearchPath(dir.c_str());
+//    CCLOG("------------------------------------------------");
+//    CCLOG("LOAD LUA FILE: %s", path.c_str());
+//    CCLOG("------------------------------------------------");
+//    pEngine->executeScriptFile(path.c_str());
 
-        p = dir.find_last_of("/\\");
-        if (p != dir.npos)
-        {
-            pStack->addSearchPath(dir.substr(0, p).c_str());
-        }
-    }
+    pEngine->executeScriptFile("src/hello.lua");
 
-    std::string env = "__LUA_STARTUP_FILE__=\"";
-    env.append(path);
-    env.append("\"");
-    pEngine->executeString(env.c_str());
-
-    CCLOG("------------------------------------------------");
-    CCLOG("LOAD LUA FILE: %s", path.c_str());
-    CCLOG("------------------------------------------------");
-    pEngine->executeScriptFile(path.c_str());
 #endif
 //    m_mainWindow.setCocosAppDelegate(this);
     m_mainWindow.show();

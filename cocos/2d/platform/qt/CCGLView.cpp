@@ -255,10 +255,12 @@ bool GLView::_createInWidget(QWidget *param)
         m_window->setMouseMoveFunc(&cocos2d::mouseMove);
         m_window->setMousePressFunc(&cocos2d::mousePress);
         m_window->setMouseReleaseFunc(&cocos2d::mouseRelease);
-        m_window->setResizeFunc(&cocos2d::viewResize);
+//        m_window->setResizeFunc(&cocos2d::viewResize);
         m_window->makeCurrent();
 
         QVBoxLayout* _newBoxLayout = new QVBoxLayout;
+        _newBoxLayout->setMargin(0);
+        _newBoxLayout->setSpacing(0);
         _newBoxLayout->addWidget(m_window);
         m_glParentWidget->setLayout(_newBoxLayout);
 

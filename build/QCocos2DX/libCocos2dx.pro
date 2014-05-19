@@ -9,6 +9,7 @@ QT      += core gui opengl
 TARGET      = libCocos2dx
 TEMPLATE    = lib
 CONFIG      += shared
+#CONFIG      += staticlib
 
 CONFIG      += precompile_header
 PRECOMPILED_HEADER  += cocos2dx-qt.pch
